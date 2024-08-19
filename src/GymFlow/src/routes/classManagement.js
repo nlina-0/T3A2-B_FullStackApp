@@ -1,9 +1,5 @@
-// manage classes (add/remove/create)
-// testing branch
-/* ++++++++++++++++++
-++++++++++++++++++++++
-+++++++++++++++++++
-+++++++++++++++++++
-+++++++++++++++++++
-+++++++++++++++++++
-*/
+// post classes (create new class admin only)
+// get classes (get classes list)
+// get classes id (get specific class id)
+// out classes id (update class details)
+// delete classes id (delete specific class)
