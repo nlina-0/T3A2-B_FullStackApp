@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import NavBar from './NavBar'
-import ClassDetails from './ClassDetails'
+import ClassCard from './ClassCard'
 
 const Classes = () => {
   return (
@@ -9,7 +9,9 @@ const Classes = () => {
       <h1>Classes</h1>
       {/* component - search functionality */}
       {/* component - list of classes made from reusable component */}
-      <ClassDetails />
+      
+      {/* Going to be a link */}
+      <ClassCard classType=''/>
     </>
   )
 }
