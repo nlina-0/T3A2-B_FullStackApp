@@ -2,6 +2,15 @@
 
 h1 {
   font-weight: 600;
+  font-size: 1.5em;
+}
+
+.container.is-max-tablet {
+  padding: 5px;
+}
+
+.card {
+  background-color: rgba(240, 248, 255, 0.152);
 }
 
 /* :root {

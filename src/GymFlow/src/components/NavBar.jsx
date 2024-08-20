@@ -24,6 +24,7 @@ const NavBar = () => {
                         <Link class="navbar-item" to="/classes">Classes</Link>
                         <Link class="navbar-item" to="/createClass">Create Class</Link>
                         <Link class="navbar-item" to="/customers">Customers</Link>
+                        <Link class="navbar-item" to="/userSettings">User Settings</Link>
                     </div>
                 </div>
             </nav>
