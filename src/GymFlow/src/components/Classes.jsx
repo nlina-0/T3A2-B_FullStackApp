@@ -1,22 +1,15 @@
 import React, {useState} from 'react'
 import NavBar from './NavBar'
+import ClassDetails from './ClassDetails'
 
 const Classes = () => {
-  const [classes, setClasses] = useState(
-    ['Yoga', 'Boxing', 'Pilates', 'Cycle']
-  )
-
   return (
     <>
       <NavBar />
       <h1>Classes</h1>
-      <ul>
-          {classes.map((cl) => (
-              <li>
-                  <p>{cl}</p>
-              </li>
-          ))}
-        </ul>
+      {/* component - search functionality */}
+      {/* component - list of classes made from reusable component */}
+      <ClassDetails />
     </>
   )
 }
