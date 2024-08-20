@@ -1,17 +1,21 @@
 import React, {useState} from 'react'
 import NavBar from './NavBar'
 import ClassCard from './ClassCard'
+import PageHeading from './PageHeading'
 
 const Classes = () => {
   return (
     <>
       <NavBar />
       <div class="container is-max-tablet">
-        <h1>Classes</h1>  
-        <button class="button is-primary">Search</button>
+        <PageHeading />
+        <input 
+          class="input is-rounded" 
+          type="text" 
+          placeholder="Search" 
+        />
       </div>
-      
-      
+        
       {/* component - search functionality */}
       {/* component - list of classes made from reusable component */}
       

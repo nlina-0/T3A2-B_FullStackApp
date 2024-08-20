@@ -1,83 +1,63 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css";
 
-h1 {
-  font-weight: 600;
-  font-size: 1.5em;
+/* Set glocal background */
+html {
+  background-color: var(--background-color);
 }
 
+/* Global defaults */
+:root {
+  --background-color: #f3f4f6;
+
+  /* Used for ...card background */
+  --bulma-scheme-main: rgb(255, 255, 255);
+  
+  /* text color */
+  --bulma-body-color: rgb(107, 107, 107);
+}
+
+
+/* Typography */
+body {
+  font-family: "Raleway";
+}
+
+h1 {
+  font-size: 110%;
+  font-weight: 500;
+}
+
+.page-heading {
+  padding-top: 2rem;
+  padding-left: 1rem;
+}
+
+
+/* Navbar */
+.navbar {
+  min-height: 5rem;
+  border-bottom: 1px solid rgb(255, 255, 255);
+}
+
+.navbar-item {
+  color: var(--bulma-body-color)
+}
+
+/* Input bars */
+.input {
+  background-color: var(--bulma-scheme-main);
+  border-color: var(--bulma-scheme-main);
+}
+
+/* Layout */
 .container.is-max-tablet {
   padding: 5px;
 }
 
 .card {
-  background-color: rgba(240, 248, 255, 0.152);
+  transition: .3s ease, transform .3s ease
 }
 
-/* :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.card:hover {
+  transform: scale(1.01);
 }
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */
