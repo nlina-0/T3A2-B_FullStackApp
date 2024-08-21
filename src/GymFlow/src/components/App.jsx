@@ -5,15 +5,18 @@ import Classes from './Classes'
 import CreateClass from './CreateClass'
 import Customers from './Customers'
 import UserSettings from './UserSettings'
+import NewClass from './NewClass'
 
 const App = () => {
   
   return (
     <>
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<Classes />} />
         <Route path='/classes' element={<Classes />} />
         <Route path='/createClass' element={<CreateClass />} />
+          {/* <Route path='/new' element={<NewClass />}></Route> */}
+        <Route/>
         <Route path='/customers' element={<Customers />} />
         <Route path='/userSettings' element={<UserSettings />} />
         <Route path='*' element={<h3>Page not found!</h3>} />
