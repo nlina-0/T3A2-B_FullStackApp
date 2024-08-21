@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 
-const ClassDetails = (props) => {
+const ClassDetails = ({ classes }) => {
+
+  // how does it know which object to select from?
+
   // List of customers booked in
   const [attendees, setAttendees] = useState(
     ['Anne', 'Ryan', 'Faye', 'Duke', 'Ellen']
@@ -10,7 +13,7 @@ const ClassDetails = (props) => {
     <>
     <section class="section is-medium" id="class-detail">
       <div class="container is-max-tablet">
-        <p>YOGA</p>
+        <p>{classes.id}</p>
         <p>Instructor</p>
         <p>When: 10 AUG</p>
         <p>Time: 9.00 - 10.00</p>

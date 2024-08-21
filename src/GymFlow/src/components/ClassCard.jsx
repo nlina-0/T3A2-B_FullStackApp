@@ -5,11 +5,11 @@ const ClassCard = (props) => {
 
   return (
     <>
-        {/* Replace classDetails with class ID */}
-        <Link to='/classes/classDetails'>
-          <div class='card'>
-            <div class='card-content'>
-              <div class='media-content'>
+        {/* Route Parameter (useParams) - Replace classDetails with class ID */}
+        <Link to={`/classes/${props.id}`}>
+          <div class="card">
+            <div class="card-content">
+              <div class="media-content">
                 <p>{props.classType}</p>
                 <p>{props.instructor}</p>
                 <p>When: {props.date}</p>

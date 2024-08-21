@@ -1,39 +1,9 @@
 import React, { useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import ClassCard from './ClassCard'
 import PageHeading from './PageHeading'
 
-const Classes = () => {
-  const nav = useNavigate()
-  const [classCard, setClassCard] = useState(
-    [
-      {
-        classType: "Yoga",
-        instructor: "Paige",
-        date: "10 AUG",
-        time: "9.00 - 10.00",
-        space: 3
-      },
-      {
-        classType: "Pilates",
-        instructor: "Russ",
-        date: "11 AUG",
-        time: "6.00 - 7.00",
-        space: 2
-      },
-      {
-        classType: "Boxing",
-        instructor: "Max",
-        date: "12 AUG",
-        time: "5.00 - 6.00",
-        space: 4
-      }
-    ]
-  )
-
-  // const handleNavigateToClassDetails = () => {
-  //   nav(`/classes/classDetails`)
-  // }
+const Classes = ({ classes }) => {
 
   return (
     <>
@@ -48,8 +18,9 @@ const Classes = () => {
       
       <div class="container is-max-tablet">
         {
-          classCard.map((cl) => (
+          classes.map((cl) => (
             <ClassCard 
+              id={cl.id}
               classType={cl.classType}  
               instructor={cl.instructor} 
               date={cl.date} 
