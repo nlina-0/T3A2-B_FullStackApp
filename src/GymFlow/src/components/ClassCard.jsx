@@ -1,9 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const ClassCard = (props) => {
 
   return (
     <>
+    <Link to='/classes/classDetails'>
       <div class="container is-max-tablet">
         <div class='card'>
           <div class='card-content'>
@@ -17,6 +19,7 @@ const ClassCard = (props) => {
           </div>
         </div>
       </div>
+    </Link>
     </>
     
   )
