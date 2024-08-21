@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 const ClassDetails = ({ classes }) => {
 
-  // how does it know which object to select from?
+  const { classes_id } = useParams() // Extract classes id from the URL
+  // REVIEW
+  const currentClass = classes.find(cls => cls.id == classes_id) // Access item from the object 
 
   // List of customers booked in
   const [attendees, setAttendees] = useState(
@@ -13,11 +16,11 @@ const ClassDetails = ({ classes }) => {
     <>
     <section class="section is-medium" id="class-detail">
       <div class="container is-max-tablet">
-        <p>{classes.id}</p>
-        <p>Instructor</p>
-        <p>When: 10 AUG</p>
-        <p>Time: 9.00 - 10.00</p>
-        <p>Spaces left 3</p>
+        <p>{currentClass.classType}</p>
+        <p>{currentClass.instructor}</p>
+        <p>When: {currentClass.date}</p>
+        <p>Time: {currentClass.time}</p>
+        <p>Spaces left {currentClass.space}</p>
         <button class="button is-link">Edit</button>
       </div>
     </section>

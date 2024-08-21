@@ -9,7 +9,6 @@ import NavBar from './NavBar'
 
 const App = () => {
 
-  // lift state for classes
   const [classes, setClasses] = useState(
     [
       {
@@ -18,7 +17,9 @@ const App = () => {
         instructor: "Paige",
         date: "10 AUG",
         time: "9.00 - 10.00",
-        space: 3
+        // change space to capacity
+        space: 3,
+        // add bookings
       },
       {
         id: 2,
