@@ -5,7 +5,6 @@ const ClassCard = (props) => {
 
   return (
     <>
-        {/* Route Parameter (useParams) - Replace classDetails with class ID */}
         <Link to={`/classes/${props.id}`}>
           <div class="card">
             <div class="card-content">

@@ -14,6 +14,7 @@ const ClassDetails = ({ classes }) => {
 
   return (
     <>
+    {/* Class details */}
     <section class="section is-medium" id="class-detail">
       <div class="container is-max-tablet">
         <p>{currentClass.classType}</p>
@@ -25,6 +26,7 @@ const ClassDetails = ({ classes }) => {
       </div>
     </section>
 
+    {/* Bookings */}
     <section>
       <div class="container is-max-tablet">
         <p>Attending:</p>
