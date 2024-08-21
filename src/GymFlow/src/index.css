@@ -69,9 +69,15 @@ h1 {
 }
 
 .card {
-  transition: .3s ease, transform .3s ease
+  transition: .3s ease, transform .3s ease;
+  margin-top: 10px;
 }
 
 .card:hover {
   transform: scale(1.01);
+}
+
+/* ClassDetail */
+#class-detail {
+  background-color: #ffffff;
 }

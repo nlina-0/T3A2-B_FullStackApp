@@ -46,7 +46,7 @@ const Classes = () => {
         />
       </div>
       
-      <div>
+      <div class="container is-max-tablet">
         {
           classCard.map((cl) => (
             <ClassCard 

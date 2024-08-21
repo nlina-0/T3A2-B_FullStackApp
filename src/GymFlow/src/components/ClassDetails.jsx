@@ -1,8 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const ClassDetails = () => {
+const ClassDetails = (props) => {
+  // List of customers booked in
+  const [attendees, setAttendees] = useState(
+    ['Anne', 'Ryan', 'Faye', 'Duke', 'Ellen']
+  )
+
   return (
-    <div>ClassDetails</div>
+    <>
+    <section class="section is-medium" id="class-detail">
+      <div class="container is-max-tablet">
+        <p>YOGA</p>
+        <p>Instructor</p>
+        <p>When: 10 AUG</p>
+        <p>Time: 9.00 - 10.00</p>
+        <p>Spaces left 3</p>
+        <button class="button is-link">Edit</button>
+      </div>
+    </section>
+
+    <section>
+      <div class="container is-max-tablet">
+        <p>Attending:</p>
+        <ul>
+          {
+            attendees.map((att) => (
+              <li>{att}</li>
+            ))
+          }
+        </ul>
+      </div>
+    </section> 
+    </>
   )
 }
 
