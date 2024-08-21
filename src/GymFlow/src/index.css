@@ -13,7 +13,8 @@ html {
   --bulma-scheme-main: rgb(255, 255, 255);
   
   /* text color */
-  --bulma-body-color: rgb(107, 107, 107);
+  --bulma-body-color: #6b6b6b;
+  --bulma-label-color: #6b6b6b; 
 }
 
 
@@ -29,7 +30,6 @@ h1 {
 
 .page-heading {
   padding-top: 2rem;
-  padding-left: 1rem;
 }
 
 
@@ -43,10 +43,23 @@ h1 {
   color: var(--bulma-body-color)
 }
 
-/* Input bars */
+/* Forms */
+#form-input {
+  margin-top: 30px;
+}
+
 .input {
   background-color: var(--bulma-scheme-main);
   border-color: var(--bulma-scheme-main);
+  color: var(--bulma-label-color);
+}
+
+.input::placeholder {
+  color: rgb(185, 185, 185);
+}
+
+.label {
+  font-weight: var(--bulma-weight-normal);
 }
 
 /* Layout */

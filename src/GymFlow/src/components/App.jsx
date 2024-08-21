@@ -6,6 +6,7 @@ import CreateClass from './CreateClass'
 import Customers from './Customers'
 import UserSettings from './UserSettings'
 import NewClass from './NewClass'
+import NavBar from './NavBar'
 
 const App = () => {
   

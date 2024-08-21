@@ -8,7 +8,8 @@ const Classes = () => {
     <>
       <NavBar />
       <div class="container is-max-tablet">
-        <PageHeading />
+        {/* <PageHeading /> */}
+        <label class="label">Classes</label>
         <input 
           class="input is-rounded" 
           type="text" 
