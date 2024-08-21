@@ -1,23 +1,23 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
-const ClassCard = () => {
+const ClassCard = (props) => {
 
   return (
     <>
-      {/* bulma: components/card */}
-      <div class="container is-max-tablet">
-        <div class='card'>
-          <div class='card-content'>
-            <div class='media-content'>
-              <p class="title is-4">YOGA</p>
-            </div>
-            <div class='content'>
-              <p>When: WED 20/08</p>
-              <p>Time: 9:00 - 9.40</p>
+        <Link to={`/classes/${props.id}`}>
+          <div class="card">
+            <div class="card-content">
+              <div class="media-content">
+                <p>{props.classType}</p>
+                <p>{props.instructor}</p>
+                <p>When: {props.date}</p>
+                <p>Time: {props.time}</p>
+                <p>Spaces left {props.space}</p>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </Link>
     </>
     
   )

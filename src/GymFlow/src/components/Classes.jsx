@@ -1,27 +1,36 @@
-import React, {useState} from 'react'
-import NavBar from './NavBar'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import ClassCard from './ClassCard'
 import PageHeading from './PageHeading'
 
-const Classes = () => {
+const Classes = ({ classes }) => {
+
   return (
     <>
-      <NavBar />
       <div class="container is-max-tablet">
-        <PageHeading />
+        <label class="label">Classes</label>
         <input 
           class="input is-rounded" 
           type="text" 
-          placeholder="Search" 
+          placeholder="Search by class or instructor" 
         />
       </div>
-        
-      {/* component - search functionality */}
-      {/* component - list of classes made from reusable component */}
       
-      {/* Going to be a link */}
-      <ClassCard classType=''/>
-      <ClassCard classType=''/>
+      <div class="container is-max-tablet">
+        {
+          classes.map((cl) => (
+            <ClassCard 
+              id={cl.id}
+              classType={cl.classType}  
+              instructor={cl.instructor} 
+              date={cl.date} 
+              time={cl.time} 
+              space={cl.space}
+            />
+          ))
+        }
+      </div>
+
     </>
   )
 }

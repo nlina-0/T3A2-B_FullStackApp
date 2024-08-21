@@ -1,19 +1,20 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css";
 
-/* Set glocal background */
+/* Set global background */
 html {
   background-color: var(--background-color);
 }
 
 /* Global defaults */
 :root {
-  --background-color: #f3f4f6;
+  --background-color: #e3e7ee;
 
   /* Used for ...card background */
   --bulma-scheme-main: rgb(255, 255, 255);
   
   /* text color */
-  --bulma-body-color: rgb(107, 107, 107);
+  --bulma-body-color: #6b6b6b;
+  --bulma-label-color: #6b6b6b; 
 }
 
 
@@ -29,12 +30,12 @@ h1 {
 
 .page-heading {
   padding-top: 2rem;
-  padding-left: 1rem;
 }
 
 
 /* Navbar */
 .navbar {
+  background-color: var(--background-color);
   min-height: 5rem;
   border-bottom: 1px solid rgb(255, 255, 255);
 }
@@ -43,10 +44,23 @@ h1 {
   color: var(--bulma-body-color)
 }
 
-/* Input bars */
+/* Forms */
+#form-input {
+  margin-top: 30px;
+}
+
 .input {
   background-color: var(--bulma-scheme-main);
   border-color: var(--bulma-scheme-main);
+  color: var(--bulma-label-color);
+}
+
+.input::placeholder {
+  color: rgb(185, 185, 185);
+}
+
+.label {
+  font-weight: var(--bulma-weight-normal);
 }
 
 /* Layout */
@@ -55,9 +69,15 @@ h1 {
 }
 
 .card {
-  transition: .3s ease, transform .3s ease
+  transition: .3s ease, transform .3s ease;
+  margin-top: 10px;
 }
 
 .card:hover {
   transform: scale(1.01);
+}
+
+/* ClassDetail */
+#class-detail {
+  background-color: #ffffff;
 }
