@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigat, Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import ClassCard from './ClassCard'
 import PageHeading from './PageHeading'
 

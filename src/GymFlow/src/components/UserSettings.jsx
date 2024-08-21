@@ -4,7 +4,6 @@ import NavBar from './NavBar'
 const UserSettings = () => {
   return (
     <>
-      <NavBar />
       <div>UserSettings</div>
     </>
   )

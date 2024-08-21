@@ -7,8 +7,6 @@ import FormInput from './FormInput'
 const CreateClass = () => {
   return (
     <>
-      <NavBar />
-
       {/* How is it going to save to the db? */}
 
       <div class="container is-max-tablet">

@@ -11,16 +11,14 @@ const App = () => {
   
   return (
     <>
-      {/* <NavBar /> */}
+      <NavBar />
       <Routes>
         <Route path='/' element={<Classes />} />
-        {/* <Route path='/classes' element={<Outlet />}>
+        <Route path='/classes' element={<Outlet />}>
           <Route path='/classes' element={<Classes />}/>
           <Route path='classDetails' element={<ClassDetails />}/>
-        </Route> */}
+        </Route>
         <Route path='/createClass' element={<CreateClass />} />
-          {/* <Route path='/new' element={<NewClass />}></Route> */}
-        <Route/>
         <Route path='/customers' element={<Customers />} />
         <Route path='/userSettings' element={<UserSettings />} />
         <Route path='*' element={<h3>Page not found!</h3>} />
