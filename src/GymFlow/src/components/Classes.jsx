@@ -1,40 +1,42 @@
-import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
-import NavBar from './NavBar'
+import React, { useState } from 'react'
+import { useNavigat, Link } from 'react-router-dom'
 import ClassCard from './ClassCard'
 import PageHeading from './PageHeading'
 
 const Classes = () => {
-  // const [classCard, setClassCard] = useState(
-  //   ['Yoga', 'Pilates', 'Boxing']
-  // )
-
+  const nav = useNavigate()
   const [classCard, setClassCard] = useState(
     [
       {
         classType: "Yoga",
         instructor: "Paige",
         date: "10 AUG",
-        time: "9.00 - 10.00"
+        time: "9.00 - 10.00",
+        space: 3
       },
       {
         classType: "Pilates",
         instructor: "Russ",
         date: "11 AUG",
-        time: "6.00 - 7.00"
+        time: "6.00 - 7.00",
+        space: 2
       },
       {
         classType: "Boxing",
         instructor: "Max",
         date: "12 AUG",
-        time: "5.00 - 6.00"
+        time: "5.00 - 6.00",
+        space: 4
       }
     ]
   )
 
+  // const handleNavigateToClassDetails = () => {
+  //   nav(`/classes/classDetails`)
+  // }
+
   return (
     <>
-      <NavBar />
       <div class="container is-max-tablet">
         <label class="label">Classes</label>
         <input 
@@ -46,13 +48,18 @@ const Classes = () => {
       
       <div>
         {
-          classCard.map(cl => (
-            <Link >
-              <ClassCard classType={cl.classType}  instructor={cl.instructor} date={cl.date} time={cl.time}/>
-            </Link>
+          classCard.map((cl) => (
+            <ClassCard 
+              classType={cl.classType}  
+              instructor={cl.instructor} 
+              date={cl.date} 
+              time={cl.time} 
+              space={cl.space}
+            />
           ))
         }
       </div>
+
     </>
   )
 }

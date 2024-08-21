@@ -1,20 +1,23 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
-import Home from './Home'
+import { Routes, Route, Outlet } from 'react-router-dom'
 import Classes from './Classes'
 import CreateClass from './CreateClass'
 import Customers from './Customers'
 import UserSettings from './UserSettings'
-import NewClass from './NewClass'
+import ClassDetails from './ClassDetails'
 import NavBar from './NavBar'
 
 const App = () => {
   
   return (
     <>
+      {/* <NavBar /> */}
       <Routes>
         <Route path='/' element={<Classes />} />
-        <Route path='/classes' element={<Classes />} />
+        {/* <Route path='/classes' element={<Outlet />}>
+          <Route path='/classes' element={<Classes />}/>
+          <Route path='classDetails' element={<ClassDetails />}/>
+        </Route> */}
         <Route path='/createClass' element={<CreateClass />} />
           {/* <Route path='/new' element={<NewClass />}></Route> */}
         <Route/>

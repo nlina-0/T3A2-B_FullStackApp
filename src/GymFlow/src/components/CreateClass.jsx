@@ -8,12 +8,20 @@ const CreateClass = () => {
   return (
     <>
       <NavBar />
+
+      {/* How is it going to save to the db? */}
+
       <div class="container is-max-tablet">
       <FormInput label="Class Type" />
-      <FormInput label="Instructor" />
-      <FormInput label="Date" />
       <FormInput label="Time" />
-      <FormInput label="Max. Capacity" />
+      <FormInput label="Duration" />
+      <FormInput label="Instructor" />
+      <FormInput label="Capacity" />
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="button is-link">Submit</button>
+          </div>
+        </div>
       </div>
     </>
   )

@@ -4,7 +4,6 @@ const ClassCard = (props) => {
 
   return (
     <>
-      {/* bulma: components/card */}
       <div class="container is-max-tablet">
         <div class='card'>
           <div class='card-content'>
@@ -13,6 +12,7 @@ const ClassCard = (props) => {
               <p>{props.instructor}</p>
               <p>When: {props.date}</p>
               <p>Time: {props.time}</p>
+              <p>Spaces left {props.space}</p>
             </div>
           </div>
         </div>
