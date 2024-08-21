@@ -1,6 +1,6 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css";
 
-/* Set glocal background */
+/* Set global background */
 html {
   background-color: var(--background-color);
 }
