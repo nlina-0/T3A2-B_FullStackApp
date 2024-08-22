@@ -9,6 +9,7 @@ const Classes = ({ classes }) => {
     <>
       <div className="container is-max-tablet">
         <h2 className="label my-6 is-size-5 has-text-weight-medium">Classes</h2>
+        {/* TODO: add search functionality */}
         <input 
           className="input is-rounded" 
           type="text" 
@@ -20,6 +21,7 @@ const Classes = ({ classes }) => {
         {
           classes.map((cl) => (
             <ClassCard 
+              key={cl.id} // unique key prop
               id={cl.id}
               classType={cl.classType}  
               instructor={cl.instructor} 

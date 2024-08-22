@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom'
 const ClassDetails = ({ classes }) => {
 
   const { classes_id } = useParams() // Extract classes id from the URL
-  // REVIEW
   const currentClass = classes.find(cls => cls.id == classes_id) // Access item from the object 
 
   // List of customers booked in

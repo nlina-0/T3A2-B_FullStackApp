@@ -40,9 +40,11 @@ const App = () => {
     ]
   )
 
+  // for createClass
   const addClass = (classType) => {
+    // TODO: Sanitise and validate entry data
     const newClass = { classType: classType }
-    setClasses(newClass)
+    setClasses([...classes, newClass])
   }
   
   return (

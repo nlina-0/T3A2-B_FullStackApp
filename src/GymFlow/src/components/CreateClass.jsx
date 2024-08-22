@@ -1,12 +1,14 @@
 import React from 'react'
 import FormInput from './FormInput'
 
-const CreateClass = () => {
+// need to re-do: removed from onSubmit from form
+const CreateClass = ({ addClass }) => {
   const submitHandler = e => {
     e.preventDefault()
     // sanitise and calidate entry
     // create new entry from entered data
     // Add to list of classes
+    addClass('Yoga')
     // redirect to class detail
   }
 
@@ -14,17 +16,22 @@ const CreateClass = () => {
     <>
       <div className="container is-max-tablet">
       <h2 className="label my-6 is-size-5 has-text-weight-medium">New Class</h2>
-      <form onSubmit={submitHandler}>
-        <FormInput label="Class Type" />
+      <form> 
+        {/* <FormInput label="Class Type" />
         <FormInput label="Time" />
         <FormInput label="Duration" />
         <FormInput label="Instructor" />
-        <FormInput label="Capacity" />
-          <div className="field is-grouped">
-            <div className="control">
-              <button className="button is-link">Submit</button>
-            </div>
-          </div>
+        <FormInput label="Capacity" /> */}
+        <div class="field">
+        <label class="label">Class Type</label>
+        <div class="control">
+          <input class="input is-rounded" type="text" placeholder="Rounded input" />
+        </div>
+        </div>
+        
+        <div className="control">
+          <button className="button is-link">Submit</button>
+        </div>
         </form>
       </div>
     </>
