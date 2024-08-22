@@ -15,20 +15,20 @@ const ClassDetails = ({ classes }) => {
   return (
     <>
     {/* Class details */}
-    <section class="section is-medium" id="class-detail">
-      <div class="container is-max-tablet">
+    <section className="section is-medium" id="class-detail">
+      <div className="container is-max-tablet">
         <p>{currentClass.classType}</p>
         <p>{currentClass.instructor}</p>
         <p>When: {currentClass.date}</p>
         <p>Time: {currentClass.time}</p>
         <p>Spaces left {currentClass.space}</p>
-        <button class="button is-link">Edit</button>
+        <button className="button is-link">Edit</button>
       </div>
     </section>
 
     {/* Bookings */}
     <section>
-      <div class="container is-max-tablet">
+      <div className="container is-max-tablet">
         <p>Attending:</p>
         <ul>
           {

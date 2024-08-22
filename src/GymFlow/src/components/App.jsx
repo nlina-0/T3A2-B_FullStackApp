@@ -39,17 +39,22 @@ const App = () => {
       }
     ]
   )
+
+  const addClass = (classType) => {
+    const newClass = { classType: classType }
+    setClasses(newClass)
+  }
   
   return (
     <>
       <NavBar />
       <Routes>
-        <Route path='/' element={<Classes />} />
+        <Route path='/' element={<Classes classes={classes}/>} />
         <Route path='/classes' element={<Outlet />}>
           <Route path='/classes' element={<Classes classes={classes}/>}/>
           <Route path=':classes_id' element={<ClassDetails classes={classes}/>}/>
         </Route>
-        <Route path='/createClass' element={<CreateClass />} />
+        <Route path='/createClass' element={<CreateClass addClass={addClass}/>} />
         <Route path='/customers' element={<Customers />} />
         <Route path='/userSettings' element={<UserSettings />} />
         <Route path='*' element={<h3>Page not found!</h3>} />

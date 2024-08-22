@@ -4,10 +4,10 @@ const FormInput = (props) => {
   return (
     <>
     {/* <div class="container is-max-tablet"> */}
-        <div class="field" id="form-input">
-          <label class="label">{props.label}</label>
-          <div class="control">
-            <input class="input is-rounded" type="text" placeholder="" />
+        <div className="field" id="form-input">
+          <label className="label">{props.label}</label>
+          <div className="control">
+            <input className="input is-rounded" type="text" placeholder="" />
           </div>
         </div>
       {/* </div> */}
