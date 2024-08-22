@@ -9,7 +9,7 @@ const CreateClass = ({ addClass }) => {
     // create new entry from entered data
     // Add to list of classes
     addClass('Yoga')
-    // redirect to class detail
+    // redirect to className detail
   }
 
   return (
@@ -22,10 +22,14 @@ const CreateClass = ({ addClass }) => {
         <FormInput label="Duration" />
         <FormInput label="Instructor" />
         <FormInput label="Capacity" /> */}
-        <div class="field">
-        <label class="label">Class Type</label>
-        <div class="control">
-          <input class="input is-rounded" type="text" placeholder="Rounded input" />
+        <div className="field">
+        <label className="label">Class Type</label>
+        <div className="control">
+          <input className="input is-rounded" type="text" placeholder="Rounded input" />
+        </div>
+        <label className="label">Time</label>
+        <div className="control">
+          <input className="input is-rounded" type="text" placeholder="Rounded input" />
         </div>
         </div>
         

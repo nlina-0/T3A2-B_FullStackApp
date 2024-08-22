@@ -37,7 +37,7 @@ h1 {
 .navbar {
   background-color: var(--background-color);
   min-height: 5rem;
-  border-bottom: 1px solid rgb(255, 255, 255);
+  border-bottom: 1px solid var(--bulma-scheme-main);
 }
 
 .navbar-item {
@@ -80,4 +80,16 @@ h1 {
 /* ClassDetail */
 #class-detail {
   background-color: #ffffff;
+}
+
+/* User login */
+#user-login {
+  background-color: #e3e7ee;
+  padding: 30px 60px;
+  border: 1px solid var(--bulma-scheme-main);
+  margin-top: 70px;
+}
+
+#user-login:hover {
+  transform: none;
 }

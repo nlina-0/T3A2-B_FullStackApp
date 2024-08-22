@@ -32,9 +32,9 @@ const NavBar = () => {
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <div className="buttons">
-                            <a className="button is-light">
+                            <Link className="button is-light" to="/login">
                             Log in
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

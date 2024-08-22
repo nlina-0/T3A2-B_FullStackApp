@@ -6,6 +6,7 @@ import Customers from './Customers'
 import UserSettings from './UserSettings'
 import ClassDetails from './ClassDetails'
 import NavBar from './NavBar'
+import Login from './Login'
 
 const App = () => {
 
@@ -51,6 +52,8 @@ const App = () => {
     <>
       <NavBar />
       <Routes>
+        {/* should be login page? */}
+        <Route path='/login' element={<Login />} />
         <Route path='/' element={<Classes classes={classes}/>} />
         <Route path='/classes' element={<Outlet />}>
           <Route path='/classes' element={<Classes classes={classes}/>}/>
