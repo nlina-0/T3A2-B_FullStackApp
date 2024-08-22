@@ -23,7 +23,7 @@ const Login = () => {
                     <div className="control mt-6">
                         <button className="button is-link is-fullwidth">Submit</button>
                     </div>
-                    <p className="mt-3"> or create an account</p>
+                    {/* <p className="mt-3"> or create an account</p> */}
                 </div>
             </form>
         </div>
