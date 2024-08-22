@@ -1,24 +1,13 @@
 import React from 'react'
-import FormInput from './FormInput'
 
-// need to re-do: removed from onSubmit from form
-const CreateClass = ({ addClass }) => {
-  const submitHandler = e => {
-    e.preventDefault()
-    // sanitise and calidate entry
-    // create new entry from entered data
-    // Add to list of classes
-    addClass('Yoga')
-    // redirect to className detail
-  }
-
+const NewInstructor = () => {
   return (
     <>
       <div className="columns is-centered" >
         <div className="card" id="user-login">
         <div >
             <form >
-                <h2 className="label mt-6 mb-6 is-size-5 has-text-weight-medium">New Class</h2>
+                <h2 className="label mt-6 mb-6 is-size-5 has-text-weight-medium">New Instructor</h2>
                 <div className="field">
                     <label className="label mt-5">Class Type</label>
                     <div className="control">
@@ -53,4 +42,4 @@ const CreateClass = ({ addClass }) => {
   )
 }
 
-export default CreateClass
+export default NewInstructor

@@ -6,9 +6,9 @@ const ClassCard = (props) => {
   return (
     <>
         <Link to={`/classes/${props.id}`}>
-          <div class="card">
-            <div class="card-content">
-              <div class="media-content">
+          <div className="card">
+            <div className="card-content">
+              <div className="media-content">
                 <p>{props.classType}</p>
                 <p>{props.instructor}</p>
                 <p>When: {props.date}</p>

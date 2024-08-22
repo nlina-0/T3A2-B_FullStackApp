@@ -7,19 +7,21 @@ const Classes = ({ classes }) => {
 
   return (
     <>
-      <div class="container is-max-tablet">
-        <label class="label">Classes</label>
+      <div className="container is-max-tablet">
+        <h2 className="label my-6 is-size-5 has-text-weight-medium">Classes</h2>
+        {/* TODO: add search functionality */}
         <input 
-          class="input is-rounded" 
+          className="input is-rounded" 
           type="text" 
           placeholder="Search by class or instructor" 
         />
       </div>
       
-      <div class="container is-max-tablet">
+      <div className="container is-max-tablet">
         {
           classes.map((cl) => (
             <ClassCard 
+              key={cl.id} // unique key prop
               id={cl.id}
               classType={cl.classType}  
               instructor={cl.instructor} 

@@ -3,9 +3,10 @@ import { Routes, Route, Outlet } from 'react-router-dom'
 import Classes from './Classes'
 import CreateClass from './CreateClass'
 import Customers from './Customers'
-import UserSettings from './UserSettings'
 import ClassDetails from './ClassDetails'
 import NavBar from './NavBar'
+import Login from './Login'
+import NewInstructor from './NewInstructor'
 
 const App = () => {
 
@@ -39,19 +40,28 @@ const App = () => {
       }
     ]
   )
+
+  // for createClass
+  const addClass = (classType) => {
+    // TODO: Sanitise and validate entry data
+    const newClass = { classType: classType }
+    setClasses([...classes, newClass])
+  }
   
   return (
     <>
       <NavBar />
       <Routes>
-        <Route path='/' element={<Classes />} />
+        {/* should be login page? */}
+        <Route path='/login' element={<Login />} />
+        <Route path='/' element={<Classes classes={classes}/>} />
         <Route path='/classes' element={<Outlet />}>
           <Route path='/classes' element={<Classes classes={classes}/>}/>
           <Route path=':classes_id' element={<ClassDetails classes={classes}/>}/>
         </Route>
-        <Route path='/createClass' element={<CreateClass />} />
+        <Route path='/createClass' element={<CreateClass addClass={addClass}/>} />
+        <Route path='/instructors' element={<NewInstructor />} />
         <Route path='/customers' element={<Customers />} />
-        <Route path='/userSettings' element={<UserSettings />} />
         <Route path='*' element={<h3>Page not found!</h3>} />
       </Routes>
     </>

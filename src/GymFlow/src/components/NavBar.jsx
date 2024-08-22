@@ -4,15 +4,15 @@ import { Link } from "react-router-dom"
 const NavBar = () => {
   return (
     <>
-    <nav class="navbar is-light" role="navigation" aria-label="main navigation">
-        <div class="container is-max-desktop">
-                <div class="navbar-brand">
-                    <Link class="navbar-item" to="/">
+    <nav className="navbar is-light" role="navigation" aria-label="main navigation">
+        <div className="container is-max-desktop">
+                <div className="navbar-brand">
+                    <Link className="navbar-item" to="/">
                         <h1>GymFlow</h1>
                     </Link>
 
                     {/* hamburger menu */}
-                    <Link role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <Link role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
@@ -20,21 +20,21 @@ const NavBar = () => {
                     </Link>
                 </div>
                 
-                <div id="navbarBasicExample" class="navbar-menu">
-                    <div class="navbar-start">
-                        <Link class="navbar-item" to="/classes">Classes</Link>
-                        <Link class="navbar-item" to="/createClass">Create Class</Link>
-                        <Link class="navbar-item" to="/customers">Customers</Link>
-                        <Link class="navbar-item" to="/userSettings">User Settings</Link>
+                <div id="navbarBasicExample" className="navbar-menu">
+                    <div className="navbar-start">
+                        <Link className="navbar-item" to="/classes">Classes</Link>
+                        <Link className="navbar-item" to="/createClass">Create Class</Link>
+                        <Link className="navbar-item" to="/instructors">Instructors</Link>
+                        <Link className="navbar-item" to="/customers">Customers</Link>
                     </div>
                 </div>
 
-                <div class="navbar-end">
-                    <div class="navbar-item">
-                        <div class="buttons">
-                            <a class="button is-light">
+                <div className="navbar-end">
+                    <div className="navbar-item">
+                        <div className="buttons">
+                            <Link className="button is-light" to="/login">
                             Log in
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
