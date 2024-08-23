@@ -36,5 +36,4 @@ customerRoutes.delete('/:id', async (req, res) => {  // TODO: add auth to ensure
     }
 })
 
-
 export default customerRoutes
