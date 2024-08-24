@@ -16,7 +16,7 @@ const Login = () => {
   return (
     <>
     <div className="columns is-centered" >
-        <div className="card" id="user-login">
+        <div className="container card column is-two-fifths" id="user-login">
         <div >
         <h2 className="label mt-6 mb-6 is-size-5 has-text-weight-medium">Login</h2>
             <form onSubmit={handleSubmit}>

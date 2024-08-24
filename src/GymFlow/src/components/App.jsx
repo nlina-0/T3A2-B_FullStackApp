@@ -42,9 +42,10 @@ const App = () => {
   )
 
   // for createClass
-  const addClass = (classType) => {
+  const addClass = (classType, instructor) => {
+    console.log(classType, instructor)
     // TODO: Sanitise and validate entry data
-    const newClass = { classType: classType }
+    const newClass = { classType: classType, instructor: instructor }
     setClasses([...classes, newClass])
   }
   
@@ -52,7 +53,7 @@ const App = () => {
     <>
       <NavBar />
       <Routes>
-        {/* should be login page? */}
+        {/* If login page, don't show navbar? */}
         <Route path='/login' element={<Login />} />
         <Route path='/' element={<Classes classes={classes}/>} />
         <Route path='/classes' element={<Outlet />}>
