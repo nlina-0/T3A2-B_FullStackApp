@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Routes, Route, Outlet } from 'react-router-dom'
+import { Routes, Route, Outlet, useParams } from 'react-router-dom'
 import Classes from './Classes'
 import NewClass from './NewClass'
 import Customers from './Customers'
@@ -7,6 +7,9 @@ import ClassDetails from './ClassDetails'
 import NavBar from './NavBar'
 import Login from './Login'
 import NewInstructor from './NewInstructor'
+
+// Temporary ID for classes
+let newClassId = 4
 
 const App = () => {
 
@@ -42,11 +45,19 @@ const App = () => {
   )
 
   // for createClass
-  const addClass = (classType, instructor) => {
-    console.log(classType, instructor)
+  const addClass = (classType) => {
+    // console.log(classType, instructor)
     // TODO: Sanitise and validate entry data
-    const newClass = { classType: classType, instructor: instructor }
+    // const { classType, instructor } = content
+    const newClass = { id: newClassId++, classType: classType }
     setClasses([...classes, newClass])
+  }
+
+  const ClassDetailsWrapper = () => {
+    const { id } = useParams()
+    // const { classes_id } = useParams() // Extract classes id from the URL
+     const currentClass = classes.find(cls => cls.id == id) // Access item from the object 
+    return <ClassDetails currentClass={currentClass}/>
   }
   
   return (
@@ -58,7 +69,7 @@ const App = () => {
         <Route path='/' element={<Classes classes={classes}/>} />
         <Route path='/classes' element={<Outlet />}>
           <Route path='/classes' element={<Classes classes={classes}/>}/>
-          <Route path=':classes_id' element={<ClassDetails classes={classes}/>}/>
+          <Route path=':id' element={<ClassDetailsWrapper />}/>
         </Route>
         <Route path='/newClass' element={<NewClass addClass={addClass}/>} />
         <Route path='/instructors' element={<NewInstructor />} />

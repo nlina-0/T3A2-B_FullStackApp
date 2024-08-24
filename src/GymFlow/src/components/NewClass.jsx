@@ -3,18 +3,21 @@ import FormInput from './FormInput'
 
 // need to re-do: removed from onSubmit from form
 const NewClass = ({ addClass }) => {
-  const initialValues = { classType: "", instructor: "" }
-  const [content, setContent] = useState(initialValues)
+  // const initialValues = { classType: "", instructor: "" }
+  // const [content, setContent] = useState(initialValues)
+  
+  const [classType, setClassType] = useState("")
+  // add useState for rest of options...
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setContent({...content, [name]: value})
-    console.log(content)
-  }
+
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target
+  //   setContent({...content, [name]: value})
+  // }
 
   const submitHandler = e => {
     e.preventDefault()
-    addClass("Yoga", "Yule")
+    addClass(classType)
     // redirect to className detail
   }
 
@@ -32,8 +35,8 @@ const NewClass = ({ addClass }) => {
                           type="" 
                           name="classType"
                           placeholder="hot yoga, reformer pilates... " 
-                          value={content.classType} 
-                          onChange={handleChange}
+                          value={classType} 
+                          onChange={(e) => setClassType(e.target.value)}
                         />
                     </div>
                     <label className="label mt-5">Instructor</label>
@@ -43,8 +46,8 @@ const NewClass = ({ addClass }) => {
                           type="" 
                           name="instructor"
                           placeholder="hot yoga, reformer pilates... " 
-                          value={content.instructor}
-                          onChange={handleChange}
+                          // value={instructor}
+                          // onChange={handleChange}
                         />
                     </div>
                     
