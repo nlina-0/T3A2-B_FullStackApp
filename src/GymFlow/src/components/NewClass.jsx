@@ -8,7 +8,7 @@ const NewClass = ({ addClass }) => {
   
   const [classType, setClassType] = useState("")
   // add useState for rest of options...
-
+  const [instructor, setInstructor] = useState("")
 
   // const handleChange = (e) => {
   //   const { name, value } = e.target
@@ -17,7 +17,7 @@ const NewClass = ({ addClass }) => {
 
   const submitHandler = e => {
     e.preventDefault()
-    addClass(classType)
+    addClass(classType, instructor)
     // redirect to className detail
   }
 
@@ -33,7 +33,7 @@ const NewClass = ({ addClass }) => {
                         <input 
                           className="input is-rounded has-text-link" 
                           type="" 
-                          name="classType"
+                          // name="classType"
                           placeholder="hot yoga, reformer pilates... " 
                           value={classType} 
                           onChange={(e) => setClassType(e.target.value)}
@@ -44,10 +44,10 @@ const NewClass = ({ addClass }) => {
                         <input 
                           className="input is-rounded has-text-link" 
                           type="" 
-                          name="instructor"
-                          placeholder="hot yoga, reformer pilates... " 
-                          // value={instructor}
-                          // onChange={handleChange}
+                          // name="instructor"
+                          placeholder="" 
+                          value={instructor}
+                          onChange={(e) => setInstructor(e.target.value)}
                         />
                     </div>
                     

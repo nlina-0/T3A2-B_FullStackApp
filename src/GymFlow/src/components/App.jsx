@@ -21,8 +21,7 @@ const App = () => {
         instructor: "Paige",
         date: "10 AUG",
         time: "9.00 - 10.00",
-        // change space to capacity
-        space: 3,
+        capacity: 3,
         // add bookings
       },
       {
@@ -31,7 +30,7 @@ const App = () => {
         instructor: "Russ",
         date: "11 AUG",
         time: "6.00 - 7.00",
-        space: 2
+        capacity: 2
       },
       {
         id: 3,
@@ -39,32 +38,29 @@ const App = () => {
         instructor: "Max",
         date: "12 AUG",
         time: "5.00 - 6.00",
-        space: 4
+        capacity: 4
       }
     ]
   )
 
-  // for createClass
-  const addClass = (classType) => {
-    // console.log(classType, instructor)
+  // For createClass
+  const addClass = (classType, instructor) => {
     // TODO: Sanitise and validate entry data
-    // const { classType, instructor } = content
-    const newClass = { id: newClassId++, classType: classType }
+    const newClass = { id: newClassId++, classType: classType, instructor: instructor }
     setClasses([...classes, newClass])
   }
 
+  // Higher-order component (HOC)
   const ClassDetailsWrapper = () => {
     const { id } = useParams()
-    // const { classes_id } = useParams() // Extract classes id from the URL
-     const currentClass = classes.find(cls => cls.id == id) // Access item from the object 
-    return <ClassDetails currentClass={currentClass}/>
+     const currentClass = classes.find(cls => cls.id == id) 
+    return currentClass ? <ClassDetails currentClass={currentClass}/> : <h3>Class not found!</h3>
   }
   
   return (
     <>
       <NavBar />
       <Routes>
-        {/* If login page, don't show navbar? */}
         <Route path='/login' element={<Login />} />
         <Route path='/' element={<Classes classes={classes}/>} />
         <Route path='/classes' element={<Outlet />}>

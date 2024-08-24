@@ -26,7 +26,7 @@ const Classes = ({ classes }) => {
               instructor={cl.instructor} 
               date={cl.date} 
               time={cl.time} 
-              space={cl.space}
+              capacity={cl.capacity}
             />
           ))
         }
