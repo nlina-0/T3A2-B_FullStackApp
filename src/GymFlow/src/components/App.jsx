@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Routes, Route, Outlet } from 'react-router-dom'
 import Classes from './Classes'
-import CreateClass from './CreateClass'
+import NewClass from './NewClass'
 import Customers from './Customers'
 import ClassDetails from './ClassDetails'
 import NavBar from './NavBar'
@@ -59,7 +59,7 @@ const App = () => {
           <Route path='/classes' element={<Classes classes={classes}/>}/>
           <Route path=':classes_id' element={<ClassDetails classes={classes}/>}/>
         </Route>
-        <Route path='/createClass' element={<CreateClass addClass={addClass}/>} />
+        <Route path='/newClass' element={<NewClass addClass={addClass}/>} />
         <Route path='/instructors' element={<NewInstructor />} />
         <Route path='/customers' element={<Customers />} />
         <Route path='*' element={<h3>Page not found!</h3>} />
