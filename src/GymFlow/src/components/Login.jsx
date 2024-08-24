@@ -8,9 +8,10 @@ const Login = () => {
         e.preventDefault()
     }
 
-    const validate = () => {
-        // TODO: Add form validation
-    }
+    // // TODO: Add form validation
+    // const validate = () => {
+        
+    // }
     
 
   return (

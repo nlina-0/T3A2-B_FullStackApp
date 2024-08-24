@@ -16,8 +16,8 @@ const ClassDetails = ({ currentClass }) => {
         <p>{currentClass.classType}</p>
         <p>{currentClass.instructor}</p>
         <p>When: {currentClass.date}</p>
-        <p>Time: {currentClass.time}</p>
-        <p>Spaces left {currentClass.capacity}</p>
+        <p>Time: {currentClass.duration} min</p>
+        <p>Class capacity: {currentClass.capacity}</p>
         <button className="button is-link">Edit</button>
       </div>
     </section>

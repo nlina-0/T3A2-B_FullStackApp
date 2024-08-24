@@ -1,25 +1,20 @@
 import React, { useState } from 'react'
-import FormInput from './FormInput'
 
-// need to re-do: removed from onSubmit from form
 const NewClass = ({ addClass }) => {
-  // const initialValues = { classType: "", instructor: "" }
-  // const [content, setContent] = useState(initialValues)
-  
+
   const [classType, setClassType] = useState("")
   // add useState for rest of options...
   const [instructor, setInstructor] = useState("")
-
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target
-  //   setContent({...content, [name]: value})
-  // }
+  const [date, setDate] = useState("")
+  const [duration, setDuration] = useState("")
+  const [capacity, setCapacity] = useState("")
 
   const submitHandler = e => {
     e.preventDefault()
-    addClass(classType, instructor)
+    addClass(classType, instructor, date, duration, capacity)
     // redirect to className detail
   }
+
 
   return (
     <>
@@ -48,6 +43,38 @@ const NewClass = ({ addClass }) => {
                           placeholder="" 
                           value={instructor}
                           onChange={(e) => setInstructor(e.target.value)}
+                        />
+                    </div>
+                    <label className="label mt-5">Date</label>
+                    <div className="control">
+                        <input 
+                          className="input is-rounded has-text-link" 
+                          type="" 
+                          // name="Date"
+                          placeholder="" 
+                          value={date}
+                          onChange={(e) => setDate(e.target.value)}
+                        />
+                    </div>
+                    <label className="label mt-5">Duration</label>
+                    <div className="control">
+                        <input 
+                          className="input is-rounded has-text-link" 
+                          type="" 
+                          // name="Duration"
+                          placeholder="min." 
+                          value={duration}
+                          onChange={(e) => setDuration(e.target.value)}
+                        />
+                    </div>
+                    <label className="label mt-5">Max capacity</label>
+                    <div className="control">
+                        <input 
+                          className="input is-rounded has-text-link" 
+                          type="" 
+                          placeholder="" 
+                          value={capacity}
+                          onChange={(e) => setCapacity(e.target.value)}
                         />
                     </div>
                     

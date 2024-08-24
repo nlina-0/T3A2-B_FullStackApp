@@ -20,8 +20,8 @@ const App = () => {
         classType: "Yoga",
         instructor: "Paige",
         date: "10 AUG",
-        time: "9.00 - 10.00",
-        capacity: 3,
+        duration: "45min",
+        capacity: 10,
         // add bookings
       },
       {
@@ -29,31 +29,33 @@ const App = () => {
         classType: "Pilates",
         instructor: "Russ",
         date: "11 AUG",
-        time: "6.00 - 7.00",
-        capacity: 2
+        duration: "45min",
+        capacity: 10
       },
       {
         id: 3,
         classType: "Boxing",
         instructor: "Max",
         date: "12 AUG",
-        time: "5.00 - 6.00",
-        capacity: 4
+        duration: "45min",
+        capacity: 10
       }
     ]
   )
 
+  // Add useEffect to fetch classes, instructor, customer and user
+
   // For createClass
-  const addClass = (classType, instructor) => {
+  const addClass = (classType, instructor, date, duration, capacity) => {
     // TODO: Sanitise and validate entry data
-    const newClass = { id: newClassId++, classType: classType, instructor: instructor }
+    const newClass = { id: newClassId++, classType: classType, instructor: instructor, date: date, duration: duration, capacity: capacity }
     setClasses([...classes, newClass])
   }
 
   // Higher-order component (HOC)
   const ClassDetailsWrapper = () => {
     const { id } = useParams()
-     const currentClass = classes.find(cls => cls.id == id) 
+    const currentClass = classes.find(cls => cls.id == id) 
     return currentClass ? <ClassDetails currentClass={currentClass}/> : <h3>Class not found!</h3>
   }
   
