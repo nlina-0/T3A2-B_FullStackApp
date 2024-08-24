@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import ClassCard from './ClassCard'
 import PageHeading from './PageHeading'
+import SearchField from './SearchField'
 
 const Classes = ({ classes }) => {
 
@@ -9,11 +10,7 @@ const Classes = ({ classes }) => {
     <>
       <div className="container is-max-tablet">
         <h2 className="label my-6 is-size-5 has-text-weight-medium">Classes</h2>
-        <input 
-          className="input is-rounded" 
-          type="text" 
-          placeholder="Search by class or instructor" 
-        />
+        <SearchField search="Search by class type or instructor" />
       </div>
       
       <div className="container is-max-tablet">

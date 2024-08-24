@@ -10,7 +10,7 @@ const NewInstructor = () => {
   return (
     <>
       <div className="columns is-centered" >
-        <div className="container card column is-two-thirds" id="user-login">
+        <div className="container card column" id="user-login">
         <div >
             <form >
                 <h2 className="label mt-6 mb-6 is-size-5 has-text-weight-medium">New Instructor</h2>
@@ -39,7 +39,7 @@ const NewInstructor = () => {
                     <div className="control">
                         <input 
                           className="input is-rounded has-text-link" 
-                          type="" 
+                          type="number" 
                           placeholder="Age" 
                           value={age}
                           onChange={(e) => setAge(e.target.value)}
