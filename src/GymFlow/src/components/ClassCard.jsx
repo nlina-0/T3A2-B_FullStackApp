@@ -12,8 +12,8 @@ const ClassCard = (props) => {
                 <p>{props.classType}</p>
                 <p>{props.instructor}</p>
                 <p>When: {props.date}</p>
-                <p>Time: {props.time}</p>
-                <p>Spaces left {props.space}</p>
+                <p>Duration: {props.duration} min</p>
+                <p>Capacity: {props.capacity}</p>
               </div>
             </div>
           </div>

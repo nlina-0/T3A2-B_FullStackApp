@@ -88,8 +88,20 @@ h1 {
   padding: 30px 60px;
   border: 1px solid var(--bulma-scheme-main);
   margin-top: 70px;
+  max-width: 600px;
 }
 
 #user-login:hover {
   transform: none;
+}
+
+/* Instructor Options */
+.instructor-options {
+  background-color: rgb(255, 255, 255);
+  margin: 5px;
+  height: 180px;
+}
+
+.instructor-search {
+  background-color: var(--background-color);
 }
