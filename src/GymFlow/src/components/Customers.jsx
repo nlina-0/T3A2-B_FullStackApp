@@ -1,12 +1,13 @@
 import React from 'react'
 import NavBar from './NavBar'
+import SearchField from './SearchField'
 
 const Customers = () => {
   return (
     <>
-      <div>New Customer</div>
-      <p>Search Customer</p>
-      <p>List of customers?</p>
+      <SearchField search="Search Customers"/>
+
+      {/* List of customers */}
     </>
   )
 }

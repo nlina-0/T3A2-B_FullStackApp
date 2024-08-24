@@ -94,3 +94,14 @@ h1 {
 #user-login:hover {
   transform: none;
 }
+
+/* Instructor Options */
+.instructor-options {
+  background-color: rgb(255, 255, 255);
+  margin: 5px;
+  height: 180px;
+}
+
+.instructor-search {
+  background-color: var(--background-color);
+}

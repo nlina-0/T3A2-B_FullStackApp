@@ -7,6 +7,7 @@ import ClassDetails from './ClassDetails'
 import NavBar from './NavBar'
 import Login from './Login'
 import NewInstructor from './NewInstructor'
+import Instructor from './Instructor'
 
 // Temporary ID for classes
 let newClassId = 4
@@ -70,7 +71,10 @@ const App = () => {
           <Route path=':id' element={<ClassDetailsWrapper />}/>
         </Route>
         <Route path='/newClass' element={<NewClass addClass={addClass}/>} />
-        <Route path='/instructors' element={<NewInstructor />} />
+        <Route path='/instructors' >
+          <Route path='/instructors' element={<Instructor />} />
+          {/* <Route path='newInstructor' element={<NewInstructor />} /> */}
+        </Route>
         <Route path='/customers' element={<Customers />} />
         <Route path='*' element={<h3>Page not found!</h3>} />
       </Routes>
