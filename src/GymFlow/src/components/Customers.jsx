@@ -1,9 +1,39 @@
-import React from 'react'
-import NavBar from './NavBar'
+import React, { useState } from 'react'
 import SearchField from './SearchField'
+import CustomerCard from './CustomerCard'
 
 
 const Customers = () => {
+
+  const [customers, setCustomers] = useState(
+    [
+      {   
+          id: 1,
+          firstName: "Dwight",
+          lastName: "Schrute",
+          age: 35,
+          email: "dwight.schrute@email.com",
+          phone: "0412123123"
+      },
+      {   
+          id: 2,
+          firstName: "Bob",
+          lastName: "Jones",
+          age: 54,
+          email: "bob.jones@email.com",
+          phone: "0412123124"
+      }, 
+      {
+          id: 3,
+          firstName: "Samantha",
+          lastName: "Brown",
+          age: 23,
+          email: "samantha.brown@email.com",
+          phone: "0412123125"
+      }
+    ]
+  )
+
   return (
     <>
     <div className="container is-max-tablet">
@@ -27,14 +57,21 @@ const Customers = () => {
         </footer>
       </div>
 
-      <div className="card">
-        <footer className="card-footer">
-          <p className="card-footer-item is-justify-content-flex-start">Jess Connor</p>
-          <p className="card-footer-item is-justify-content-flex-start">29</p>
-          <p className="card-footer-item is-justify-content-flex-start">jess@mail.com</p>
-        </footer>
-      </div>
+      <div>
+        {
+          customers.map((c) => (
+            <CustomerCard
+              key="" 
+              id={c.id}
+              name={`${c.firstName} ${c.lastName}`}
+              age={c.age}
+              contact={c.email}
+            />
+          ))
+        }
       
+      </div>
+
     </div>
     
     

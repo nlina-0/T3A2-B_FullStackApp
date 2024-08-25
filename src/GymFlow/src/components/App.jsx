@@ -44,6 +44,7 @@ const App = () => {
     ]
   )
 
+
   // Add useEffect to fetch classes, instructor, customer and user
 
   // For createClass
@@ -73,7 +74,6 @@ const App = () => {
         <Route path='/newClass' element={<NewClass addClass={addClass}/>} />
         <Route path='/instructors' >
           <Route path='/instructors' element={<Instructor />} />
-          {/* <Route path='newInstructor' element={<NewInstructor />} /> */}
         </Route>
         <Route path='/customers' element={<Customers />} />
         <Route path='*' element={<h3>Page not found!</h3>} />

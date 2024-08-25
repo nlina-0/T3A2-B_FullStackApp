@@ -1,7 +1,5 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
 import ClassCard from './ClassCard'
-import PageHeading from './PageHeading'
 import SearchField from './SearchField'
 
 const Classes = ({ classes }) => {

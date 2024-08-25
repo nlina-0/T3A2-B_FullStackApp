@@ -10,7 +10,6 @@ const ClassDetails = ({ currentClass }) => {
 
   return (
     <>
-    {/* Class details */}
     <section className="section is-medium" id="class-detail">
       <div className="container is-max-tablet">
         <p>{currentClass.classType}</p>
@@ -22,19 +21,6 @@ const ClassDetails = ({ currentClass }) => {
       </div>
     </section>
 
-    {/* Bookings */}
-    {/* <section>
-      <div className="container is-max-tablet">
-        <p>Attending:</p>
-        <ul>
-          {
-            attendees.map((att) => (
-              <li>{att}</li>
-            ))
-          }
-        </ul>
-      </div>
-    </section>  */}
     </>
   )
 }
