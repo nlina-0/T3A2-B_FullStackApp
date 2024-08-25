@@ -8,7 +8,7 @@ const Instructor = () => {
     <div className="container is-max-tablet">
         <h2 className="label my-6 is-size-5 has-text-weight-medium">Instructors</h2>
         <SearchField search="Search instructor" />
-        <h2 className="has-text-centered mt-6 is-size-5 has-text-weight-semibold">Or </h2>
+        <h2 className="has-text-centered mt-6 is-size-5 has-text-weight-semibold">- Or -</h2>
         <NewInstructor />
     </div>
 

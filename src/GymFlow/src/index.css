@@ -15,6 +15,9 @@ html {
   /* text color */
   --bulma-body-color: #6b6b6b;
   --bulma-label-color: #6b6b6b; 
+
+  /* border on card */
+  --bulma-border-weak: none;
 }
 
 
@@ -105,3 +108,20 @@ h1 {
 .instructor-search {
   background-color: var(--background-color);
 }
+
+/* Customer */
+.customer-label {
+  background-color: transparent;
+  box-shadow: none;
+  color: var(--bulma-body-color);
+}
+
+.customer-label:hover {
+  transform: none;
+}
+
+.customer-title-card:hover {
+  transform: none;
+}
+
+
