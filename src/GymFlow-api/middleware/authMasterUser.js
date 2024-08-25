@@ -1,29 +1,44 @@
+import dotenv from 'dotenv'
 import jwt from 'jsonwebtoken';
-import { Master } from '../models/masterModel';
+import { User } from '../models/userModel.js';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'jwt token insert';
+// const JWT_SECRET = process.env.JWT_SECRET || 'jwt token insert'; // Removed this and inserted directly in parameter as was causing error
 
 //Authentication and add user info to the request
-export const authenticate = async (req, res, next) => {
+const authenticate = async (req, res, next) => {
     const token = req.headers['authorization']?.split(' ')[1];
-
+    // const token = req.headers.authorization
+    console.log(token);
     if (!token) {
         return res.status(401).json({ message: 'No authentication provided' });
     }
-
     try {
-        const decoded = jwt.verify(token, JWT_SECRET);
-        req.user = await Master.findById(decoded.id);
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        console.log(decoded)
+        req.userId = await User.findById(decoded.id);
         next();
     } catch (error) {
+        console.log(error)
         res.status(401).json({ message: 'Invalid Authentication' });
     }
 };
 
 //middleware that checks the role of the user
-export const checkRole = (role) => (req, res, next) => {
-    if (req.user.role !== role) {
-        return res.status(403).json({ message: 'Forbidden' });
-    }
-    next();
-};
+const checkMaster = async (req, res, next) => {
+    try {
+        const user = await User.findById(req.userId) // userId was set by the auth middleware
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        if (!user.master) {
+            return res.status(403).json({ message: 'Unauthorized' }); // User is not authorized to access this route
+        }
+
+        // If user is admin, proceed to next middleware/route
+        next()
+    } catch (err) {
+        res.status(500).json({ message: 'Server error' });
+    }}
+
+export { authenticate, checkMaster }
