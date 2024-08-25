@@ -10,7 +10,7 @@ customerRoutes.post('/', async (req, res) => {
         res.status(201).send({ message: "Customer created successfully", newCustomer })
     } catch (error) {
         console.error("Create customer error:", error)
-        res.status(500).json({ message: "Server error" })
+        res.status(500).json({ message: error.message })
     }
 })
 
@@ -32,7 +32,7 @@ customerRoutes.delete('/:id', async (req, res) => {  // TODO: add auth to ensure
         if (!customer) return res.status(404).send({ message: "Customer not found" })
         res.send({ message: "Customer deleted successfully" })
     } catch (err) {
-        res.status(500).json({ message: "Server error" })
+        res.status(500).json({ message: error.message })
     }
 })
 

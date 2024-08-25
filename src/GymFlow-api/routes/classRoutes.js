@@ -9,7 +9,7 @@ classRoutes.post('/', async (req, res) => {
         const newClass =  await Class.create(req.body)
         res.status(201).send({ message: "Class created successfully", newClass })
     } catch (err) {
-        res.status(500).json({ message: "Server error" })
+        res.status(500).json({ message: error.message })
     }
 })
 
