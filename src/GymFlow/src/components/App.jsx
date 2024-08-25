@@ -6,7 +6,6 @@ import Customers from './Customers'
 import ClassDetails from './ClassDetails'
 import NavBar from './NavBar'
 import Login from './Login'
-import NewInstructor from './NewInstructor'
 import Instructor from './Instructor'
 
 // Temporary ID for classes

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import SearchField from './SearchField'
-import CustomerCard from './CustomerCard'
+import ClientCard from './ClientCard'
 
 
 const Customers = () => {
@@ -60,7 +60,8 @@ const Customers = () => {
       <div>
         {
           customers.map((c) => (
-            <CustomerCard
+            <ClientCard
+              clientType="customer"
               key="" 
               id={c.id}
               name={`${c.firstName} ${c.lastName}`}

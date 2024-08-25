@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-const CustomerCard = (props) => {
+const ClientCard = (props) => {
 
   return (
     <>
-    <Link to={`/customer/${props.id}`}>
+    <Link to={`/${props.clientType}/${props.id}`}>
         <div className="card my-2">
             <footer className="card-footer">
             <p className="card-footer-item is-justify-content-flex-start">{props.name}</p>
@@ -18,4 +18,4 @@ const CustomerCard = (props) => {
   )
 }
 
-export default CustomerCard
+export default ClientCard
