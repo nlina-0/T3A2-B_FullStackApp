@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import SearchField from './SearchField'
 import ClientCard from './ClientCard'
 
 
 const Customers = () => {
+  const [search, setSearch] = useState()
 
   const [customers, setCustomers] = useState(
     [
@@ -37,17 +37,31 @@ const Customers = () => {
   return (
     <>
     <div className="container is-max-tablet">
-      <h2 className="label my-6 is-size-5 has-text-weight-medium">Customers</h2>
+      <h2 className="label my-6 is-size-5 has-text-weight-medium has-text-centered">Customers</h2>
       <div className="my-6">
-      <SearchField search="Search Customers"/>
+      {/* <SearchField search="Search Customers"/> */}
       </div>
-    </div>
 
     <div className="is-flex is-justify-content-center is-align-items-center">
       <button className="button is-normal is-rounded is-link my-6">Create New Customer</button>
     </div>
+    
+    <div className="field has-addons my-6">
+        <div className="control is-expanded">
+          <input 
+            className="input is-rounded" 
+            type="text" 
+            placeholder="Search customer"
+            onChange={(e) => setSearch(e.target.value)} 
+          />
+        </div>
+        <div className="control">
+          <button className="button is-link is-rounded">
+            Search
+          </button>
+        </div>
+      </div>
 
-    <div className="container is-max-tablet">
     
       <div className="card customer-label">
         <footer className="card-footer mt-6">
@@ -59,10 +73,16 @@ const Customers = () => {
 
       <div>
         {
-          customers.map((c) => (
+          // .filter((c) => {
+          //   return search.toLowerCase() === "" 
+          //   ? c
+          //   : c.firstName.toLowerCase().includes(search)
+          // })
+          customers
+          .map((c) => (
             <ClientCard
               clientType="customer"
-              key="" 
+              key={c.id}
               id={c.id}
               name={`${c.firstName} ${c.lastName}`}
               age={c.age}

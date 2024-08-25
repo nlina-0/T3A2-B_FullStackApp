@@ -61,7 +61,7 @@ const Instructor = () => {
           instructor.map((i) => (
             <ClientCard
               clientType="instructor"
-              key="" 
+              key={i.id}
               id={i.id}
               name={`${i.firstName} ${i.lastName}`}
               age={i.age}
