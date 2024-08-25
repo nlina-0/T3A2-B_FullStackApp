@@ -1,31 +1,34 @@
-import jwt from 'jsonwebtoken';
+// MOVED ALL DIRECTLY INTO loginRoutes
 
-// Secret key for JWT, should be set in environment variables
-const JWT_SECRET = process.env.JWT_SECRET || 'manually insert the jwt if req';
+// import jwt from 'jsonwebtoken';
+// import { User } from '../models/userModel.js';
 
-export const login = async (req, res) => {
-    const { email, password } = req.body;
+// // Secret key for JWT, should be set in environment variables
+// const JWT_SECRET = process.env.JWT_SECRET || 'manually insert the jwt if req';
 
-    try {
-        const master = await Master.findOne({ email }); // Find the master user by email
-        if (!master) {
-            return res.status(400).json({ message: 'Invalid email or password' }); // User not found
-        }
+// export const login = async (req, res) => {
+//     const { email, password } = req.body;
 
-        const isMatch = await master.comparePassword(password); // Compare passwords
-        if (!isMatch) {
-            return res.status(400).json({ message: 'Invalid email or password' }); // Password does not match
-        }
+//     try {
+//         const user = await User.findOne({ email }); // Find the user by email
+//         if (!user) {
+//             return res.status(400).json({ message: 'Invalid email or password' }); // User not found
+//         }
 
-        const token = jwt.sign(
-            { id: master._id, email: master.email, role: master.role }, // Payload
-            JWT_SECRET,
-            { expiresIn: '1h' } // Token expiration
-        );
+//         const isMatch = await user.comparePassword(password); // Compare passwords
+//         if (!isMatch) {
+//             return res.status(400).json({ message: 'Invalid email or password' }); // Password does not match
+//         }
 
-        res.json({ token }); // Return the token
-    } catch (error) {
-        console.error('Login error:', error);
-        res.status(500).json({ message: 'Server error' }); // Handle errors
-    }
-};
+//         const token = jwt.sign(
+//             { id: user._id, email: user.email, master: user.master }, // Payload
+//             JWT_SECRET,
+//             { expiresIn: '1h' } // Token expiration
+//         );
+
+//         res.json({ token }); // Return the token
+//     } catch (error) {
+//         console.error('Login error:', error);
+//         res.status(500).json({ message: 'Server error' }); // Handle errors
+//     }
+// };

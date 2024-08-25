@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt'
 import { Customer } from '../models/customerModel.js'
 import { ClassType } from '../models/classTypeModel.js'
 import { User } from '../models/userModel.js'
@@ -7,16 +8,24 @@ import { closeConnection, startConnection } from '../config/db.js'
 startConnection()
 
 // Define user data
+
+const hashPassword = async function(password) {
+    return await bcrypt.hash(password, 10);
+}
+
+const password1 = bcrypt.hashSync("masterpassword", 10);
+const password2 = bcrypt.hashSync("nonmasterpassword123", 10)
+
 const users = [
     {
-        email: "testadmin@gym.com",
-        password: "adminpassword123",
-        isAdmin: true
+        email: "testmaster@gym.com",
+        password: password1,
+        master: true
     },
     {
-        email: "testnonadmin@gym.com",
-        password: "nonadminpassword123",
-        isAdmin: false
+        email: "testnonmaster@gym.com",
+        password: password2,
+        master: false
     }
 ]
 

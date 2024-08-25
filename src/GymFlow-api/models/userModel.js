@@ -1,7 +1,10 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 
-const masterSchema = new mongoose.Schema({
+// This 'user' schema is for all gym management staff. the 'admin' field (boolean) determines whether they are a master user or not (for simplicity there will only be two roles: master or not master).
+// Master users will be able to do things like create/delete instructors and customers etc. whilst normal (not master) users can't.
+
+const userSchema = new mongoose.Schema({
     email: { 
         type: String, 
         required: true, 
@@ -10,17 +13,17 @@ const masterSchema = new mongoose.Schema({
     },
     password: { 
         type: String, 
-        required: true 
+        required: true
     },
-    role: {
-        type: String,
-        enum: ['master'],
-        default: 'master'
+    master: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 });
 
 // hash pword before saving
-masterSchema.pre('save', async function(next) {
+userSchema.pre('save', async function(next) {
     if (!this.isModified('password')) return next();
     
     try {
@@ -33,10 +36,10 @@ masterSchema.pre('save', async function(next) {
 });
 
 // compares the hashed pwords
-masterSchema.methods.comparePassword = async function(candidatePassword) {
+userSchema.methods.comparePassword = async function(candidatePassword) {
     return await bcrypt.compare(candidatePassword, this.password);
 };
 
-const Master = mongoose.model('Master', masterSchema);
+const User = mongoose.model('User', userSchema);
 
-export { Master };
+export { User };

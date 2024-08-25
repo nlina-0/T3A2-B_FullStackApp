@@ -1,10 +1,11 @@
 import express from 'express'
 import { Class } from '../models/classModel.js'
+import { authenticate } from '../middleware/authMasterUser.js'
 
 const classRoutes = express.Router()
 
 // Create new class
-classRoutes.post('/', async (req, res) => {
+classRoutes.post('/', authenticate, async (req, res) => {
     try {
         const newClass =  await Class.create(req.body)
         res.status(201).send({ message: "Class created successfully", newClass })
@@ -14,7 +15,7 @@ classRoutes.post('/', async (req, res) => {
 })
 
 // Update class
-classRoutes.put('/:id', async (req, res) => {
+classRoutes.put('/:id', authenticate, async (req, res) => {
     try {
         const updatedClass = await Class.findByIdAndUpdate(req.params.id, req.body, {returnDocument: 'after'})
         res.status(200).json({ message: "Class updated successfully" }, updatedClass)
@@ -22,3 +23,5 @@ classRoutes.put('/:id', async (req, res) => {
         res.status(404).json({ message: "Class not found" })
     }
 })
+
+export default classRoutes
