@@ -3,6 +3,7 @@ import ClassCard from './ClassCard'
 import SearchField from './SearchField'
 
 const Classes = ({ classes }) => {
+  // const data = Array.from(classes)
 
   return (
     <>
@@ -15,13 +16,13 @@ const Classes = ({ classes }) => {
         {
           classes.map((cl) => (
             <ClassCard 
-              key={cl.id} // unique key prop
-              id={cl.id}
-              classType={cl.classType}  
-              instructor={cl.instructor} 
-              date={cl.date} 
-              duration={cl.duration} 
-              capacity={cl.capacity}
+              key={cl._id} // unique key prop
+              id={cl._id}
+              name={cl.name}  
+              // instructor={cl.instructor} 
+              // date={cl.date} 
+              // duration={cl.duration} 
+              // capacity={cl.capacity}
             />
           ))
         }

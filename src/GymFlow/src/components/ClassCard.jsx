@@ -9,9 +9,10 @@ const ClassCard = (props) => {
           <div className="card">
             <div className="card-content">
               <div className="media-content">
-                <p>{props.classType}</p>
-                <p>{props.instructor}</p>
-                <p>When: {props.date}</p>
+                <p>{props.name}</p>
+                {/* <p>{props.classType.name}</p>
+                <p>{props.instructor.firstName}</p> */}
+                <p>When: {props.time}</p>
                 <p>Duration: {props.duration} min</p>
                 <p>Capacity: {props.capacity}</p>
               </div>

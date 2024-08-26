@@ -5,6 +5,7 @@ import ClientCard from './ClientCard'
 const Customers = () => {
   const [search, setSearch] = useState()
 
+  // TODO: lift this to parent so it can use the same useEffect as classes
   const [customers, setCustomers] = useState(
     [
       {   
