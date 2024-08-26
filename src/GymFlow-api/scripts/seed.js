@@ -1,19 +1,21 @@
 import bcrypt from 'bcrypt'
 import { Customer } from '../models/customerModel.js'
-import { ClassType } from '../models/classTypeModel.js'
+import { Class, ClassType } from '../models/classModel.js'
+import { Instructor } from '../models/instructorModel.js'
 import { User } from '../models/userModel.js'
 import { closeConnection, startConnection } from '../config/db.js'
+import { Booking } from '../models/bookingModel.js'
 
 // Connect to MongoDB
 startConnection()
 
-// Define user data
-
+// USERS
+// Define users
 const hashPassword = async function(password) {
     return await bcrypt.hash(password, 10);
 }
 
-const password1 = bcrypt.hashSync("masterpassword", 10);
+const password1 = bcrypt.hashSync("masterpassword123", 10);
 const password2 = bcrypt.hashSync("nonmasterpassword123", 10)
 
 const users = [
@@ -32,7 +34,7 @@ const users = [
 // Clear existing users from db and seed with new data
 await User.deleteMany()
 console.log("Deleted users")
-const userRes = await User.insertMany(users)
+await User.insertMany(users)
 console.log("Seeded users")
 
 // Define customer data
@@ -63,9 +65,12 @@ const customers = [
 // Clear existing customers from db and seed with new data
 await Customer.deleteMany()
 console.log("Deleted customers")
-const customerRes = await Customer.insertMany(customers)
+await Customer.insertMany(customers)
 console.log("Seeded customers")
 
+
+// CLASS TYPES
+// Define class types
 const classTypes = [
     {
         name: "Yoga"
@@ -90,8 +95,47 @@ const classTypes = [
 // Clear existing class types from db and seed with new data
 await ClassType.deleteMany()
 console.log("Deleted class types")
-const classTypeRes = await ClassType.insertMany(classTypes)
+await ClassType.insertMany(classTypes)
 console.log("Seeded class types")
+
+// INSTRUCTORS
+// Define instructors
+const instructors = [
+    {
+        firstName: "Janet",
+        lastName: "Smith",
+        age: 32,
+        email: "janet@email.com",
+        phone: "0412123163"
+    },
+    {
+        firstName: "William",
+        lastName: "Williamson",
+        age: 39,
+        email: "williamson@email.com",
+        phone: "0477123124"
+    }, 
+    {
+        firstName: "Carly",
+        lastName: "Fisher",
+        age: 23,
+        email: "carlyf@email.com",
+        phone: "0412129925"
+    }
+]
+
+// Clear existing instructors from db and seed with new data
+await Instructor.deleteMany()
+console.log("Deleted instructors")
+await Instructor.insertMany(instructors)
+console.log("Seeded instructors")
+
+
+// Clear eixsting classes and bookings from db
+await Class.deleteMany()
+console.log("Deleted classes")
+await Booking.deleteMany()
+console.log("Deleted bookings")
 
 // Disconnect from MongoDB
 closeConnection()

@@ -1,11 +1,13 @@
 import express from 'express'
 import { Customer } from '../models/customerModel.js'
-import { authenticate, checkMaster } from '../middleware/authMasterUser.js'
+import { authenticate, checkMaster } from '../middleware/userAuth.js'
 
 const customerRoutes = express.Router()
 
+customerRoutes.use(authenticate) // authentication required on all customer routes
+
 // Create new customer
-customerRoutes.post('/', authenticate, async (req, res) => {  
+customerRoutes.post('/', async (req, res) => {  
     try {
         const newCustomer = await Customer.create(req.body)
         res.status(201).send({ message: "Customer created successfully", newCustomer })
@@ -16,7 +18,7 @@ customerRoutes.post('/', authenticate, async (req, res) => {
 })
 
 // Update customer details
-customerRoutes.put('/:id', authenticate, async (req, res) => {
+customerRoutes.put('/:id', async (req, res) => {
     try {
         const customer = await Customer.findByIdAndUpdate(req.params.id, req.body, {returnDocument: 'after'})
         if (!customer) return res.status(404).send({ message: "Customer not found" })
@@ -26,8 +28,8 @@ customerRoutes.put('/:id', authenticate, async (req, res) => {
     }
 })
 
-// Delete customer
-customerRoutes.delete('/:id', authenticate, checkMaster, async (req, res) => {  // TODO: add auth to ensure only admins can delete
+// Delete customer (Master access required)
+customerRoutes.delete('/:id', checkMaster, async (req, res) => {  // TODO: add auth to ensure only admins can delete
     try {
         const customer = await Customer.findById(req.params.id)
         if (!customer) {

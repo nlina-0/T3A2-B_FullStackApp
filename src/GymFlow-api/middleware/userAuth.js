@@ -14,7 +14,7 @@ const authenticate = async (req, res, next) => {
     }
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        console.log(decoded)
+        
         req.userId = await User.findById(decoded.id);
         next();
     } catch (error) {
@@ -23,14 +23,11 @@ const authenticate = async (req, res, next) => {
     }
 };
 
-//middleware that checks the role of the user
+//middleware that checks if user is Master
 const checkMaster = async (req, res, next) => {
     try {
         const user = await User.findById(req.userId) // userId was set by the auth middleware
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-
+        
         if (!user.master) {
             return res.status(403).json({ message: 'Unauthorized' }); // User is not authorized to access this route
         }

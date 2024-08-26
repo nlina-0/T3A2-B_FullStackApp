@@ -4,6 +4,8 @@ import { User } from '../models/userModel.js'
 
 const userRoutes = express.Router()
 
+classRoutes.use(authenticate) // authentication required on all class routes
+
 // Create new user
 userRoutes.post('/', async (req, res) => {  
     const { email, password, master } = req.body
