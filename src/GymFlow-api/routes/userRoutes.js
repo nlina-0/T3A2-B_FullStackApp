@@ -1,8 +1,11 @@
 import bcrypt from 'bcrypt'
 import express from 'express'
+import { authenticate } from '../middleware/userAuth.js'
 import { User } from '../models/userModel.js'
 
 const userRoutes = express.Router()
+
+userRoutes.use(authenticate) // authentication required on all user routes
 
 // Create new user
 userRoutes.post('/', async (req, res) => {  
