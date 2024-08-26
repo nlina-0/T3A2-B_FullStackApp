@@ -1,6 +1,6 @@
 import express from 'express'
 import { Class, ClassType } from '../models/classModel.js'
-import { authenticate } from '../middleware/userAuth.js'
+import { authenticate, checkMaster } from '../middleware/userAuth.js'
 
 const classRoutes = express.Router()
 
@@ -27,6 +27,19 @@ classRoutes.put('/:id', async (req, res) => {
     }
 })
 
+// Delete class (Master access required)
+classRoutes.delete('/:id', checkMaster, async (req, res) => {  
+    try {
+        const classToDelete = await Class.findById(req.params.id)
+        if (!classToDelete) {
+            return res.status(404).send({ message: "Class not found" })
+        }
+        await Class.findByIdAndDelete(req.params.id)
+        res.json({ message: "Class deleted successfully" })
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+})
 
 // CLASS TYPES
 // Create new class type

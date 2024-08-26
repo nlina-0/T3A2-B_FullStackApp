@@ -29,7 +29,7 @@ customerRoutes.put('/:id', async (req, res) => {
 })
 
 // Delete customer (Master access required)
-customerRoutes.delete('/:id', checkMaster, async (req, res) => {  // TODO: add auth to ensure only admins can delete
+customerRoutes.delete('/:id', async (req, res) => {  
     try {
         const customer = await Customer.findById(req.params.id)
         if (!customer) {

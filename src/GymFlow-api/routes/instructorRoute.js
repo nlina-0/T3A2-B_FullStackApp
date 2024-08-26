@@ -18,4 +18,18 @@ instructorRoutes.post('/', checkMaster, async (req, res) => {
     }
 });
 
+// Delete instructor (Master access required)
+instructorRoutes.delete('/:id', async (req, res) => {  
+    try {
+        const customer = await Customer.findById(req.params.id)
+        if (!customer) {
+            return res.status(404).send({ message: "Customer not found" })
+        }
+        await Customer.findByIdAndDelete(req.params.id)
+        res.json({ message: "Customer deleted successfully" })
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+})
+
 export default instructorRoutes;
