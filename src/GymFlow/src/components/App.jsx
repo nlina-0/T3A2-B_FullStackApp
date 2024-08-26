@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Routes, Route, Outlet, useParams } from 'react-router-dom'
 import Classes from './Classes'
 import NewClass from './NewClass'
@@ -13,7 +13,7 @@ let newClassId = 4
 
 const App = () => {
 
-  const [classes, setClasses] = useState(
+  const [classes, setClasses] = useState( 
     [
       {
         id: 1,
@@ -44,7 +44,12 @@ const App = () => {
   )
 
 
-  // Add useEffect to fetch classes, instructor, customer and user
+  // Add useEffect to fetch classes
+  useEffect(() => {
+    fetch("")
+      .then(res => res.json())
+      .then(data => setClasses(data))
+  }, [])
 
   // For createClass
   const addClass = (classType, instructor, date, duration, capacity) => {
