@@ -7,6 +7,31 @@ const classRoutes = express.Router()
 classRoutes.use(authenticate) // authentication required on all class routes
 
 // CLASSES
+// View all classes
+classRoutes.get('/', async (req, res) => {
+    try {
+        res.status(201).send(await Class.find().populate('classType').populate('instructor'))
+    } catch (err) {
+        res.status(500).json({ message: error.message })
+    }
+})
+
+// View class by id
+classRoutes.get('/:id', async (req, res) => {
+    try {
+        const searchedClass = await Class.findById(req.params.id).populate('classType').populate('instructor')
+        if (searchedClass) {
+            res.send(searchedClass)
+        } else {
+            res.status(404).json({ message: "Class not found" })
+        }
+    } catch (err) {
+        res.status(500).json({ message: error.message })
+    }
+})
+
+// TO DO: View class by type
+
 // Create new class
 classRoutes.post('/', async (req, res) => {
     try {
