@@ -25,3 +25,5 @@ bookingRoutes.put('/:id', async (req, res) => {
         res.status(404).json({ message: "Booking not found" })
     }
 })
+
+export default bookingRoutes

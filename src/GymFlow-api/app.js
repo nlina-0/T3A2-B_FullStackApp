@@ -6,6 +6,7 @@ import customerRoutes from './routes/customerRoutes.js'
 import loginRoutes from './routes/loginRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import instructorRoutes from './routes/instructorRoute.js'
+import bookingRoutes from './routes/bookingRoutes.js'
 
 const app = express()
 
@@ -25,5 +26,6 @@ app.use('/classes', classRoutes)
 app.use('/login', loginRoutes )
 app.use('/users', userRoutes)
 app.use('/instructors', instructorRoutes)
+app.use('/bookings', bookingRoutes)
 
 export default app
