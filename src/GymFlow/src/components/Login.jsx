@@ -1,31 +1,56 @@
 import React, {useState} from 'react'
+import { useAuth } from './AuthProvider'
 
 const Login = () => {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [error, setError] = useState('');
-    const [success, setSuccess] = useState(false)
+    const [input, setInput] = useState({
+        email: "",
+        password: ""
+    })
+    // const [email, setEmail] = useState("")
+    // const [password, setPassword] = useState("")
+    // const [error, setError] = useState('');
+    // const [success, setSuccess] = useState(false)
 
-    const handleSubmit = async (e) => {
+
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault()
+
+    //     // put in try block
+    //     const response = await fetch('http://localhost:3000/login', {
+    //         method: 'POST',
+    //         headers: {
+    //           'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({ email, password }),
+    //     });
+    
+    //     if (!response.ok) {
+    //     throw new Error('Login failed');
+    //     }
+    
+    //     const data = await response.json();
+    //     // Store token in local storage for protected routes
+    //     localStorage.setItem('token', data.token)
+
+    // }
+
+    const auth = useAuth()
+
+    const handleSubmit = (e) => {
         e.preventDefault()
-
-        // put in try block
-        const response = await fetch('http://localhost:3000/login', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password }),
-        });
-    
-        if (!response.ok) {
-        throw new Error('Login failed');
+        if (input.email !== "" && input. password !== "" ) {
+            auth.loginAction(input)
+            return
         }
-    
-        const data = await response.json();
-        // Store token in local storage for protected routes
-        localStorage.setItem('token', data.token)
+        alert("please provide valid input")
+    }
 
+    const handleInput = (e) => {
+        const { name, value } = e.target
+        setInput((prev => ({
+            ...prev,
+            [name]: value,
+        })))
     }
 
     
@@ -43,9 +68,10 @@ const Login = () => {
                         <input 
                             className="input is-rounded has-text-link" 
                             type="email" 
-                            placeholder="Email" 
-                            value={email} 
-                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Email"
+                            name="email" 
+                            value={input.email} 
+                            onChange={handleInput}
                         />
                     </div>
                     <label className="label mt-5">Password</label>
@@ -54,8 +80,9 @@ const Login = () => {
                             className="input is-rounded has-text-link" 
                             type="password" 
                             placeholder="Password" 
-                            value={password} 
-                            onChange={(e) => setPassword(e.target.value)} 
+                            name="password"
+                            value={input.password} 
+                            onChange={handleInput} 
                         />
                     </div>
                     <div className="control mt-6">
