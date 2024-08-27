@@ -87,8 +87,7 @@ const App = () => {
       <NavBar />
       <Routes>
         <Route path='/login' element={<Login />} />
-        <Route path='/' element={<Classes classes={classes}/>} />
-        {/* private route test */}
+        {/* <Route path='/' element={<Classes classes={classes}/>} /> */}
         <Route path='/classes' element={<PrivateRoute />}>
           <Route path='/classes' element={<Classes classes={classes}/>}/>
           <Route path=':id' element={<ClassDetailsWrapper />}/>

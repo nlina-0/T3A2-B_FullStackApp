@@ -20,7 +20,7 @@ const AuthProvider = ({ children }) => {
                 body: JSON.stringify({ email, password }),
             })
 
-            // console.log("Response status:", response.status)
+            console.log("Response status:", response.status)
 
             const res = await response.json()
 
@@ -46,7 +46,8 @@ const AuthProvider = ({ children }) => {
         // setEmail(null)
         // setPassword(null)
         // setUser(null)
-        setToken("")
+        // setToken("")
+        setToken(localStorage.clear())
         localStorage.removeItem("site")
         navigate("/login")
     }
