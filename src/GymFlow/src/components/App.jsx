@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Routes, Route, Outlet, useParams } from 'react-router-dom'
+import { Routes, Route, Outlet, useParams, Navigate } from 'react-router-dom'
 import Classes from './Classes'
 import NewClass from './NewClass'
 import Customers from './Customers'
@@ -7,6 +7,8 @@ import ClassDetails from './ClassDetails'
 import NavBar from './NavBar'
 import Login from './Login'
 import Instructor from './Instructor'
+import AuthProvider from './AuthProvider'
+import PrivateRoute from './PrivateRoute'
 
 // Temporary ID for classes
 let newClassId = 4
@@ -51,7 +53,7 @@ const App = () => {
 
   useEffect(() => {
     // Retrieves stored token from local sotrage when user logins
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem("site")
     fetch('http://localhost:3000/classes', {
       method: 'GET',
       headers: {
@@ -60,7 +62,7 @@ const App = () => {
       }
     })
       .then(res => res.json())
-      .then(data => setClasses(data))
+      .then(data => setClasses(data)) 
   }, [])
 
 
@@ -77,14 +79,17 @@ const App = () => {
     const currentClass = classes.find(cls => cls._id == id) 
     return currentClass ? <ClassDetails currentClass={currentClass}/> : <h3>Class not found!</h3>
   }
+
   
   return (
     <>
+    <AuthProvider>
       <NavBar />
       <Routes>
         <Route path='/login' element={<Login />} />
         <Route path='/' element={<Classes classes={classes}/>} />
-        <Route path='/classes' element={<Outlet />}>
+        {/* private route test */}
+        <Route path='/classes' element={<PrivateRoute />}>
           <Route path='/classes' element={<Classes classes={classes}/>}/>
           <Route path=':id' element={<ClassDetailsWrapper />}/>
         </Route>
@@ -95,6 +100,7 @@ const App = () => {
         <Route path='/customers' element={<Customers />} />
         <Route path='*' element={<h3>Page not found!</h3>} />
       </Routes>
+    </AuthProvider>
     </>
   )
 }
