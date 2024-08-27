@@ -51,9 +51,7 @@ const Login = () => {
             ...prev,
             [name]: value,
         })))
-    }
-
-    
+    } 
 
   return (
     <>

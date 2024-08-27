@@ -4,9 +4,6 @@ import { useNavigate } from "react-router-dom"
 const AuthContext = createContext()
 
 const AuthProvider = ({ children }) => {
-    // const [email, setEmail] = useState(null)
-    // const [password, setPassword] = useState(null)
-    // const [user, setUser] = useState(null)
     const [token, setToken] = useState(localStorage.getItem("site") || "")
     const navigate = useNavigate()
     
@@ -24,13 +21,7 @@ const AuthProvider = ({ children }) => {
 
             const res = await response.json()
 
-            // data is undefined
-            // console.log("Response data:", res.data);
-
             if (res) {
-                // setEmail(res.email)
-                // setPassword(res.password)
-                // setUser(res.data)
                 setToken(res.token)
                 localStorage.setItem("site", res.token)
                 navigate("/classes")
@@ -43,10 +34,6 @@ const AuthProvider = ({ children }) => {
     }
 
     const logOut = () => {
-        // setEmail(null)
-        // setPassword(null)
-        // setUser(null)
-        // setToken("")
         setToken(localStorage.clear())
         localStorage.removeItem("site")
         navigate("/login")
