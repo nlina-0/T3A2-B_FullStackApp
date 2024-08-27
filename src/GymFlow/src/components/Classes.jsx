@@ -23,7 +23,7 @@ const Classes = ({ classes }) => {
               // date={cl.date} 
               // duration={cl.duration} 
               // capacity={cl.capacity}
-            />
+            />,
           ))
         }
       </div>

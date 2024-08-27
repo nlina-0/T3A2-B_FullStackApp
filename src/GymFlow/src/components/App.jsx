@@ -62,7 +62,8 @@ const App = () => {
       }
     })
       .then(res => res.json())
-      .then(data => setClasses(data)) 
+      .then(data => setClasses(data))
+      console.log(classes) 
   }, [])
 
 
@@ -87,17 +88,19 @@ const App = () => {
       <NavBar />
       <Routes>
         <Route path='/login' element={<Login />} />
-        <Route path='/' element={<Classes classes={classes}/>} />
-        {/* private route test */}
-        <Route path='/classes' element={<PrivateRoute />}>
-          <Route path='/classes' element={<Classes classes={classes}/>}/>
-          <Route path=':id' element={<ClassDetailsWrapper />}/>
+        {/* <Route path='/' element={<Classes classes={classes}/>} /> */}
+        <Route path='/' element={<PrivateRoute />}>
+          {/* Class Route */}
+          <Route path='/classes' element={<Outlet />}>
+            <Route path='/classes' element={<Classes classes={classes}/>} />
+            <Route path=':id' element={<ClassDetailsWrapper />}/>
+          </Route>
+          <Route path='/newClass' element={<NewClass addClass={addClass}/>} />
+          <Route path='/instructors' >
+            <Route path='/instructors' element={<Instructor />} />
+          </Route>
+          <Route path='/customers' element={<Customers />} />
         </Route>
-        <Route path='/newClass' element={<NewClass addClass={addClass}/>} />
-        <Route path='/instructors' >
-          <Route path='/instructors' element={<Instructor />} />
-        </Route>
-        <Route path='/customers' element={<Customers />} />
         <Route path='*' element={<h3>Page not found!</h3>} />
       </Routes>
     </AuthProvider>
