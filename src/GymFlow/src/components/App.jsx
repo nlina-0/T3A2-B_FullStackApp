@@ -9,6 +9,8 @@ import Login from './Login'
 import Instructor from './Instructor'
 import AuthProvider from './AuthProvider'
 import PrivateRoute from './PrivateRoute'
+import ShowNavBar from './ShowNavBar'
+import PublicAccess from './PublicAccess'
 
 // Temporary ID for classes
 let newClassId = 4
@@ -85,10 +87,15 @@ const App = () => {
   return (
     <>
     <AuthProvider>
-      <NavBar />
+      {/* hide navBar on login page */}
+      <ShowNavBar>
+        <NavBar />
+      </ShowNavBar>
+      
       <Routes>
         <Route path='/login' element={<Login />} />
         {/* <Route path='/' element={<Classes classes={classes}/>} /> */}
+        {/* private routes */}
         <Route path='/' element={<PrivateRoute />}>
           {/* Class Route */}
           <Route path='/classes' element={<Outlet />}>
@@ -101,6 +108,8 @@ const App = () => {
           </Route>
           <Route path='/customers' element={<Customers />} />
         </Route>
+        
+        <Route path='/public' element={<PublicAccess />} />
         <Route path='*' element={<h3>Page not found!</h3>} />
       </Routes>
     </AuthProvider>

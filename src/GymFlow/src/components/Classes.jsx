@@ -20,9 +20,10 @@ const Classes = ({ classes }) => {
               id={cl._id}
               name={cl.name}  
               // instructor={cl.instructor} 
+              time={cl.time}
               // date={cl.date} 
-              // duration={cl.duration} 
-              // capacity={cl.capacity}
+              duration={cl.duration} 
+              capacity={cl.capacity}
             />,
           ))
         }

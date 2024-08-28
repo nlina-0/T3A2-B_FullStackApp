@@ -38,14 +38,14 @@ const NavBar = () => {
                                 <Link className="button is-light" onClick={() => auth.logOut()}>
                                     Log Out
                                 </Link>
-                                <Link className="button is-light" to="/login">
+                                {/* <Link className="button is-light" to="/login">
                                     Log In
-                                </Link>
+                                </Link> */}
                             </div>
                         </div>
                     </div>
-                    </div>
-                </nav>
+                </div>
+            </nav>
         </>
     )
 }
