@@ -28,7 +28,23 @@ classRoutes.get('/:id', async (req, res) => {
     }
 })
 
-// TO DO: View class by type
+// View class by type
+classRoutes.get('/type/:classtype', async (req, res) => {
+    try {
+        const searchedClassType = await ClassType.findOne({ "name": req.params.classtype})
+        if (!searchedClassType) {
+            res.status(404).json({ message: "Class type does not exist" })
+        }
+        try {
+            const resultClasses = await Class.find({ classType: searchedClassType.id }).populate('classType').populate('instructor')
+            console.log(resultClasses)
+            res.send(resultClasses)
+        } catch (err) {
+            res.status(500).json({ message: "No classes found for entered class type" })
+        }} catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+})
 
 // Create new class
 classRoutes.post('/', authenticate, async (req, res) => {
