@@ -107,7 +107,7 @@ const App = () => {
   // For createClass
   const addClass = (name, selectedClassType, selectedInstructor, time, duration, capacity) => {
     // TODO: Sanitise and validate entry data
-    const newClass = { _id: newClassId++, name: name, classType: selectedClassType, time: time, duration: duration, instructor: selectedInstructor, capacity: capacity }
+    const newClass = { _id: newClassId++, name: name, classType: selectedClassType, instructor: selectedInstructor, time: time, duration: duration, capacity: capacity }
     console.log('New Class: ', newClass)
     setClasses([...classes, newClass])
     console.log('Form submitted successfully')

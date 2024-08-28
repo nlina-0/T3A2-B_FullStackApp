@@ -4,7 +4,7 @@ import InstructorSelector from './InstructorSelector'
 const NewClass = ({ addClass }) => {
 
   // duplicated from instructor
-  const [instructor, setInstructor] = useState(
+  const [instructors, setInstructors] = useState(
     [
       {   
           id: 1,
@@ -55,13 +55,10 @@ const NewClass = ({ addClass }) => {
 ]
 
   const [selectedInstructor, setSelectedInstructor] = useState("")
-  console.log("Instructor ID: " + selectedInstructor)
   const [selectedClassType, setSelectedClassType] = useState("")
   console.log("Selected class type: " + selectedClassType)
   
   const [name, setName] = useState("")
-  const [classType, setClassType] = useState("")
-  // const [instructor, setInstructor] = useState("")
   const [time, setTime] = useState("")
   console.log(time)
 
@@ -73,6 +70,18 @@ const NewClass = ({ addClass }) => {
     addClass(name, selectedClassType, selectedInstructor, time, duration, capacity)
     // redirect to className detail
 
+  }
+
+  const handleSelectChange = (e) => {
+    const selectId = parseInt(e.target.value)
+    const instructor = instructors.find(i => i.id == selectId)
+    setSelectedInstructor(instructor)
+  }
+
+  const handleClassSelect = (e) => {
+    const selectedClassName = e.target.value
+    const selectClassType = classTypes.find(c => c.name == selectedClassName)
+    setSelectedClassType(selectClassType) 
   }
 
 
@@ -97,9 +106,8 @@ const NewClass = ({ addClass }) => {
 
                     <label className="label mt-5">Class Type</label>
                     <div className="control">
-
                         <div className="select is-link is-rounded">
-                          <select value={selectedClassType} onChange={(e) => setSelectedClassType(e.target.value)}>
+                          <select value={selectedClassType} onChange={handleClassSelect}>
 
                             <option value="">Select Class Type...</option>
                             
@@ -121,15 +129,15 @@ const NewClass = ({ addClass }) => {
                     <div className="control">
 
                         <div className="select is-link is-rounded">
-                          <select value={selectedInstructor} onChange={(e) => setSelectedInstructor(e.target.value)}>
+                          <select value={selectedInstructor} onChange={handleSelectChange}>
 
                             <option value="">Select Instructor...</option>
                             
                             {
-                              instructor.map((i) => {
+                              instructors.map((i) => {
                                 return (
                                   <option key={i.id} value={i.id}>
-                                    {i.firstName + " " + i.lastName}
+                                    {`${i.firstName} ${i.lastName}`}
                                   </option>
                                   )
                               })
