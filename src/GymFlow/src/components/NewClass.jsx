@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import InstructorSelector from './InstructorSelector'
+// import { useNavigate } from 'react-router-dom'
 
 const NewClass = ({ addClass }) => {
+  // const navigate = useNavigate()
 
   // duplicated from instructor
   const [instructors, setInstructors] = useState(
@@ -56,27 +58,18 @@ const NewClass = ({ addClass }) => {
 
   const [selectedInstructor, setSelectedInstructor] = useState({})
   const [selectedClassType, setSelectedClassType] = useState({})
-  
   const [name, setName] = useState("")
   const [time, setTime] = useState("")
-  console.log(time)
-
   const [duration, setDuration] = useState("")
   const [capacity, setCapacity] = useState("")
 
+  // Form Submit
   const submitHandler = e => {
     e.preventDefault()
     addClass(name, selectedClassType, selectedInstructor, time, duration, capacity)
-    // redirect to className detail
-
   }
 
-  // const handleInstructorChange = (e) => {
-  //   const selectId = parseInt(e.target.value)
-  //   const instructor = instructors.find(i => i.id == selectId)
-  //   setSelectedInstructor(instructor)
-  // }
-
+  // Instructor handler
   const handleInstructorChange = (e) => {
     const selectedFullName = e.target.value;
     const instructor = instructors.find(
@@ -85,6 +78,7 @@ const NewClass = ({ addClass }) => {
     setSelectedInstructor(instructor || {})
   }
 
+  // Class Type handler
   const handleClassSelect = (e) => {
     const selectedClassName = e.target.value
     const selectClassType = classTypes.find(c => c.name == selectedClassName)

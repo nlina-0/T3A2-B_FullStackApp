@@ -42,7 +42,7 @@ const Instructor = () => {
             <button className="button is-normal is-rounded is-link my-6">Register New Instructor</button>
       </div>
 
-      <div className="my-6">
+      <div className="mt-6 ">
       <SearchField search="Search Instructor"/>
       </div>
     </div>

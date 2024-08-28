@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Routes, Route, Outlet, useParams, Navigate } from 'react-router-dom'
+import { Routes, Route, Outlet, useParams, useNavigate } from 'react-router-dom'
 import Classes from './Classes'
 import NewClass from './NewClass'
 import Customers from './Customers'
@@ -17,6 +17,8 @@ let newClassId = 4
 
 const App = () => {
 
+  const navigate = useNavigate()
+  
   const [instructor, setInstructor] = useState(
     [
       {   
@@ -110,7 +112,12 @@ const App = () => {
     const newClass = { _id: newClassId++, name: name, classType: selectedClassType, instructor: selectedInstructor, time: time, duration: duration, capacity: capacity }
     console.log('New Class: ', newClass)
     setClasses([...classes, newClass])
+
     console.log('Form submitted successfully')
+    // redirect to className detail
+    // need to extract param id from class made
+    console.log(newClass._id)
+    navigate(`/classes/${newClass._id}`)
   }
 
   // Higher-order component (HOC)
