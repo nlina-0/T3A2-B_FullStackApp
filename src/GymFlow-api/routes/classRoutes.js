@@ -4,8 +4,6 @@ import { authenticate, checkMaster } from '../middleware/userAuth.js'
 
 const classRoutes = express.Router()
 
-classRoutes.use(authenticate) // authentication required on all class routes
-
 // CLASSES
 // View all classes
 classRoutes.get('/', async (req, res) => {
@@ -20,20 +18,36 @@ classRoutes.get('/', async (req, res) => {
 classRoutes.get('/:id', async (req, res) => {
     try {
         const searchedClass = await Class.findById(req.params.id).populate('classType').populate('instructor')
-        if (searchedClass) {
-            res.send(searchedClass)
-        } else {
+        if (!searchedClass) {
             res.status(404).json({ message: "Class not found" })
+            
         }
-    } catch (err) {
-        res.status(500).json({ message: error.message })
+        res.send(searchedClass)
+        } catch (err) {
+            res.status(500).json({ message: err.message })
     }
 })
 
-// TO DO: View class by type
+// View class by type
+classRoutes.get('/type/:classtype', async (req, res) => {
+    try {
+        const searchedClassType = await ClassType.findOne({ "name": req.params.classtype})
+        if (!searchedClassType) {
+            res.status(404).json({ message: "Class type does not exist" })
+        }
+        try {
+            const resultClasses = await Class.find({ classType: searchedClassType.id }).populate('classType').populate('instructor')
+            console.log(resultClasses)
+            res.send(resultClasses)
+        } catch (err) {
+            res.status(500).json({ message: "No classes found for entered class type" })
+        }} catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+})
 
 // Create new class
-classRoutes.post('/', async (req, res) => {
+classRoutes.post('/', authenticate, async (req, res) => {
     try {
         const newClass =  await Class.create(req.body)
         res.status(201).send({ message: "Class created successfully", newClass })
@@ -43,7 +57,7 @@ classRoutes.post('/', async (req, res) => {
 })
 
 // Update class
-classRoutes.put('/:id', async (req, res) => {
+classRoutes.put('/:id', authenticate, async (req, res) => {
     try {
         const updatedClass = await Class.findByIdAndUpdate(req.params.id, req.body, {returnDocument: 'after'})
         res.status(200).json({ message: "Class updated successfully" }, updatedClass)
@@ -53,7 +67,7 @@ classRoutes.put('/:id', async (req, res) => {
 })
 
 // Delete class (Master access required)
-classRoutes.delete('/:id', checkMaster, async (req, res) => {  
+classRoutes.delete('/:id', authenticate, checkMaster, async (req, res) => {  
     try {
         const classToDelete = await Class.findById(req.params.id)
         if (!classToDelete) {
@@ -68,7 +82,7 @@ classRoutes.delete('/:id', checkMaster, async (req, res) => {
 
 // CLASS TYPES
 // Create new class type
-classRoutes.post('/types', async (req, res) => {
+classRoutes.post('/types', authenticate, async (req, res) => {
     try {
         const newType = await ClassType.create(req.body)
         res.status(201).send({ message: "Class type created successfully", newType })
