@@ -54,8 +54,8 @@ const NewClass = ({ addClass }) => {
     }
 ]
 
-  const [selectedInstructor, setSelectedInstructor] = useState("")
-  const [selectedClassType, setSelectedClassType] = useState("")
+  const [selectedInstructor, setSelectedInstructor] = useState({})
+  const [selectedClassType, setSelectedClassType] = useState({})
   
   const [name, setName] = useState("")
   const [time, setTime] = useState("")
@@ -82,14 +82,13 @@ const NewClass = ({ addClass }) => {
     const instructor = instructors.find(
       (i) => `${i.firstName} ${i.lastName}` === selectedFullName
     )
-    setSelectedInstructor(instructor)
-    console.log(selectedInstructor)
+    setSelectedInstructor(instructor || {})
   }
 
   const handleClassSelect = (e) => {
     const selectedClassName = e.target.value
     const selectClassType = classTypes.find(c => c.name == selectedClassName)
-    setSelectedClassType(selectClassType) 
+    setSelectedClassType(selectClassType || {}) 
   }
 
 
@@ -115,7 +114,7 @@ const NewClass = ({ addClass }) => {
                     <label className="label mt-5">Class Type</label>
                     <div className="control">
                         <div className="select is-link is-rounded">
-                          <select value={selectedClassType.name} onChange={handleClassSelect}>
+                          <select value={selectedClassType.name || ""} onChange={handleClassSelect}>
 
                             <option value="">Select Class Type...</option>
                             
@@ -137,7 +136,7 @@ const NewClass = ({ addClass }) => {
                     <div className="control">
 
                         <div className="select is-link is-rounded">
-                          <select value={`${selectedInstructor.firstName} ${selectedInstructor.lastName}`} onChange={handleInstructorChange}>
+                          <select value={selectedInstructor ? `${selectedInstructor.firstName} ${selectedInstructor.lastName}` : ""} onChange={handleInstructorChange}>
 
                             <option value="">Select Instructor...</option>
                             
