@@ -17,6 +17,35 @@ let newClassId = 4
 
 const App = () => {
 
+  const [instructor, setInstructor] = useState(
+    [
+      {   
+          id: 1,
+          firstName: "Ran",
+          lastName: "Jose",
+          age: 35,
+          email: "ran.yoga@email.com",
+          phone: "0414980245"
+      },
+      {   
+          id: 2,
+          firstName: "Yule",
+          lastName: "Yeuwl",
+          age: 39,
+          email: "yule.pilates@email.com",
+          phone: "0412123124"
+      }, 
+      {
+          id: 3,
+          firstName: "Ned",
+          lastName: "Fred",
+          age: 31,
+          email: "fred.boxing@email.com",
+          phone: "0412123125"
+      }
+    ]
+  )
+
   const [classes, setClasses] = useState( 
     [
       // {
@@ -76,11 +105,12 @@ const App = () => {
 
 
   // For createClass
-  const addClass = (name, classType, time, duration, instructor, capacity) => {
+  const addClass = (name, selectedClassType, selectedInstructor, time, duration, capacity) => {
     // TODO: Sanitise and validate entry data
-    const newClass = { _id: newClassId++, name: name, classType: classType, time: time, duration: duration, instructor: instructor, capacity: capacity }
+    const newClass = { _id: newClassId++, name: name, classType: selectedClassType, time: time, duration: duration, instructor: selectedInstructor, capacity: capacity }
+    console.log('New Class: ', newClass)
     setClasses([...classes, newClass])
-    console.log('Form subnitted successfully')
+    console.log('Form submitted successfully')
   }
 
   // Higher-order component (HOC)

@@ -55,18 +55,22 @@ const NewClass = ({ addClass }) => {
 ]
 
   const [selectedInstructor, setSelectedInstructor] = useState("")
+  console.log("Instructor ID: " + selectedInstructor)
   const [selectedClassType, setSelectedClassType] = useState("")
+  console.log("Selected class type: " + selectedClassType)
   
   const [name, setName] = useState("")
   const [classType, setClassType] = useState("")
   // const [instructor, setInstructor] = useState("")
-  const [date, setDate] = useState("")
+  const [time, setTime] = useState("")
+  console.log(time)
+
   const [duration, setDuration] = useState("")
   const [capacity, setCapacity] = useState("")
 
   const submitHandler = e => {
     e.preventDefault()
-    addClass(name, classType, selectedInstructor, date, duration, capacity)
+    addClass(name, selectedClassType, selectedInstructor, time, duration, capacity)
     // redirect to className detail
 
   }
@@ -139,11 +143,11 @@ const NewClass = ({ addClass }) => {
                     <div className="control">
                         <input 
                           className="input is-rounded has-text-link" 
-                          type="" 
+                          type="date" 
                           // name="Date"
                           placeholder="" 
-                          value={date}
-                          onChange={(e) => setDate(e.target.value)}
+                          value={time}
+                          onChange={(e) => setTime(e.target.value)}
                         />
                     </div>
                     <label className="label mt-5">Duration</label>

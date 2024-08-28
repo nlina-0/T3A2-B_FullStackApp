@@ -22,7 +22,6 @@ const Classes = ({ classes }) => {
               classType={cl.classType.name}
               instructor={cl.instructor.firstName + " " + cl.instructor.lastName} 
               time={cl.time}
-              // date={cl.date} 
               duration={cl.duration} 
               capacity={cl.capacity}
             />,
