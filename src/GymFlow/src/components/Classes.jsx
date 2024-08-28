@@ -18,8 +18,9 @@ const Classes = ({ classes }) => {
             <ClassCard 
               key={cl._id} // unique key prop
               id={cl._id}
-              name={cl.name}  
-              // instructor={cl.instructor} 
+              name={cl.name}
+              classType={cl.classType.name}
+              instructor={cl.instructor.firstName + " " + cl.instructor.lastName} 
               time={cl.time}
               // date={cl.date} 
               duration={cl.duration} 
