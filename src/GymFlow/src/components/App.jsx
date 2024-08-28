@@ -136,7 +136,7 @@ const App = () => {
       
       <Routes>
         <Route path='/login' element={<Login />} />
-        {/* <Route path='/' element={<Classes classes={classes}/>} /> */}
+
         {/* private routes */}
         <Route path='/' element={<PrivateRoute />}>
           {/* Class Route */}
@@ -151,7 +151,8 @@ const App = () => {
           <Route path='/customers' element={<Customers />} />
         </Route>
         
-        <Route path='/public' element={<PublicAccess />} />
+        {/* Public routes */}
+        <Route path='/public' element={<PublicAccess classes={classes}/>} />
         <Route path='*' element={<h3>Page not found!</h3>} />
       </Routes>
     </AuthProvider>
