@@ -44,7 +44,7 @@ const Customers = () => {
       </div>
 
     <div className="is-flex is-justify-content-center is-align-items-center">
-      <button className="button is-normal is-rounded is-link my-6">Create New Customer</button>
+      <button className="button is-normal is-rounded is-link my-6">Register New Customer</button>
     </div>
     
     <div className="field has-addons my-6">

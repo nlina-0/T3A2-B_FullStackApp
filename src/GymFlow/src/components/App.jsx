@@ -53,6 +53,9 @@ const App = () => {
     ]
   )
 
+  // lift state for instructors - pass down to required components
+  
+
   useEffect(() => {
     // Retrieves stored token from local sotrage when user logins
     const token = localStorage.getItem("site")

@@ -8,7 +8,6 @@ const ShowNavBar = ({ children }) => {
 
     // Remove Navbar if user is on login or public access page
     useEffect(() => {
-        console.log('location: ', location)
         if (location.pathname === '/login' || location.pathname === '/public') {
             setShowNavBar(false)
         } else {
