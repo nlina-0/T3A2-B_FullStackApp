@@ -102,7 +102,6 @@ const App = () => {
       .catch(error => {
         console.error('Error fetching classes', error)
       })
-      // console.log(classes) 
   }, [])
 
 
@@ -114,8 +113,8 @@ const App = () => {
     setClasses([...classes, newClass])
 
     console.log('Form submitted successfully')
+
     // redirect to className detail
-    // need to extract param id from class made
     console.log(newClass._id)
     navigate(`/classes/${newClass._id}`)
   }
