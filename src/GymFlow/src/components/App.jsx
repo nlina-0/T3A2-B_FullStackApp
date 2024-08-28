@@ -68,7 +68,10 @@ const App = () => {
     })
       .then(res => res.json())
       .then(data => setClasses(data))
-      console.log(classes) 
+      .catch(error => {
+        console.error('Error fetching classes', error)
+      })
+      // console.log(classes) 
   }, [])
 
 
@@ -77,6 +80,7 @@ const App = () => {
     // TODO: Sanitise and validate entry data
     const newClass = { _id: newClassId++, name: name, classType: classType, time: time, duration: duration, instructor: instructor, capacity: capacity }
     setClasses([...classes, newClass])
+    console.log('Form subnitted successfully')
   }
 
   // Higher-order component (HOC)
@@ -90,7 +94,6 @@ const App = () => {
   return (
     <>
     <AuthProvider>
-      {/* hide navBar on login page */}
       <ShowNavBar>
         <NavBar />
       </ShowNavBar>

@@ -33,8 +33,30 @@ const NewClass = ({ addClass }) => {
     ]
   )
 
-  const [selectedInstructor, setSelectedInstructor] = useState("")
+  const classTypes = [
+    {
+        name: "Yoga"
+    },
+    {
+        name: "Cycling"
+    },
+    {
+        name: "Zumba"
+    },
+    {
+        name: "Kickboxing"
+    },
+    {
+        name: "Body pump"
+    },
+    {
+        name: "Pilates"
+    }
+]
 
+  const [selectedInstructor, setSelectedInstructor] = useState("")
+  const [selectedClassType, setSelectedClassType] = useState("")
+  
   const [name, setName] = useState("")
   const [classType, setClassType] = useState("")
   // const [instructor, setInstructor] = useState("")
@@ -44,8 +66,9 @@ const NewClass = ({ addClass }) => {
 
   const submitHandler = e => {
     e.preventDefault()
-    addClass(name, classType, instructor, date, duration, capacity)
+    addClass(name, classType, selectedInstructor, date, duration, capacity)
     // redirect to className detail
+
   }
 
 
@@ -67,16 +90,27 @@ const NewClass = ({ addClass }) => {
                           onChange={(e) => setName(e.target.value)}
                         />
                     </div>
+
                     <label className="label mt-5">Class Type</label>
                     <div className="control">
-                        <input 
-                          className="input is-rounded has-text-link" 
-                          type="" 
-                          // name="classType"
-                          placeholder="" 
-                          value={classType} 
-                          onChange={(e) => setClassType(e.target.value)}
-                        />
+
+                        <div className="select is-link is-rounded">
+                          <select value={selectedClassType} onChange={(e) => setSelectedClassType(e.target.value)}>
+
+                            <option value="">Select Class Type...</option>
+                            
+                            {
+                              classTypes.map((c) => {
+                                return (
+                                  <option key={c.name} value={c.name}>
+                                    {c.name}
+                                  </option>
+                                  )
+                              })
+                            }
+                            
+                          </select>
+                        </div>
                     </div>
 
                     <label className="label mt-5">Instructor</label>
@@ -90,7 +124,7 @@ const NewClass = ({ addClass }) => {
                             {
                               instructor.map((i) => {
                                 return (
-                                  <option key={i.id} value={i.firstName}>
+                                  <option key={i.id} value={i.id}>
                                     {i.firstName + " " + i.lastName}
                                   </option>
                                   )
@@ -127,7 +161,7 @@ const NewClass = ({ addClass }) => {
                     <div className="control">
                         <input 
                           className="input is-rounded has-text-link" 
-                          type="" 
+                          type="number" 
                           placeholder="" 
                           value={capacity}
                           onChange={(e) => setCapacity(e.target.value)}
