@@ -1,39 +1,6 @@
 import React, { useState } from 'react'
-import InstructorSelector from './InstructorSelector'
-// import { useNavigate } from 'react-router-dom'
 
-const NewClass = ({ addClass }) => {
-  // const navigate = useNavigate()
-
-  // duplicated from instructor
-  const [instructors, setInstructors] = useState(
-    [
-      {   
-          id: 1,
-          firstName: "Ran",
-          lastName: "Jose",
-          age: 35,
-          email: "ran.yoga@email.com",
-          phone: "0414980245"
-      },
-      {   
-          id: 2,
-          firstName: "Yule",
-          lastName: "Yeuwl",
-          age: 39,
-          email: "yule.pilates@email.com",
-          phone: "0412123124"
-      }, 
-      {
-          id: 3,
-          firstName: "Ned",
-          lastName: "Fred",
-          age: 31,
-          email: "fred.boxing@email.com",
-          phone: "0412123125"
-      }
-    ]
-  )
+const NewClass = ({ addClass, instructors }) => {
 
   const classTypes = [
     {

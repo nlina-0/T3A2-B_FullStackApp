@@ -19,7 +19,7 @@ const App = () => {
 
   const navigate = useNavigate()
   
-  const [instructor, setInstructor] = useState(
+  const [instructors, setInstructors] = useState(
     [
       {   
           id: 1,
@@ -123,7 +123,7 @@ const App = () => {
   const ClassDetailsWrapper = () => {
     const { id } = useParams()
     const currentClass = classes.find(cls => cls._id == id) 
-    return currentClass ? <ClassDetails currentClass={currentClass}/> : <h3>Class not found!</h3>
+    return currentClass ? <ClassDetails currentClass={currentClass} instructors={instructors} /> : <h3>Class not found!</h3>
   }
 
   
@@ -144,7 +144,7 @@ const App = () => {
             <Route path='/classes' element={<Classes classes={classes}/>} />
             <Route path=':id' element={<ClassDetailsWrapper />}/>
           </Route>
-          <Route path='/newClass' element={<NewClass addClass={addClass}/>} />
+          <Route path='/newClass' element={<NewClass addClass={addClass} instructors={instructors}/>} />
           <Route path='/instructors' >
             <Route path='/instructors' element={<Instructor />} />
           </Route>
