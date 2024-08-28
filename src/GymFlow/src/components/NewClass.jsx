@@ -56,7 +56,6 @@ const NewClass = ({ addClass }) => {
 
   const [selectedInstructor, setSelectedInstructor] = useState("")
   const [selectedClassType, setSelectedClassType] = useState("")
-  console.log("Selected class type: " + selectedClassType)
   
   const [name, setName] = useState("")
   const [time, setTime] = useState("")
@@ -72,10 +71,19 @@ const NewClass = ({ addClass }) => {
 
   }
 
-  const handleSelectChange = (e) => {
-    const selectId = parseInt(e.target.value)
-    const instructor = instructors.find(i => i.id == selectId)
+  // const handleInstructorChange = (e) => {
+  //   const selectId = parseInt(e.target.value)
+  //   const instructor = instructors.find(i => i.id == selectId)
+  //   setSelectedInstructor(instructor)
+  // }
+
+  const handleInstructorChange = (e) => {
+    const selectedFullName = e.target.value;
+    const instructor = instructors.find(
+      (i) => `${i.firstName} ${i.lastName}` === selectedFullName
+    )
     setSelectedInstructor(instructor)
+    console.log(selectedInstructor)
   }
 
   const handleClassSelect = (e) => {
@@ -107,7 +115,7 @@ const NewClass = ({ addClass }) => {
                     <label className="label mt-5">Class Type</label>
                     <div className="control">
                         <div className="select is-link is-rounded">
-                          <select value={selectedClassType} onChange={handleClassSelect}>
+                          <select value={selectedClassType.name} onChange={handleClassSelect}>
 
                             <option value="">Select Class Type...</option>
                             
@@ -129,14 +137,14 @@ const NewClass = ({ addClass }) => {
                     <div className="control">
 
                         <div className="select is-link is-rounded">
-                          <select value={selectedInstructor} onChange={handleSelectChange}>
+                          <select value={selectedInstructor ? `${selectedInstructor.firstName} ${selectedInstructor.lastName}` : ''} onChange={handleInstructorChange}>
 
                             <option value="">Select Instructor...</option>
                             
                             {
                               instructors.map((i) => {
                                 return (
-                                  <option key={i.id} value={i.id}>
+                                  <option key={i.id} value={`${i.firstName} ${i.lastName}`}>
                                     {`${i.firstName} ${i.lastName}`}
                                   </option>
                                   )
