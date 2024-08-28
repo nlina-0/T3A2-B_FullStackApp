@@ -126,7 +126,7 @@ h1 {
 
 
 /* Select box in forms */
-/* .input, .select select, .textarea {
+.input, .select select, .textarea {
   background-color: white;
-  color: rgb(185, 185, 185);
-} */
+  color: var(--bulma-link);
+}

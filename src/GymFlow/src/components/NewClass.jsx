@@ -137,7 +137,7 @@ const NewClass = ({ addClass }) => {
                     <div className="control">
 
                         <div className="select is-link is-rounded">
-                          <select value={selectedInstructor ? `${selectedInstructor.firstName} ${selectedInstructor.lastName}` : ''} onChange={handleInstructorChange}>
+                          <select value={`${selectedInstructor.firstName} ${selectedInstructor.lastName}`} onChange={handleInstructorChange}>
 
                             <option value="">Select Instructor...</option>
                             
