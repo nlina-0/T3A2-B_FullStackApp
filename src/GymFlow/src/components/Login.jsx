@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { useAuth } from './AuthProvider'
+import { Link } from "react-router-dom"
 
 const Login = () => {
     const [input, setInput] = useState({
@@ -55,9 +56,15 @@ const Login = () => {
 
   return (
     <>
+    <div className="container is-max-tablet">
+        <Link className="navbar-item" to="/public">
+            <h1>GymFlow</h1>
+        </Link>
+    </div>
+
     <div className="columns is-centered" >
         <div className="container card column is-two-fifths" id="user-login">
-       
+
         <h2 className="label mt-6 mb-6 is-size-5 has-text-weight-medium">Login</h2>
             <form onSubmit={handleSubmit}>
                 <div className="field">

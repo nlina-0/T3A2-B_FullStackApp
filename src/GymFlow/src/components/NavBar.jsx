@@ -10,9 +10,13 @@ const NavBar = () => {
         <nav className="navbar is-light" role="navigation" aria-label="main navigation">
             <div className="container is-max-desktop">
                     <div className="navbar-brand">
-                        <Link className="navbar-item" to="/">
+                        <div className="navbar-item">
                             <h1>GymFlow</h1>
-                        </Link>
+                        </div>
+                        
+                        {/* <Link className="navbar-item" to="/">
+                            <h1>GymFlow</h1>
+                        </Link> */}
 
                         {/* hamburger menu */}
                         <Link role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -38,14 +42,14 @@ const NavBar = () => {
                                 <Link className="button is-light" onClick={() => auth.logOut()}>
                                     Log Out
                                 </Link>
-                                <Link className="button is-light" to="/login">
+                                {/* <Link className="button is-light" to="/login">
                                     Log In
-                                </Link>
+                                </Link> */}
                             </div>
                         </div>
                     </div>
-                    </div>
-                </nav>
+                </div>
+            </nav>
         </>
     )
 }

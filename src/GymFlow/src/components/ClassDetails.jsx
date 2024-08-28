@@ -12,7 +12,7 @@ const ClassDetails = ({ currentClass }) => {
     <>
     <section className="section is-medium" id="class-detail">
       <div className="container is-max-tablet">
-        <p>{currentClass.name}</p>
+        <h1>{currentClass.name}</h1>
         {/* <p>{currentClass.instructor}</p> */}
         <p>When: {currentClass.time}</p>
         <p>Time: {currentClass.duration} min</p>
