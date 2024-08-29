@@ -12,8 +12,14 @@ const classSchema = new mongoose.Schema({
 
 const Class = mongoose.model('Class', classSchema)
 
-const ClassType = mongoose.model('ClassType', {
+const classTypeSchema = new mongoose.Schema({
     name: { type: String, unique: true, required: true }
 })
+
+const ClassType = mongoose.model('ClassType', classTypeSchema)
+
+// const ClassType = mongoose.model('ClassType', {
+//     name: { type: String, unique: true, required: true }
+// })
 
 export { Class, ClassType }
