@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from "react-router-dom"
+import Classes from './Classes'
 
-const PublicAccess = () => {
+const PublicAccess = ({ classes }) => {
   return (
     <>
         <nav className="navbar is-light" role="navigation" aria-label="main navigation">
@@ -23,6 +24,8 @@ const PublicAccess = () => {
                     </div>
                     </div>
                 </nav>
+
+                {<Classes classes={classes}/>}
         </>
   )
 }

@@ -90,7 +90,7 @@ h1 {
   background-color: #e3e7ee;
   padding: 30px 60px;
   border: 1px solid var(--bulma-scheme-main);
-  margin-top: 70px;
+  margin-top: 40px;
   max-width: 600px;
 }
 
@@ -129,4 +129,9 @@ h1 {
 .input, .select select, .textarea {
   background-color: white;
   color: var(--bulma-link);
+}
+
+/* New class card */
+#new-class-card:hover {
+  transform: none;
 }

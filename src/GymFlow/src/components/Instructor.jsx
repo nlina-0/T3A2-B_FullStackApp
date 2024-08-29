@@ -2,36 +2,7 @@ import React, { useState } from 'react'
 import SearchField from './SearchField'
 import ClientCard from './ClientCard'
 
-const Instructor = () => {
-
-  const [instructor, setInstructor] = useState(
-    [
-      {   
-          id: 1,
-          firstName: "Ran",
-          lastName: "Jose",
-          age: 35,
-          email: "ran.yoga@email.com",
-          phone: "0414980245"
-      },
-      {   
-          id: 2,
-          firstName: "Yule",
-          lastName: "Yeuwl",
-          age: 39,
-          email: "yule.pilates@email.com",
-          phone: "0412123124"
-      }, 
-      {
-          id: 3,
-          firstName: "Ned",
-          lastName: "Fred",
-          age: 31,
-          email: "fred.boxing@email.com",
-          phone: "0412123125"
-      }
-    ]
-  )
+const Instructor = ({ instructors }) => {
 
   return (
     <>
@@ -61,11 +32,11 @@ const Instructor = () => {
 
       <div>
         {
-          instructor.map((i) => (
+          instructors.map((i) => (
             <ClientCard
               clientType="instructor"
-              key={i.id}
-              id={i.id}
+              key={i._id}
+              id={i._id}
               name={`${i.firstName} ${i.lastName}`}
               age={i.age}
               contact={i.email}
