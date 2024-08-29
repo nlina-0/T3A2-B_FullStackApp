@@ -8,7 +8,6 @@ const classTypeRoutes = express.Router()
 // View all class types
 classTypeRoutes.get('/', async (req, res) => {
     try {
-        console.log(await ClassType.find())
         res.status(200).send(await ClassType.find())
     } catch (err) {
         res.status(500).json({ message: err.message })
