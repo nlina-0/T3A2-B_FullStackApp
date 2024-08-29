@@ -35,6 +35,14 @@ h1 {
   padding-top: 2rem;
 }
 
+.title, 
+.card-header-title  {
+  color: #979797;
+  font-size: 18px;
+  font-weight: 500;
+  padding-bottom: 7px;
+}
+
 
 /* Navbar */
 .navbar {

@@ -7,15 +7,17 @@ const Instructor = ({ instructors }) => {
   return (
     <>
     <div className="container is-max-tablet">
-      <h2 className="label my-6 is-size-5 has-text-weight-medium has-text-centered">Instructors</h2>
+      <h2 className="label my-6 is-size-5 has-text-weight-medium">Instructors</h2>
 
-      <div className="is-flex is-justify-content-center is-align-items-center">
-            <button className="button is-normal is-rounded is-link my-6">Register New Instructor</button>
-      </div>
+      <div className="columns">
+          <div className="column is-three-quarters">
+            <SearchField search="Search Instructor" />
+          </div>
 
-      <div className="mt-6 ">
-      <SearchField search="Search Instructor"/>
-      </div>
+          <div className="column is-one-quarter">
+            <button className="button is-link is-rounded js-modal-trigger is-fullwidth" >Add Instructor</button>
+          </div>
+        </div>
     </div>
 
     

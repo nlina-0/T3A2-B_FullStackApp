@@ -19,35 +19,7 @@ const App = () => {
 
   const navigate = useNavigate()
   
-  const [instructors, setInstructors] = useState(
-    [
-      // {   
-      //     id: 1,
-      //     firstName: "Ran",
-      //     lastName: "Jose",
-      //     age: 35,
-      //     email: "ran.yoga@email.com",
-      //     phone: "0414980245"
-      // },
-      // {   
-      //     id: 2,
-      //     firstName: "Yule",
-      //     lastName: "Yeuwl",
-      //     age: 39,
-      //     email: "yule.pilates@email.com",
-      //     phone: "0412123124"
-      // }, 
-      // {
-      //     id: 3,
-      //     firstName: "Ned",
-      //     lastName: "Fred",
-      //     age: 31,
-      //     email: "fred.boxing@email.com",
-      //     phone: "0412123125"
-      // }
-    ]
-  )
-  // console.log("Instructors from DB: ", instructors)
+  const [instructors, setInstructors] = useState([])
 
   const classTypes = [
     {
@@ -133,10 +105,15 @@ const App = () => {
     })
       .then(res => res.json())
       .then(data => setInstructors(data))
+      .catch(error => {
+        console.error('Error fetching instructors', error)
+      })
+    // TODO: fetch all class types
+
   }, [])
 
 
-  // For createClass
+  // For createClass - still not done
   const addClass = async (name, time, selectInstructor, selectClassType, duration, capacity) => {
     // TODO: Sanitise and validate entry data
     const newClass = { name: name, classType: selectClassType.name, instructor: selectInstructor._id, time: time, duration: duration, capacity: capacity }
@@ -154,7 +131,7 @@ const App = () => {
     setClasses([...classes, returnedClass])
 
     console.log('Form successfully submitted locally')
-
+    // Not submitting successfully because class type is currently inaccesible 
 
     // redirect to className detail
     console.log(newClass._id)

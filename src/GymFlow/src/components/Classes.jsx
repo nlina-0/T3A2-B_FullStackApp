@@ -19,12 +19,12 @@ const Classes = ({ addClass, classes, instructors, classTypes }) => {
         <h2 className="label my-6 is-size-5 has-text-weight-medium">Classes</h2> 
         
         <div className="columns">
-          <div className="column is-three-fifths">
+          <div className="column is-three-quarters">
             <SearchField search="Search by class type or instructor" />
           </div>
 
-          <div className="column">
-            <button className="button is-link is-rounded js-modal-trigger" onClick={toggleModal}>New Class</button>
+          <div className="column is-one-quarter">
+            <button className="button is-link is-rounded js-modal-trigger is-fullwidth" onClick={toggleModal}>Add Class</button>
           </div>
         </div>
 

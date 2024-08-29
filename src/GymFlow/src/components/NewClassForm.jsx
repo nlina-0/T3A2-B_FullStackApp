@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import InstructorSelector from './InstructorSelector'
 import ClassTypeSelector from './ClassTypeSelector'
 
+// New class form that goes into modal
 
 const NewClassForm = ({ addClass, instructors, classTypes }) => {
 
