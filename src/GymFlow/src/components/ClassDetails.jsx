@@ -34,6 +34,7 @@ const ClassDetails = ({ currentClass }) => {
         <div className="container is-max-tablet">
           <h1>{currentClass.name}</h1>
           <p>{`${currentClass.instructor.firstName} ${currentClass.instructor.lastName}`}</p>
+          <p>{currentClass.classType.name}</p>
           <p>When: {currentClass.time}</p>
           <p>Time: {currentClass.duration} min</p>
           <p>Class capacity: {currentClass.capacity}</p>

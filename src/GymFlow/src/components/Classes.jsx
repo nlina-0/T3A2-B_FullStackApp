@@ -42,7 +42,7 @@ const Classes = ({ addClass, classes, instructors, classTypes }) => {
               key={cl._id} // unique key prop
               id={cl._id}
               name={cl.name}
-              classType={cl.classType.name}
+              // classType={cl.classType.name}
               instructor={cl.instructor.firstName + " " + cl.instructor.lastName} 
               time={cl.time}
               duration={cl.duration} 

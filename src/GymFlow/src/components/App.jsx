@@ -20,27 +20,28 @@ const App = () => {
   const navigate = useNavigate()
   
   const [instructors, setInstructors] = useState([])
-
-  const classTypes = [
-    {
-        name: "Yoga"
-    },
-    {
-        name: "Cycling"
-    },
-    {
-        name: "Zumba"
-    },
-    {
-        name: "Kickboxing"
-    },
-    {
-        name: "Body pump"
-    },
-    {
-        name: "Pilates"
-    }
-]
+  const [classTypes, setClassTypes] = useState([])
+  
+//   [
+//     {
+//         name: "Yoga"
+//     },
+//     {
+//         name: "Cycling"
+//     },
+//     {
+//         name: "Zumba"
+//     },
+//     {
+//         name: "Kickboxing"
+//     },
+//     {
+//         name: "Body pump"
+//     },
+//     {
+//         name: "Pilates"
+//     }
+// ]
 
   const [classes, setClasses] = useState( 
     [
@@ -108,10 +109,24 @@ const App = () => {
       .catch(error => {
         console.error('Error fetching instructors', error)
       })
+
     // TODO: fetch all class types
+    fetch('http://localhost:3000/classtypes', {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => res.json())
+      .then(data => setClassTypes(data))
+      .catch(error => {
+        console.error('Error fetching instructors', error)
+      })
 
   }, [])
 
+  console.log(classTypes)
 
   // For createClass - still not done
   const addClass = async (name, time, selectInstructor, selectClassType, duration, capacity) => {
