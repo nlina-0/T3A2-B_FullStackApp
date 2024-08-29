@@ -32,4 +32,14 @@ instructorRoutes.delete('/:id', async (req, res) => {
     }
 })
 
+// View all instructors
+instructorRoutes.get('/', async (req, res) => {
+    try {
+        res.status(201).send(await Instructor.find())
+    } catch (err) {
+        res.status(500).json({ message: error.message })
+    }
+})
+
+
 export default instructorRoutes;

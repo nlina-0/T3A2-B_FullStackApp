@@ -1,18 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ClassCard from './ClassCard'
 import SearchField from './SearchField'
+import NewClassForm from './NewClassForm'
 
-const Classes = ({ classes }) => {
-  // const data = Array.from(classes)
+// Provides a search bar for classes, displays list of classes and a button to create a class.
+
+const Classes = ({ addClass, classes, instructors, classTypes }) => {
+  // To activate and deactivate modal 
+  const [isActive, setIsActive] = useState(false)
+  const toggleModal = () => {
+    setIsActive(!isActive)
+  }
 
   return (
     <>
       <div className="container is-max-tablet">
-        <h2 className="label my-6 is-size-5 has-text-weight-medium">Classes</h2>
-        <SearchField search="Search by class type or instructor" />
-      </div>
-      
-      <div className="container is-max-tablet">
+       
+        <h2 className="label my-6 is-size-5 has-text-weight-medium">Classes</h2> 
+        
+        <div className="columns">
+          <div className="column is-three-fifths">
+            <SearchField search="Search by class type or instructor" />
+          </div>
+
+          <div className="column">
+            <button className="button is-link is-rounded js-modal-trigger" onClick={toggleModal}>New Class</button>
+          </div>
+        </div>
+
+        <div className={`modal ${isActive ? 'is-active' : ""}`}>
+              <div className="modal-background"></div>
+              <div className="modal-content">
+                  <NewClassForm addClass={addClass} instructors={instructors} classTypes={classTypes}/>
+              </div>
+              <button className="modal-close is-large" aria-label="close" onClick={toggleModal}></button>
+          </div>
+
         {
           classes.map((cl) => (
             <ClassCard 
@@ -28,7 +51,6 @@ const Classes = ({ classes }) => {
           ))
         }
       </div>
-
     </>
   )
 }

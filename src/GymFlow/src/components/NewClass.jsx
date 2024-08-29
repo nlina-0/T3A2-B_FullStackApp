@@ -1,39 +1,8 @@
 import React, { useState } from 'react'
-import InstructorSelector from './InstructorSelector'
-// import { useNavigate } from 'react-router-dom'
 
-const NewClass = ({ addClass }) => {
-  // const navigate = useNavigate()
+const NewClass = ({ addClass, instructors }) => {
 
-  // duplicated from instructor
-  const [instructors, setInstructors] = useState(
-    [
-      {   
-          id: 1,
-          firstName: "Ran",
-          lastName: "Jose",
-          age: 35,
-          email: "ran.yoga@email.com",
-          phone: "0414980245"
-      },
-      {   
-          id: 2,
-          firstName: "Yule",
-          lastName: "Yeuwl",
-          age: 39,
-          email: "yule.pilates@email.com",
-          phone: "0412123124"
-      }, 
-      {
-          id: 3,
-          firstName: "Ned",
-          lastName: "Fred",
-          age: 31,
-          email: "fred.boxing@email.com",
-          phone: "0412123125"
-      }
-    ]
-  )
+  // Instructor and class type need ID
 
   const classTypes = [
     {
@@ -63,7 +32,7 @@ const NewClass = ({ addClass }) => {
   const [duration, setDuration] = useState("")
   const [capacity, setCapacity] = useState("")
 
-  // Form Submit
+  // Form Submit handler
   const submitHandler = e => {
     e.preventDefault()
     addClass(name, selectedClassType, selectedInstructor, time, duration, capacity)
@@ -79,6 +48,7 @@ const NewClass = ({ addClass }) => {
   }
 
   // Class Type handler
+  // API needs class type ID
   const handleClassSelect = (e) => {
     const selectedClassName = e.target.value
     const selectClassType = classTypes.find(c => c.name == selectedClassName)
@@ -90,7 +60,7 @@ const NewClass = ({ addClass }) => {
     <>
       <div className="columns is-centered" >
         <div className="container card column is-two-thirds" id="user-login">
-          <h2 className="label mt-6 mb-6 is-size-5 has-text-weight-medium">New Class</h2>
+            <h2 className="label mt-6 mb-6 is-size-5 has-text-weight-medium">New Class</h2>
             <form onSubmit={submitHandler}>
                 <div className="field">
                 <label className="label mt-5">Name</label>

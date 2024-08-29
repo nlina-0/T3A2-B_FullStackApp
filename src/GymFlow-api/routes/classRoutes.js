@@ -91,4 +91,13 @@ classRoutes.post('/types', authenticate, async (req, res) => {
     }
 })
 
+// Get all class type
+classRoutes.get('/types', async (req, res) => {
+    try {
+        res.status(201).send(await ClassType.find())
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+})
+
 export default classRoutes
