@@ -48,6 +48,27 @@ const App = () => {
     ]
   )
 
+  const classTypes = [
+    {
+        name: "Yoga"
+    },
+    {
+        name: "Cycling"
+    },
+    {
+        name: "Zumba"
+    },
+    {
+        name: "Kickboxing"
+    },
+    {
+        name: "Body pump"
+    },
+    {
+        name: "Pilates"
+    }
+]
+
   const [classes, setClasses] = useState( 
     [
       // {
@@ -106,9 +127,9 @@ const App = () => {
 
 
   // For createClass
-  const addClass = (name, selectedClassType, selectedInstructor, time, duration, capacity) => {
+  const addClass = (name, time, selectInstructor, selectClassType, duration, capacity) => {
     // TODO: Sanitise and validate entry data
-    const newClass = { _id: newClassId++, name: name, classType: selectedClassType, instructor: selectedInstructor, time: time, duration: duration, capacity: capacity }
+    const newClass = { _id: newClassId++, name: name, classType: selectClassType, instructor: selectInstructor, time: time, duration: duration, capacity: capacity }
     console.log('New Class: ', newClass)
     setClasses([...classes, newClass])
 
@@ -141,7 +162,7 @@ const App = () => {
         <Route path='/' element={<PrivateRoute />}>
           {/* Class Route */}
           <Route path='/classes' element={<Outlet />}>
-            <Route path='/classes' element={<Classes classes={classes}/>} />
+            <Route path='/classes' element={<Classes addClass={addClass} classes={classes} instructors={instructors} classTypes={classTypes}/>} />
             <Route path=':id' element={<ClassDetailsWrapper />}/>
           </Route>
           <Route path='/newClass' element={<NewClass addClass={addClass} instructors={instructors}/>} />

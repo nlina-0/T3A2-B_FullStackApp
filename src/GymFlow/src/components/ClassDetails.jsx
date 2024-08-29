@@ -45,7 +45,7 @@ const ClassDetails = ({ currentClass, instructors }) => {
 <div className="columns is-centered" >
         <div className="container card column is-two-thirds" id="user-login">
           <h2 className="label mt-6 mb-6 is-size-5 has-text-weight-medium">{formData.name}</h2>
-            <form>
+            <form onSubmit="">
                 <div className="field">
                 <label className="label mt-5">Name</label>
                     <div className="control">
