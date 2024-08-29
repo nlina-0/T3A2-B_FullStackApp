@@ -10,7 +10,7 @@ classRoutes.get('/', async (req, res) => {
     try {
         res.status(201).send(await Class.find().populate('classType').populate('instructor'))
     } catch (err) {
-        res.status(500).json({ message: error.message })
+        res.status(500).json({ message: err.message })
     }
 })
 
@@ -25,24 +25,6 @@ classRoutes.get('/:id', async (req, res) => {
         res.send(searchedClass)
         } catch (err) {
             res.status(500).json({ message: err.message })
-    }
-})
-
-// View class by type
-classRoutes.get('/type/:classtype', async (req, res) => {
-    try {
-        const searchedClassType = await ClassType.findOne({ "name": req.params.classtype})
-        if (!searchedClassType) {
-            res.status(404).json({ message: "Class type does not exist" })
-        }
-        try {
-            const resultClasses = await Class.find({ classType: searchedClassType.id }).populate('classType').populate('instructor')
-            console.log(resultClasses)
-            res.send(resultClasses)
-        } catch (err) {
-            res.status(500).json({ message: "No classes found for entered class type" })
-        }} catch (err) {
-        res.status(500).json({ message: err.message })
     }
 })
 
@@ -75,17 +57,6 @@ classRoutes.delete('/:id', authenticate, checkMaster, async (req, res) => {
         }
         await Class.findByIdAndDelete(req.params.id)
         res.json({ message: "Class deleted successfully" })
-    } catch (err) {
-        res.status(500).json({ message: err.message })
-    }
-})
-
-// CLASS TYPES
-// Create new class type
-classRoutes.post('/types', authenticate, async (req, res) => {
-    try {
-        const newType = await ClassType.create(req.body)
-        res.status(201).send({ message: "Class type created successfully", newType })
     } catch (err) {
         res.status(500).json({ message: err.message })
     }
