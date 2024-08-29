@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import ClassCard from './ClassCard'
 import SearchField from './SearchField'
-import NewClassCard from './NewClassCard'
+import NewClassForm from './NewClassForm'
+
+// Provides a search bar for classes, displays list of classes and a button to create a class.
 
 const Classes = ({ addClass, classes, instructors, classTypes }) => {
   // To activate and deactivate modal 
@@ -29,7 +31,7 @@ const Classes = ({ addClass, classes, instructors, classTypes }) => {
         <div className={`modal ${isActive ? 'is-active' : ""}`}>
               <div className="modal-background"></div>
               <div className="modal-content">
-                  <NewClassCard addClass={addClass} instructors={instructors} classTypes={classTypes}/>
+                  <NewClassForm addClass={addClass} instructors={instructors} classTypes={classTypes}/>
               </div>
               <button className="modal-close is-large" aria-label="close" onClick={toggleModal}></button>
           </div>

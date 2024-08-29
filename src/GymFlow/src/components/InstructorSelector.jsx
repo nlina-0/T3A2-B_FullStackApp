@@ -31,7 +31,7 @@ const InstructorSelector = ({ instructors, onSelectedInstructor }) => {
                     {
                         instructors.map((i) => {
                             return (
-                            <option key={i.id} value={`${i.firstName} ${i.lastName}`}>
+                            <option key={i._id} value={`${i.firstName} ${i.lastName}`}>
                                 {`${i.firstName} ${i.lastName}`}
                             </option>
                             )

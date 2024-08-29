@@ -21,32 +21,33 @@ const App = () => {
   
   const [instructors, setInstructors] = useState(
     [
-      {   
-          id: 1,
-          firstName: "Ran",
-          lastName: "Jose",
-          age: 35,
-          email: "ran.yoga@email.com",
-          phone: "0414980245"
-      },
-      {   
-          id: 2,
-          firstName: "Yule",
-          lastName: "Yeuwl",
-          age: 39,
-          email: "yule.pilates@email.com",
-          phone: "0412123124"
-      }, 
-      {
-          id: 3,
-          firstName: "Ned",
-          lastName: "Fred",
-          age: 31,
-          email: "fred.boxing@email.com",
-          phone: "0412123125"
-      }
+      // {   
+      //     id: 1,
+      //     firstName: "Ran",
+      //     lastName: "Jose",
+      //     age: 35,
+      //     email: "ran.yoga@email.com",
+      //     phone: "0414980245"
+      // },
+      // {   
+      //     id: 2,
+      //     firstName: "Yule",
+      //     lastName: "Yeuwl",
+      //     age: 39,
+      //     email: "yule.pilates@email.com",
+      //     phone: "0412123124"
+      // }, 
+      // {
+      //     id: 3,
+      //     firstName: "Ned",
+      //     lastName: "Fred",
+      //     age: 31,
+      //     email: "fred.boxing@email.com",
+      //     phone: "0412123125"
+      // }
     ]
   )
+  // console.log("Instructors from DB: ", instructors)
 
   const classTypes = [
     {
@@ -104,13 +105,12 @@ const App = () => {
       // }
     ]
   )
-
-  // lift state for instructors - pass down to required components
   
 
   useEffect(() => {
     // Retrieves stored token from local sotrage when user logins
     const token = localStorage.getItem("site")
+    
     fetch('http://localhost:3000/classes', {
       method: 'GET',
       headers: {
@@ -123,21 +123,44 @@ const App = () => {
       .catch(error => {
         console.error('Error fetching classes', error)
       })
+
+    fetch('http://localhost:3000/instructors', {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => res.json())
+      .then(data => setInstructors(data))
   }, [])
 
 
   // For createClass
-  const addClass = (name, time, selectInstructor, selectClassType, duration, capacity) => {
+  const addClass = async (name, time, selectInstructor, selectClassType, duration, capacity) => {
     // TODO: Sanitise and validate entry data
-    const newClass = { _id: newClassId++, name: name, classType: selectClassType, instructor: selectInstructor, time: time, duration: duration, capacity: capacity }
+    const newClass = { name: name, classType: selectClassType.name, instructor: selectInstructor._id, time: time, duration: duration, capacity: capacity }
     console.log('New Class: ', newClass)
-    setClasses([...classes, newClass])
 
-    console.log('Form submitted successfully')
+    // Post newEntry to the API and receive the returned class with the added mongoDB ID
+    const res = await fetch('http://localhost:3000/classes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newClass)
+    })
+    const returnedClass = await res.json()
+    setClasses([...classes, returnedClass])
+
+    console.log('Form successfully submitted locally')
+
 
     // redirect to className detail
     console.log(newClass._id)
     navigate(`/classes/${newClass._id}`)
+
+    return returnedClass._id
   }
 
   // Higher-order component (HOC)
@@ -167,7 +190,7 @@ const App = () => {
           </Route>
           <Route path='/newClass' element={<NewClass addClass={addClass} instructors={instructors}/>} />
           <Route path='/instructors' >
-            <Route path='/instructors' element={<Instructor />} />
+            <Route path='/instructors' element={<Instructor instructors={instructors}/>} />
           </Route>
           <Route path='/customers' element={<Customers />} />
         </Route>

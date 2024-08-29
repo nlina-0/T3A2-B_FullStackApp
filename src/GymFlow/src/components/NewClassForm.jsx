@@ -3,7 +3,7 @@ import InstructorSelector from './InstructorSelector'
 import ClassTypeSelector from './ClassTypeSelector'
 
 
-const NewClassCard = ({ addClass, instructors, classTypes }) => {
+const NewClassForm = ({ addClass, instructors, classTypes }) => {
 
     const [name, setName] = useState("")
     const [time, setTime] = useState("")
@@ -15,14 +15,12 @@ const NewClassCard = ({ addClass, instructors, classTypes }) => {
     const handleSelectInstructor = (instructor) => {
         setSelectedInstructor(instructor)
     }
-    console.log("Selected Instructor: ", selectInstructor)
 
-    // TODO: Recieves selected class type from class type child component
+    // Recieves selected class type from class type child component
     const [selectClassType, setSelectedClassType] = useState({})
     const handleSelectClassType = (classType) => {
         setSelectedClassType(classType)
     }
-    console.log("Selected Class Type: ", selectClassType)
     
     // Form Submit handler
     const submitHandler = e => {
@@ -96,21 +94,12 @@ const NewClassCard = ({ addClass, instructors, classTypes }) => {
                         <button className="button card-footer-item is-link">Submit</button>
                         <a href="#" className="card-footer-item">Delete</a>
                     </footer>
-                    
-                    {/* <div className="control mt-6">
-                        <button className="button is-link is-fullwidth">Submit</button>
-                    </div> */}
 
                 </div>
             </form>
-
         </div>
-        {/* <footer className="card-footer">
-            <a href="#" className="card-footer-item">Save</a>
-            <a href="#" className="card-footer-item">Delete</a>
-        </footer> */}
     </div>
   )
 }
 
-export default NewClassCard
+export default NewClassForm
