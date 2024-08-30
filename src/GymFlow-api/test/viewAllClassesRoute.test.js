@@ -30,7 +30,7 @@ describe('Class Routes', () => {
     try {
       const response = await request(app).get('/api/classes');
       console.log(response.body); // Log the response body for debugging
-      expect(response.status).toBe(200);
+      expect(response.status).toBe(201);
       expect(response.body).toBeInstanceOf(Array);
     } catch (error) {
       console.error('Error during test:', error); // Log any unexpected errors

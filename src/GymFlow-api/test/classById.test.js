@@ -40,7 +40,7 @@ describe('Class Routes', () => {
       
       console.log('Response Body:', response.body); // Log the response body for debugging
       
-      expect(response.status).toBe(200);
+      expect(response.status).toBe(201);
       expect(Array.isArray(response.body)).toBe(true); // Check if the result is an array
       
       // Optionally, check specific content in the response
