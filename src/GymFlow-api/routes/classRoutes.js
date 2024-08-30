@@ -8,8 +8,8 @@ const classRoutes = express.Router()
 // View all classes
 classRoutes.get('/', async (req, res) => {
     try {
-        res.status(200).send(await Class.find().populate('classType').populate('instructor'))
-    } catch (error) {
+        res.status(201).send(await Class.find().populate('classType').populate('instructor'))
+    } catch (err) {
         res.status(500).json({ message: error.message })
     }
 })
@@ -23,8 +23,8 @@ classRoutes.get('/:id', async (req, res) => {
             
         }
         res.send(searchedClass)
-        } catch (error) {
-            res.status(500).json({ message: error.message })
+        } catch (err) {
+            res.status(500).json({ message: err.message })
     }
 })
 
@@ -39,10 +39,10 @@ classRoutes.get('/type/:classtype', async (req, res) => {
             const resultClasses = await Class.find({ classType: searchedClassType.id }).populate('classType').populate('instructor')
             console.log(resultClasses)
             res.send(resultClasses)
-        } catch (error) {
+        } catch (err) {
             res.status(500).json({ message: "No classes found for entered class type" })
-        }} catch (error) {
-        res.status(500).json({ message: error.message })
+        }} catch (err) {
+        res.status(500).json({ message: err.message })
     }
 })
 
@@ -51,7 +51,7 @@ classRoutes.post('/', authenticate, async (req, res) => {
     try {
         const newClass =  await Class.create(req.body)
         res.status(201).send({ message: "Class created successfully", newClass })
-    } catch (error) {
+    } catch (err) {
         res.status(500).json({ message: error.message })
     }
 })
@@ -61,7 +61,7 @@ classRoutes.put('/:id', authenticate, async (req, res) => {
     try {
         const updatedClass = await Class.findByIdAndUpdate(req.params.id, req.body, {returnDocument: 'after'})
         res.status(200).json({ message: "Class updated successfully" }, updatedClass)
-    } catch (error) {
+    } catch (err) {
         res.status(404).json({ message: "Class not found" })
     }
 })
@@ -75,8 +75,8 @@ classRoutes.delete('/:id', authenticate, checkMaster, async (req, res) => {
         }
         await Class.findByIdAndDelete(req.params.id)
         res.json({ message: "Class deleted successfully" })
-    } catch (error) {
-        res.status(500).json({ message: error.message })
+    } catch (err) {
+        res.status(500).json({ message: err.message })
     }
 })
 
@@ -86,8 +86,8 @@ classRoutes.post('/types', authenticate, async (req, res) => {
     try {
         const newType = await ClassType.create(req.body)
         res.status(201).send({ message: "Class type created successfully", newType })
-    } catch (error) {
-        res.status(500).json({ message: error.message })
+    } catch (err) {
+        res.status(500).json({ message: err.message })
     }
 })
 
@@ -95,8 +95,8 @@ classRoutes.post('/types', authenticate, async (req, res) => {
 classRoutes.get('/types', async (req, res) => {
     try {
         res.status(201).send(await ClassType.find())
-    } catch (error) {
-        res.status(500).json({ message: error.message })
+    } catch (err) {
+        res.status(500).json({ message: err.message })
     }
 })
 
