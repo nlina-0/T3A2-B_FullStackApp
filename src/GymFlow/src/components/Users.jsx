@@ -4,7 +4,7 @@ import UserCard from './UserCard'
 import NewUserForm from './NewUserForm'
 
 
-const Users = ({users, addUser}) => {
+const Users = ({users, addUser, userExists}) => {
     const [search, setSearch] = useState()
     
     const [isActive, setIsActive] = useState(false)
@@ -24,7 +24,7 @@ const Users = ({users, addUser}) => {
                 <div className={`modal ${isActive ? 'is-active' : ""}`}>
                     <div className="modal-background"></div>
                     <div className="modal-content">
-                        <NewUserForm addUser={addUser}/>
+                        <NewUserForm addUser={addUser} userExists={userExists}/>
                     </div>
                     <button className="modal-close is-large" aria-label="close" onClick={toggleModal}></button>
                 </div>

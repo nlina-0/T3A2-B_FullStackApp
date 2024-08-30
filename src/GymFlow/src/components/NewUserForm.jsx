@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import MasterStatusSelector from './MasterStatusSelector'
-import { PasswordAlert, UserCreatedAlert } from './UserAlerts'
+import { PasswordAlert, UserCreatedAlert, UserExistsAlert } from './UserAlerts'
 
-const NewUserForm = ({ addUser }) => {
+const NewUserForm = ({ addUser, userExists }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [master, setMaster] = useState(false)
     const [passwordCheck, setPasswordCheck] = useState('')
-    const [userCreated, setUserCreated] = useState(false)
+    const [userCreated, setUserCreated] = useState('')
 
     const handleMasterStatusChange = (checked) => {
         setMaster(checked)
@@ -28,7 +28,10 @@ const NewUserForm = ({ addUser }) => {
         e.preventDefault();
         
         if (passwordCheck == true) {
-            addUser(email, password, master)
+            let res = addUser(email, password, master)
+            if (res.status == 400) {
+                console.log("CANT CREATE USER, ALREADY EXISTS")
+            }
             // TODO: Reset form fields + display feedback to user
             setEmail('')
             setPassword('')
@@ -36,6 +39,7 @@ const NewUserForm = ({ addUser }) => {
             setMaster(false)
             setPasswordCheck('')
             setUserCreated(true)
+            console.log(userExists)
         }
         console.log('Passwords not matching')
     }
@@ -86,7 +90,8 @@ const NewUserForm = ({ addUser }) => {
                         <br/>
                         <div className="control">
                             <PasswordAlert passwordCheck={passwordCheck} />
-                            <UserCreatedAlert userCreated={userCreated} />
+                            <UserCreatedAlert email={email} userCreated={userCreated} userExists={userExists} />
+                            <UserExistsAlert email={email} userExists={userExists} />
                         </div>
                         <br/>
                         <div className="control">

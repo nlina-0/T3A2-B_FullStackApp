@@ -10,13 +10,27 @@ function PasswordAlert({passwordCheck}) {
     )
 }
 
-function UserCreatedAlert({userCreated}) {
+function UserCreatedAlert({userCreated, userExists, email}) {
     if (userCreated == false) {
         return (null)
     } 
-    return (
-        <div className="notification is-success is-light">User successfully created</div>
-    )
+    if (userCreated == true && email == '' && userExists == false) {
+        return (
+            <div className="notification is-success is-light">User successfully created</div>
+        )
+    }
 }
 
-export { PasswordAlert, UserCreatedAlert }
+function UserExistsAlert({userExists, email}) {
+    // if (userExists == false || email == false) {
+    //     return (null)
+    // }
+    if (userExists == true && email == '') {
+        return (
+            <div className="notification is-danger is-light">User with this email already exists</div>
+        )
+    }
+    return (null)
+}
+
+export { PasswordAlert, UserCreatedAlert, UserExistsAlert }

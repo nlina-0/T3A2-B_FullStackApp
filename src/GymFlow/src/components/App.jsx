@@ -150,6 +150,7 @@ const App = () => {
       .then(data => setUsers(data))
   }, [])
 
+  const [userExists, setUserExists] = useState(false)
 
   // For creating user
   const addUser = async (email, password, master) => {
@@ -168,14 +169,23 @@ const App = () => {
         },
         body: JSON.stringify(newUser)
     })
+      console.log(res)
 
-    const returnedUser = await res.json()
-    console.log(returnedUser)
-    setUsers([...users, returnedUser])
+      if (res.status == 400) {
+        setUserExists(true)
+      } 
 
+      setUserExists(false)
+      const returnedUser = await res.json()
+      console.log(returnedUser)
+      
+      setUsers([...users, returnedUser])
+      console.log(users)
+      
+      return res
     //TODO: display feedback to user
-    console.log('User successfully created')
-    navigate('/users')
+    // console.log('User successfully created')
+    // navigate('/users')
 
   }
   
@@ -234,7 +244,7 @@ const App = () => {
             <Route path='/instructors' element={<Instructor instructors={instructors}/>} />
           </Route>
           <Route path='/customers' element={<Customers />} />
-          <Route path='/users' element={<Users users={users} addUser={addUser} />} />
+          <Route path='/users' element={<Users users={users} addUser={addUser} userExists={userExists} />} />
         </Route>
         
         {/* Public routes */}
