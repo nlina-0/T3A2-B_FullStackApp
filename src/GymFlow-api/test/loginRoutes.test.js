@@ -4,11 +4,12 @@ import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import loginRoutes from '../routes/loginRoutes.js';
 import { User } from '../models/userModel.js';
+import { jest, expect } from '@jest/globals';
 
 dotenv.config();
 
-// Mock the User model
-jest.mock('../models/userModel.js');
+// // Mock the User model
+// jest.mock('../models/userModel.js');
 
 // Create an Express app and apply routes
 const app = express();
@@ -20,7 +21,7 @@ const generateToken = (user) => {
   return jwt.sign(
     { id: user._id, email: user.email, master: user.master },
     process.env.JWT_SECRET,
-    { expiresIn: '1h' }
+    { expiresIn: '24h' }
   );
 };
 

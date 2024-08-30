@@ -10,7 +10,7 @@ import bookingRoutes from './routes/bookingRoutes.js'
 
 const app = express()
 
-// startConnection() 
+startConnection() 
 
 // Middleware 
 
