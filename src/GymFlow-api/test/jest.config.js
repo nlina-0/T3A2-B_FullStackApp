@@ -1,6 +1,12 @@
 import dotenv from 'dotenv';
 
 export default {
+  transform: {
+    '^.+\\.js$': 'babel-jest',
+    extensionsToTreatAsEsm: ['.js'],
+    moduleFileExtensions: ['js', 'json', 'node'],
+    setupFilesAfterEnv: ['./jest.setup.js']
+  },
     testEnvironment: 'node', 
     setupFiles: ['./tests/jest.setup.js'], 
     moduleFileExtensions: ['js', 'json', 'node'], 
