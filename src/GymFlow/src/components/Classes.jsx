@@ -31,12 +31,13 @@ const Classes = ({ addClass, classes, instructors, classTypes }) => {
         </div>
 
         <div className={`modal ${isActive ? 'is-active' : ""}`}>
-              <div className="modal-background"></div>
+            <div className="modal-background">
               <div className="modal-content">
                   <NewClassForm addClass={addClass} instructors={instructors} classTypes={classTypes}/>
               </div>
               <button className="modal-close is-large" aria-label="close" onClick={toggleModal}></button>
-          </div>
+            </div>
+        </div>
 
         {
           classes.map((cl) => (

@@ -143,3 +143,12 @@ h1 {
 #new-class-card:hover {
   transform: none;
 }
+
+/* Modal */
+.card-footer {
+  margin-top: 30px;
+}
+
+.modal-background {
+  padding-top: 100px;
+}

@@ -6,6 +6,8 @@ const AuthContext = createContext()
 const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem("site") || "")
     const navigate = useNavigate()
+
+    
     
     const loginAction = async ({email, password}) => {
         try {

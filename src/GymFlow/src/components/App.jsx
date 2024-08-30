@@ -12,6 +12,7 @@ import PrivateRoute from './PrivateRoute'
 import ShowNavBar from './ShowNavBar'
 import PublicAccess from './PublicAccess'
 
+
 const App = () => {
 
   const navigate = useNavigate()

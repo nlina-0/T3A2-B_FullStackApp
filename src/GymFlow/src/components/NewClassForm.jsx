@@ -93,7 +93,7 @@ const NewClassForm = ({ addClass, instructors, classTypes }) => {
 
                     <footer className="card-footer">
                         <button className="button card-footer-item is-link">Submit</button>
-                        <a href="#" className="card-footer-item">Delete</a>
+                        {/* <button className="card-footer-item">Cancel</button> */}
                     </footer>
 
                 </div>

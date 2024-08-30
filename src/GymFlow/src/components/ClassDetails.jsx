@@ -5,7 +5,7 @@ const ClassDetails = ({ currentClass, fetchClasses }) => {
 
   const navigate = useNavigate()
   const token = localStorage.getItem("site")
-  const [isEditing, setIsEditing] = useState(false)
+  // const [isEditing, setIsEditing] = useState(false)
   const [formData, setFormData] = useState({ ...currentClass })
       
   // Delete class from class details
@@ -48,7 +48,7 @@ const ClassDetails = ({ currentClass, fetchClasses }) => {
   return (
     <>
     <div>
-      {!isEditing ? (
+
       <section className="section is-medium" id="class-detail">
         <div className="container is-max-tablet">
           <h1>{currentClass.name}</h1>
@@ -63,12 +63,8 @@ const ClassDetails = ({ currentClass, fetchClasses }) => {
           <button className="button is-link" onClick={() => handleDelete(currentClass._id)}>Delete</button>
         </div>
       </section>
-      ) : (
-        
-        ""
-      
-      )
-    }
+  
+    
     </div>
     </>
   )
