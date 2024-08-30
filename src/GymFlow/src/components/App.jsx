@@ -150,9 +150,11 @@ const App = () => {
       .then(data => setUsers(data))
   }, [])
 
-  const [userExists, setUserExists] = useState(false)
+  
 
   // For creating user
+  const [userExists, setUserExists] = useState(false)
+
   const addUser = async (email, password, master) => {
     const newUser = {
         email: email,
@@ -173,9 +175,9 @@ const App = () => {
 
       if (res.status == 400) {
         setUserExists(true)
-      } 
-
-      setUserExists(false)
+      } else {
+        setUserExists(false)
+      }
       const returnedUser = await res.json()
       console.log(returnedUser)
       
@@ -183,9 +185,47 @@ const App = () => {
       console.log(users)
       
       return res
-    //TODO: display feedback to user
-    // console.log('User successfully created')
-    // navigate('/users')
+  }
+
+  // For deleting user
+  const [passwordValidated, setPasswordValidated] = useState(false)
+
+  const deleteUser = async (email, password) => {
+    console.log(email)
+    console.log(users)
+    
+    const id = users.find(user => user.email === email)._id
+    console.log(id)
+
+    const index = users.findIndex(user => user.email == email)
+    const updatedUsers = users 
+    if (index !== -1) {
+      updatedUsers.splice(index, 1)
+      setUsers(updatedUsers)
+    }
+
+    const userToDelete = {
+      password: password
+    }
+
+    const res = await fetch(`http://localhost:3000/users/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userToDelete)
+    })
+
+    if (res.status == 400) {
+      setPasswordValidated(false)
+    } else {
+      setPasswordValidated(true)
+    }
+    const deletedUser = await res.json()
+    console.log(deletedUser)
+
+    return res
 
   }
   
@@ -244,7 +284,7 @@ const App = () => {
             <Route path='/instructors' element={<Instructor instructors={instructors}/>} />
           </Route>
           <Route path='/customers' element={<Customers />} />
-          <Route path='/users' element={<Users users={users} addUser={addUser} userExists={userExists} />} />
+          <Route path='/users' element={<Users users={users} addUser={addUser} userExists={userExists} deleteUser={deleteUser} passwordValidated={passwordValidated} />} />
         </Route>
         
         {/* Public routes */}

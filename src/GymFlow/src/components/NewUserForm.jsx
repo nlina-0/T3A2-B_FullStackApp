@@ -29,10 +29,7 @@ const NewUserForm = ({ addUser, userExists }) => {
         
         if (passwordCheck == true) {
             let res = addUser(email, password, master)
-            if (res.status == 400) {
-                console.log("CANT CREATE USER, ALREADY EXISTS")
-            }
-            // TODO: Reset form fields + display feedback to user
+            
             setEmail('')
             setPassword('')
             setConfirmPassword('')

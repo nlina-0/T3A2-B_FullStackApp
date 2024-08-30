@@ -2,15 +2,23 @@ import React, { useState } from 'react'
 import ClientCard from './ClientCard'
 import UserCard from './UserCard'
 import NewUserForm from './NewUserForm'
+import DeleteUserForm from './DeleteUserForm'
 
 
-const Users = ({users, addUser, userExists}) => {
+const Users = ({users, addUser, userExists, deleteUser, passwordValidated}) => {
     const [search, setSearch] = useState()
-    
-    const [isActive, setIsActive] = useState(false)
+    const [isRegisterActive, setIsRegisterActive] = useState(false)
+    const [isDeleteActive, setIsDeleteActive] = useState(false)
+    const [userToDeleteId, setUserToDeleteId] = useState('')
 
-    const toggleModal = () => {
-        setIsActive(!isActive)
+
+    const toggleRegisterModal = () => {
+        setIsRegisterActive(!isRegisterActive)
+    }
+
+    const toggleDeleteModal = (selectedUserId) => {
+        setUserToDeleteId(selectedUserId);
+        setIsDeleteActive(!isDeleteActive);        
     }
 
     return (
@@ -18,17 +26,24 @@ const Users = ({users, addUser, userExists}) => {
             <div className="container is-max-tablet">
                 <h2 className="label my-6 is-size-5 has-text-weight-medium has-text-centered">Users</h2>
                 <div className="is-flex is-justify-content-center is-align-items-center">
-                    <button onClick={toggleModal} className="button is-normal is-rounded is-link my-6">Register New User</button>
+                    <button onClick={toggleRegisterModal} className="button is-normal is-rounded is-link my-6">Register new User</button>
                 </div>
-                {/* TBU */}
-                <div className={`modal ${isActive ? 'is-active' : ""}`}>
+                <div className={`modal ${isRegisterActive ? 'is-active' : ""}`}>
                     <div className="modal-background"></div>
                     <div className="modal-content">
                         <NewUserForm addUser={addUser} userExists={userExists}/>
                     </div>
-                    <button className="modal-close is-large" aria-label="close" onClick={toggleModal}></button>
+                    <button className="modal-close is-large" aria-label="close" onClick={toggleRegisterModal}></button>
                 </div>
-
+                {/* TBC */}
+                <div className={`modal ${isDeleteActive ? 'is-active' : ""}`}>
+                    <div className="modal-background"></div>
+                    <div className="modal-content">
+                        <DeleteUserForm deleteUser={deleteUser} passwordValidated={passwordValidated} userToDeleteId={userToDeleteId} />
+                    </div>
+                    <button className="modal-close is-large" aria-label="close" onClick={toggleDeleteModal}></button>
+                </div>
+            
                 <div className="field has-addons my-6">
                     <div className="control is-expanded">
                         <input 
@@ -53,10 +68,14 @@ const Users = ({users, addUser, userExists}) => {
                     {users.map((u) => (
                         <UserCard
                             key={u._id}
+                            id={u._id}
                             email={u.email}
                             master={u.master}
+                            toggleDeleteModal={toggleDeleteModal}
+                            setUserToDeleteId={setUserToDeleteId}
                             // master={u.master.toString()}
                         />
+                        
                     ))}
                 </div>
             </div>
