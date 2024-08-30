@@ -13,7 +13,7 @@ import ShowNavBar from './ShowNavBar'
 import PublicAccess from './PublicAccess'
 
 // Temporary ID for classes
-let newClassId = 4
+// let newClassId = 4
 
 const App = () => {
 
@@ -23,6 +23,8 @@ const App = () => {
   const [instructors, setInstructors] = useState([])
   const [classTypes, setClassTypes] = useState([])
   const [classes, setClasses] = useState([])
+
+  
   
 
   useEffect(() => {
@@ -71,12 +73,23 @@ const App = () => {
   }, [])
 
 
-  // For createClass - still not done
-
-  const addClass = async (name, time, selectInstructor, selectClassType, duration, capacity) => {
+  const addClass = async (
+    name, 
+    time, 
+    selectInstructor, 
+    selectClassType, 
+    duration, 
+    capacity
+  ) => {
     // TODO: Sanitise and validate entry data
-    const newClass = { name: name, classType: selectClassType._id, instructor: selectInstructor._id, time: time, duration: duration, capacity: capacity }
-    console.log('New Class: ', newClass)
+    const newClass = { 
+      name: name, 
+      classType: selectClassType._id, 
+      instructor: selectInstructor._id, 
+      time: time, 
+      duration: duration, 
+      capacity: capacity 
+    }
 
     // Post newEntry to the API and receive the returned class with the added mongoDB ID
     const res = await fetch('http://localhost:3000/classes', {
@@ -90,14 +103,15 @@ const App = () => {
     const returnedClass = await res.json()
     setClasses([...classes, returnedClass])
 
-    console.log('New Class Created: ', returnedClass)
-    // Not submitting successfully because class type is currently inaccesible 
-
     // redirect to className detail
-    navigate(`/classes/${newClass._id}`)
-
-    return returnedClass._id
+    navigate(`/classes/${returnedClass._id}`)
+    // return returnedClass._id
   }
+
+  // add delete class here?
+  // const deleteClass = async () => {
+
+  // }
 
   // Higher-order component (HOC)
   const ClassDetailsWrapper = () => {

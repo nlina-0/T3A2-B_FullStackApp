@@ -12,6 +12,8 @@ const Classes = ({ addClass, classes, instructors, classTypes }) => {
     setIsActive(!isActive)
   }
 
+  // console.log("Classes in Classes page: ", classes)
+
   return (
     <>
       <div className="container is-max-tablet">
@@ -43,7 +45,7 @@ const Classes = ({ addClass, classes, instructors, classTypes }) => {
               id={cl._id}
               name={cl.name}
               // classType={cl.classType.name}
-              instructor={cl.instructor.firstName + " " + cl.instructor.lastName} 
+              instructor={cl.instructor.firstName}
               time={cl.time}
               duration={cl.duration} 
               capacity={cl.capacity}

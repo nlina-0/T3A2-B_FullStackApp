@@ -5,6 +5,8 @@ const InstructorSelector = ({ instructors, onSelectedInstructor }) => {
     // Maps it out into a select drop down
     // Stores selection into selectedInstructor
 
+    // console.log('Instructor map issue:', instructors)
+
     const [selectedInstructor, setSelectedInstructor] = useState({})
 
     const handleInstructorChange = (e) => {
