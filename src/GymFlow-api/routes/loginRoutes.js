@@ -1,7 +1,6 @@
-import dotenv from 'dotenv'
 import express from 'express'
 import jwt from 'jsonwebtoken'
-import { loginLimiter, createInstructorLimiter } from '../middleware/loginRateLimiter.js';
+import { loginLimiter } from '../middleware/loginRateLimiter.js';
 import { User } from '../models/userModel.js';
 
 const loginRoutes = express.Router();
@@ -25,7 +24,7 @@ loginRoutes.post('/', loginLimiter, async (req, res) => {
         const token = jwt.sign(
             { id: user._id, email: user.email, master: user.master }, // Payload
             process.env.JWT_SECRET,
-            { expiresIn: '1h' } // Token expiration
+            { expiresIn: '24h' } // Token expiration (24hrs for developing purposes)
         );
 
         res.json({ token }); // Return the token
