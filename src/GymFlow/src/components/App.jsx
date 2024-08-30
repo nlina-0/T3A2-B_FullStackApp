@@ -14,8 +14,6 @@ import PublicAccess from './PublicAccess'
 
 
 const App = () => {
-
-  const navigate = useNavigate()
   const token = localStorage.getItem("site")
 
   const [instructors, setInstructors] = useState([])
@@ -101,10 +99,7 @@ const App = () => {
     })
     const returnedClass = await res.json()
     setClasses([...classes, returnedClass])
-
-    // redirect to className detail
-    navigate(`/classes/${returnedClass._id}`)
-    // return returnedClass._id
+    return returnedClass._id
   }
 
   // Higher-order component (HOC)
@@ -125,9 +120,7 @@ const App = () => {
       <Routes>
         <Route path='/login' element={<Login />} />
 
-        {/* private routes */}
         <Route path='/' element={<PrivateRoute />}>
-          {/* Class Route */}
           <Route path='/classes' element={<Outlet />}>
             <Route path='/classes' element={<Classes addClass={addClass} classes={classes} instructors={instructors} classTypes={classTypes}/>} />
             <Route path=':id' element={<ClassDetailsWrapper />}/>
@@ -139,7 +132,6 @@ const App = () => {
           <Route path='/customers' element={<Customers />} />
         </Route>
         
-        {/* Public routes */}
         <Route path='/public' element={<PublicAccess classes={classes}/>} />
         <Route path='*' element={<h3>Page not found!</h3>} />
       </Routes>

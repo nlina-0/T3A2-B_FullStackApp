@@ -145,10 +145,15 @@ h1 {
 }
 
 /* Modal */
-.card-footer {
+#class-form-button {
   margin-top: 30px;
 }
 
 .modal-background {
   padding-top: 100px;
+}
+
+/* Buttons */
+.buttons-class-detail-form {
+  margin-right: 5px;
 }

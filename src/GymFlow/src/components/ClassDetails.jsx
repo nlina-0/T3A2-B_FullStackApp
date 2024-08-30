@@ -26,6 +26,8 @@ const ClassDetails = ({ currentClass, fetchClasses }) => {
     fetchClasses()
   }
 
+  
+
   // const [selectedInstructor, setSelectedInstructor] = useState({})
   // console.log("First 1: ", selectedInstructor)
  
@@ -57,10 +59,12 @@ const ClassDetails = ({ currentClass, fetchClasses }) => {
           <p>When: {currentClass.time}</p>
           <p>Time: {currentClass.duration} min</p>
           <p>Class capacity: {currentClass.capacity}</p>
-
-          <button className="button is-link" onClick={() => setIsEditing(true)}>Edit</button>
-          <button className="button is-link">Add Customer to Booking</button>
-          <button className="button is-link" onClick={() => handleDelete(currentClass._id)}>Delete</button>
+          
+          <div id="buttons-class-detail-form">
+          <button className="button is-link buttons-class-detail-form" onClick={() => setIsEditing(true)}>Edit</button>
+          <button className="button is-danger buttons-class-detail-form" onClick={() => handleDelete(currentClass._id)}>Delete</button>
+          <button className="button is-link buttons-class-detail-form">Add Customer to Booking</button>
+          </div>
         </div>
       </section>
   

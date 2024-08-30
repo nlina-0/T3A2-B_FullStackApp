@@ -12,8 +12,6 @@ const Classes = ({ addClass, classes, instructors, classTypes }) => {
     setIsActive(!isActive)
   }
 
-  // console.log("Classes in Classes page: ", classes)
-
   return (
     <>
       <div className="container is-max-tablet">

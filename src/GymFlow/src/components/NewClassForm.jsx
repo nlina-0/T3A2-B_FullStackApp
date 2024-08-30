@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import InstructorSelector from './InstructorSelector'
 import ClassTypeSelector from './ClassTypeSelector'
 
@@ -6,6 +7,8 @@ import ClassTypeSelector from './ClassTypeSelector'
 
 const NewClassForm = ({ addClass, instructors, classTypes }) => {
 
+    const nav = useNavigate()
+    
     const [name, setName] = useState("")
     const [time, setTime] = useState("")
     const [duration, setDuration] = useState("")
@@ -24,9 +27,10 @@ const NewClassForm = ({ addClass, instructors, classTypes }) => {
     }
     
     // Form Submit handler
-    const submitHandler = e => {
-    e.preventDefault()
-    addClass(name, time, selectInstructor, selectClassType, duration, capacity)
+    const submitHandler = async e => {
+        e.preventDefault()
+        const id = await addClass(name, time, selectInstructor, selectClassType, duration, capacity)
+        nav(`/classes/${id}`)
     }
 
   return (
@@ -91,7 +95,7 @@ const NewClassForm = ({ addClass, instructors, classTypes }) => {
                         />
                     </div>
 
-                    <footer className="card-footer">
+                    <footer className="card-footer" id="class-form-button">
                         <button className="button card-footer-item is-link">Submit</button>
                         {/* <button className="card-footer-item">Cancel</button> */}
                     </footer>
