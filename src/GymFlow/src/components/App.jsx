@@ -12,9 +12,6 @@ import PrivateRoute from './PrivateRoute'
 import ShowNavBar from './ShowNavBar'
 import PublicAccess from './PublicAccess'
 
-// Temporary ID for classes
-// let newClassId = 4
-
 const App = () => {
 
   const navigate = useNavigate()
@@ -43,20 +40,6 @@ const App = () => {
   useEffect(() => {
 
     fetchClasses()
-    // Retrieves stored token from local sotrage when user logins
-    
-    // fetch('http://localhost:3000/classes', {
-    //   method: 'GET',
-    //   headers: {
-    //     'Authorization': `Bearer ${token}`,
-    //     'Content-Type': 'application/json'
-    //   }
-    // })
-    //   .then(res => res.json())
-    //   .then(data => setClasses(data))
-    //   .catch(error => {
-    //     console.error('Error fetching classes', error)
-    //   })
 
     fetch('http://localhost:3000/instructors', {
       method: 'GET',
@@ -122,11 +105,6 @@ const App = () => {
     navigate(`/classes/${returnedClass._id}`)
     // return returnedClass._id
   }
-
-  // add delete class here?
-  // const deleteClass = async () => {
-
-  // }
 
   // Higher-order component (HOC)
   const ClassDetailsWrapper = () => {

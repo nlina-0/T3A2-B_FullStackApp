@@ -8,7 +8,7 @@ const ClassDetails = ({ currentClass, fetchClasses }) => {
   const [isEditing, setIsEditing] = useState(false)
   const [formData, setFormData] = useState({ ...currentClass })
       
-  // how to delete form?
+  // Delete class from class details
   const deleteClass = async (class_id) => {
     const res = await fetch(`http://localhost:3000/classes/${class_id}`, {
       method: 'DELETE',

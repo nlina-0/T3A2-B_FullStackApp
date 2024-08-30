@@ -32,9 +32,10 @@ classRoutes.get('/:id', async (req, res) => {
 classRoutes.post('/', authenticate, async (req, res) => {
     try {
         const newClass =  await Class.create(req.body)
-        res.status(201).send({ message: "Class created successfully", newClass })
+        // Removed message
+        res.status(201).send(newClass)
     } catch (err) {
-        res.status(500).json({ message: error.message })
+        res.status(500).json({ message: err.message })
     }
 })
 
