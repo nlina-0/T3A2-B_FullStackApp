@@ -24,13 +24,8 @@ const App = () => {
   const [classTypes, setClassTypes] = useState([])
   const [classes, setClasses] = useState([])
 
-  
-  
-
-  useEffect(() => {
-    // Retrieves stored token from local sotrage when user logins
-    
-    fetch('http://localhost:3000/classes', {
+  const fetchClasses = async () => {
+    const res = await fetch('http://localhost:3000/classes', {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -42,6 +37,26 @@ const App = () => {
       .catch(error => {
         console.error('Error fetching classes', error)
       })
+  }
+  
+
+  useEffect(() => {
+
+    fetchClasses()
+    // Retrieves stored token from local sotrage when user logins
+    
+    // fetch('http://localhost:3000/classes', {
+    //   method: 'GET',
+    //   headers: {
+    //     'Authorization': `Bearer ${token}`,
+    //     'Content-Type': 'application/json'
+    //   }
+    // })
+    //   .then(res => res.json())
+    //   .then(data => setClasses(data))
+    //   .catch(error => {
+    //     console.error('Error fetching classes', error)
+    //   })
 
     fetch('http://localhost:3000/instructors', {
       method: 'GET',
@@ -117,7 +132,7 @@ const App = () => {
   const ClassDetailsWrapper = () => {
     const { id } = useParams()
     const currentClass = classes.find(cls => cls._id == id) 
-    return currentClass ? <ClassDetails currentClass={currentClass} instructors={instructors} /> : <h3>Class not found!</h3>
+    return currentClass ? <ClassDetails currentClass={currentClass} instructors={instructors} fetchClasses={fetchClasses}/> : <h3>Class not found!</h3>
   }
 
   

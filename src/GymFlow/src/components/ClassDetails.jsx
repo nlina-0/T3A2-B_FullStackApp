@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
-const ClassDetails = ({ currentClass }) => {
+const ClassDetails = ({ currentClass, fetchClasses }) => {
 
   const navigate = useNavigate()
   const token = localStorage.getItem("site")
@@ -23,6 +23,7 @@ const ClassDetails = ({ currentClass }) => {
 
   const handleDelete = async (class_id) => {
     await deleteClass(class_id)
+    fetchClasses()
   }
 
   // const [selectedInstructor, setSelectedInstructor] = useState({})
