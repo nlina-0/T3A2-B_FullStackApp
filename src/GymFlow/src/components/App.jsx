@@ -18,71 +18,15 @@ let newClassId = 4
 const App = () => {
 
   const navigate = useNavigate()
-  
+  const token = localStorage.getItem("site")
+
   const [instructors, setInstructors] = useState([])
   const [classTypes, setClassTypes] = useState([])
-  
-//   [
-//     {
-//         name: "Yoga"
-//     },
-//     {
-//         name: "Cycling"
-//     },
-//     {
-//         name: "Zumba"
-//     },
-//     {
-//         name: "Kickboxing"
-//     },
-//     {
-//         name: "Body pump"
-//     },
-//     {
-//         name: "Pilates"
-//     }
-// ]
-
-  const [classes, setClasses] = useState( 
-    [
-      // {
-      //   _id: 1,
-      //   name: "Rise and shine",
-      //   classType: {
-      //     name: "Yoga"
-      //   },
-      //   time: "2024-08-27",
-      //   duration: 45,
-      //   instructor: {
-      //     firstName: "Janet",
-      //     lastName: "Smith",
-      //   },
-      //   capacity: 15,
-      //   bookings: []
-      // }
-      // {
-      //   id: 2,
-      //   classType: "Pilates",
-      //   instructor: "Russ",
-      //   date: "11 AUG",
-      //   duration: "45min",
-      //   capacity: 10
-      // },
-      // {
-      //   id: 3,
-      //   classType: "Boxing",
-      //   instructor: "Max",
-      //   date: "12 AUG",
-      //   duration: "45min",
-      //   capacity: 10
-      // }
-    ]
-  )
+  const [classes, setClasses] = useState([])
   
 
   useEffect(() => {
     // Retrieves stored token from local sotrage when user logins
-    const token = localStorage.getItem("site")
     
     fetch('http://localhost:3000/classes', {
       method: 'GET',
@@ -126,18 +70,19 @@ const App = () => {
 
   }, [])
 
-  console.log(classTypes)
 
   // For createClass - still not done
+
   const addClass = async (name, time, selectInstructor, selectClassType, duration, capacity) => {
     // TODO: Sanitise and validate entry data
-    const newClass = { name: name, classType: selectClassType.name, instructor: selectInstructor._id, time: time, duration: duration, capacity: capacity }
+    const newClass = { name: name, classType: selectClassType._id, instructor: selectInstructor._id, time: time, duration: duration, capacity: capacity }
     console.log('New Class: ', newClass)
 
     // Post newEntry to the API and receive the returned class with the added mongoDB ID
     const res = await fetch('http://localhost:3000/classes', {
       method: 'POST',
       headers: {
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(newClass)
@@ -145,11 +90,10 @@ const App = () => {
     const returnedClass = await res.json()
     setClasses([...classes, returnedClass])
 
-    console.log('Form successfully submitted locally')
+    console.log('New Class Created: ', returnedClass)
     // Not submitting successfully because class type is currently inaccesible 
 
     // redirect to className detail
-    console.log(newClass._id)
     navigate(`/classes/${newClass._id}`)
 
     return returnedClass._id
