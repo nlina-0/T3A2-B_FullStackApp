@@ -5,7 +5,7 @@ import { authenticate, checkMaster } from '../middleware/userAuth.js'
 const classRoutes = express.Router()
 
 // CLASSES
-// View all classes
+// Get all classes
 classRoutes.get('/', async (req, res) => {
     try {
         res.status(201).send(await Class.find().populate('classType').populate('instructor'))
@@ -14,7 +14,7 @@ classRoutes.get('/', async (req, res) => {
     }
 })
 
-// View class by id
+// Get class by id
 classRoutes.get('/:id', async (req, res) => {
     try {
         const searchedClass = await Class.findById(req.params.id).populate('classType').populate('instructor')
@@ -34,7 +34,7 @@ classRoutes.post('/', authenticate, async (req, res) => {
         const newClass =  await Class.create(req.body)
         res.status(201).send({ message: "Class created successfully", newClass })
     } catch (err) {
-        res.status(500).json({ message: error.message })
+        res.status(500).json({ message: err.message })
     }
 })
 

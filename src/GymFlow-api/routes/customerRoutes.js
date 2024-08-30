@@ -6,6 +6,15 @@ const customerRoutes = express.Router()
 
 customerRoutes.use(authenticate) // authentication required on all customer routes
 
+// Get all customers
+customerRoutes.get('/', async (req, res) => {
+    try {
+        res.status(200).send(await Customer.find() )
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+})
+
 // Create new customer
 customerRoutes.post('/', async (req, res) => {  
     try {
