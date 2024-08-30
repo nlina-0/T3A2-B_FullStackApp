@@ -105,7 +105,7 @@ const App = () => {
   // Higher-order component (HOC)
   const ClassDetailsWrapper = () => {
     const { id } = useParams()
-    const currentClass = classes.find(cls => cls._id == id) 
+    const currentClass = classes.find(cls => cls._id == id)
     return currentClass ? <ClassDetails currentClass={currentClass} instructors={instructors} fetchClasses={fetchClasses} addClass={addClass} classes={classes} classTypes={classTypes}/> : <h3>Class not found!</h3>
   }
 

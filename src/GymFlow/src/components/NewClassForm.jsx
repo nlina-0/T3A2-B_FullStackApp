@@ -4,7 +4,7 @@ import ClassTypeSelector from './ClassTypeSelector'
 
 // New class form that goes into modal
 
-const NewClassForm = ({ formTitle, instructors, classTypes, submitHandler, handleSelectClassType, handleSelectInstructor, handleChange, formData }) => {
+const NewClassForm = ({ formTitle, instructors, classTypes, submitHandler, handleSelectClassType, handleSelectInstructor, handleChange, formData, currentClass }) => {
 
   return (
     <div className="card" id="new-class-card">
@@ -33,7 +33,7 @@ const NewClassForm = ({ formTitle, instructors, classTypes, submitHandler, handl
                     </div>
 
                     <ClassTypeSelector classTypes={classTypes} onSelectedClassType={handleSelectClassType}/>
-                    <InstructorSelector instructors={instructors} onSelectedInstructor={handleSelectInstructor}/>
+                    <InstructorSelector instructors={instructors} onSelectedInstructor={handleSelectInstructor} currentClass={currentClass}/>
 
                     <label className="label mt-5">Date</label>
                     <div className="control">

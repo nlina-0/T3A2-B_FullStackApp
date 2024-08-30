@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const InstructorSelector = ({ instructors, onSelectedInstructor }) => {
     // Gets list of instructors from App.jsx
     // Maps it out into a select drop down
     // Stores selection into selectedInstructor
-
-    // console.log('Instructor map issue:', instructors)
 
     const [selectedInstructor, setSelectedInstructor] = useState({})
 
@@ -17,9 +15,6 @@ const InstructorSelector = ({ instructors, onSelectedInstructor }) => {
         setSelectedInstructor(instructor || {})
         onSelectedInstructor(instructor || {})
       }
-
-
-    // TODO: Add selectedInstructor into addClass to create new class
 
   return (
     <div>

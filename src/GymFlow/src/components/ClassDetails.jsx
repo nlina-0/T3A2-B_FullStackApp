@@ -4,11 +4,11 @@ import NewClassForm from './NewClassForm'
 
 const ClassDetails = ({ currentClass, fetchClasses, addClass, classes, instructors, classTypes }) => {
 
-    // To activate and deactivate modal 
-    const [isActive, setIsActive] = useState(false)
-    const toggleModal = () => {
-      setIsActive(!isActive)
-    }
+  // To activate and deactivate modal 
+  const [isActive, setIsActive] = useState(false)
+  const toggleModal = () => {
+    setIsActive(!isActive)
+  }
 
   const nav = useNavigate()
   const token = localStorage.getItem("site")
@@ -32,8 +32,6 @@ const ClassDetails = ({ currentClass, fetchClasses, addClass, classes, instructo
     fetchClasses()
   }
 
-  console.log(currentClass)
-
   const [formData, setFormData] = useState({
     name: currentClass.name,
     time: currentClass.time,
@@ -50,7 +48,7 @@ const ClassDetails = ({ currentClass, fetchClasses, addClass, classes, instructo
   }
 
   // // Recieves selected instructor from instructor child component
-  const [selectInstructor, setSelectedInstructor] = useState({})
+  const [selectInstructor, setSelectedInstructor] = useState()
   const handleSelectInstructor = (instructor) => {
       setSelectedInstructor(instructor)
   }
@@ -64,13 +62,11 @@ const ClassDetails = ({ currentClass, fetchClasses, addClass, classes, instructo
   const { name, time, duration, capacity } = formData
   
   // Form Submit handler
-  const submitHandler = async (e) => {
-      e.preventDefault()
-      const id = await addClass(name, time, selectInstructor, selectClassType, duration, capacity)
-      nav(`/classes/${id}`)
-  }
-
-
+  // const submitHandler = async (e) => {
+  //     e.preventDefault()
+  //     const id = await addClass(name, time, selectInstructor, selectClassType, duration, capacity)
+  //     nav(`/classes/${id}`)
+  // }
 
 
   return (
@@ -103,9 +99,10 @@ const ClassDetails = ({ currentClass, fetchClasses, addClass, classes, instructo
                     formData={formData}
                     instructors={instructors}
                     classTypes={classTypes}
-                    submitHandler={submitHandler}
+                    // submitHandler={submitHandler}
                     handleSelectClassType={handleSelectClassType}
                     handleSelectInstructor={handleSelectInstructor}
+                    currentClass={currentClass}
                   />
               </div>
               <button className="modal-close is-large" aria-label="close" onClick={toggleModal}></button>
