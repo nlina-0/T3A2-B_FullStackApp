@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 
 const AuthContext = createContext()
 
-const AuthProvider = ({ children }) => {
+const AuthProvider = ({ API, children }) => {
     const [token, setToken] = useState(localStorage.getItem("site") || "")
     const navigate = useNavigate()
 
@@ -11,7 +11,7 @@ const AuthProvider = ({ children }) => {
     
     const loginAction = async ({email, password}) => {
         try {
-            const response = await fetch('http://localhost:3000/login', {
+            const response = await fetch(`${API}login`, {
                 method: 'POST',
                 headers: {
                 'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ const AuthProvider = ({ children }) => {
     const logOut = () => {
         setToken(localStorage.clear())
         localStorage.removeItem("site")
-        navigate("/login")
+        navigate("/")
     }
 
     return (

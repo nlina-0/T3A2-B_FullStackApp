@@ -7,33 +7,6 @@ const Login = () => {
         email: "",
         password: ""
     })
-    // const [email, setEmail] = useState("")
-    // const [password, setPassword] = useState("")
-    // const [error, setError] = useState('');
-    // const [success, setSuccess] = useState(false)
-
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault()
-
-    //     // put in try block
-    //     const response = await fetch('http://localhost:3000/login', {
-    //         method: 'POST',
-    //         headers: {
-    //           'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify({ email, password }),
-    //     });
-    
-    //     if (!response.ok) {
-    //     throw new Error('Login failed');
-    //     }
-    
-    //     const data = await response.json();
-    //     // Store token in local storage for protected routes
-    //     localStorage.setItem('token', data.token)
-
-    // }
 
     const auth = useAuth()
 

@@ -15,7 +15,10 @@ import PublicAccess from './PublicAccess'
 
 
 const App = () => {
+  
   const token = localStorage.getItem("site")
+  const port = 4000
+  const API = `http://localhost:${port}/`
 
   const [instructors, setInstructors] = useState([])
   const [classTypes, setClassTypes] = useState([])
@@ -24,7 +27,7 @@ const App = () => {
 
  
   const fetchClasses = async () => {
-    const res = await fetch('http://localhost:3000/classes', {
+    const res = await fetch(`${API}classes`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -43,7 +46,7 @@ const App = () => {
 
     fetchClasses()
 
-    fetch('http://localhost:3000/instructors', {
+    fetch(`${API}instructors`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -57,7 +60,7 @@ const App = () => {
       })
 
     // fetch all class types
-    fetch('http://localhost:3000/classtypes', {
+    fetch(`${API}classtypes`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -72,7 +75,7 @@ const App = () => {
 
 
       
-    fetch('http://localhost:3000/users', {
+    fetch(`${API}users`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -98,7 +101,7 @@ const App = () => {
     }
     console.log(newUser)
 
-    const res = await fetch('http://localhost:3000/users', {
+    const res = await fetch(`${API}users`, {
         method: 'POST',
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -165,7 +168,7 @@ const App = () => {
       password: password
     }
 
-    const res = await fetch(`http://localhost:3000/users/${id}`, {
+    const res = await fetch(`${API}users/${id}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -223,7 +226,7 @@ const App = () => {
     }
 
     // Post newEntry to the API and receive the returned class with the added mongoDB ID
-    const res = await fetch('http://localhost:3000/classes', {
+    const res = await fetch(`${API}classes`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -233,9 +236,6 @@ const App = () => {
     })
     const returnedClass = await res.json()
     setClasses([...classes, returnedClass])
-
-    // redirect to className detail
-    // nav(`/classes/${newClass._id}`)
     return returnedClass._id
   }
 
@@ -243,22 +243,22 @@ const App = () => {
   const ClassDetailsWrapper = () => {
     const { id } = useParams()
     const currentClass = classes.find(cls => cls._id == id)
-    return currentClass ? <ClassDetails currentClass={currentClass} instructors={instructors} fetchClasses={fetchClasses} addClass={addClass} classes={classes} classTypes={classTypes}/> : <h3>Class not found!</h3>
+    return currentClass ? <ClassDetails API={API} currentClass={currentClass} instructors={instructors} fetchClasses={fetchClasses} addClass={addClass} classes={classes} classTypes={classTypes}/> : <h3>Class not found!</h3>
   }
   
   return (
     <>
-    <AuthProvider>
+    <AuthProvider API={API}>
       <ShowNavBar>
         <NavBar />
       </ShowNavBar>
       
       <Routes>
-        <Route path='/login' element={<Login />} />
+        <Route path='/' element={<Login />} />
 
         <Route path='/' element={<PrivateRoute />}>
           <Route path='/classes' element={<Outlet />}>
-            <Route path='/classes' element={<Classes addClass={addClass} classes={classes} instructors={instructors} classTypes={classTypes}/>} />
+            <Route path='' element={<Classes addClass={addClass} classes={classes} instructors={instructors} classTypes={classTypes}/>} />
             <Route path=':id' element={<ClassDetailsWrapper />}/>
           </Route>
           <Route path='/newClass' element={<NewClass addClass={addClass} instructors={instructors}/>} />
