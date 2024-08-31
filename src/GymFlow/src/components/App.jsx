@@ -268,8 +268,7 @@ const App = () => {
           <Route path='/customers' element={<Customers />} />
           <Route path='/users' element={<Users users={users} addUser={addUser} userExists={userExists} deleteUser={deleteUser} passwordValidated={passwordValidated} userCreated={userCreated} userUnauthorized={userUnauthorized} userDeleted={userDeleted} userNotFound={userNotFound} />} />
         </Route>
-        
-        <Route path='/public' element={<PublicAccess classes={classes}/>} />
+
         <Route path='*' element={<h3>Page not found!</h3>} />
       </Routes>
     </AuthProvider>

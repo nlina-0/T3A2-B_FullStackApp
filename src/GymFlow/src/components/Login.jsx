@@ -72,19 +72,6 @@ const Login = () => {
         </div>
     </div>
     
-    {/* <div className="container is-max-tablet">
-        <button className="button is-link is-fullwidth">Submit</button>
-        <Link className="container is-max-tablet" to="/public">
-            <h1 className="label my-6 is-size-6 has-text-weight-medium has-text-centered">View classes</h1>
-        </Link>
-    </div> */}
-
-    <div className="is-flex is-justify-content-center is-align-items-center">
-        <Link to="/public">
-            <button className="button is-normal is-rounded is-ghost my-6">View all classes</button>
-        </Link>
-    </div>
-    
     </>
   )
 }
