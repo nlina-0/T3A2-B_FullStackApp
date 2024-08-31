@@ -5,7 +5,7 @@ import { authenticate, checkMaster } from '../middleware/userAuth.js'
 const classTypeRoutes = express.Router()
 
 // CLASS TYPES
-// View all class types
+// Get all class types
 classTypeRoutes.get('/', async (req, res) => {
     try {
         res.status(200).send(await ClassType.find())
@@ -14,7 +14,7 @@ classTypeRoutes.get('/', async (req, res) => {
     }
 })
 
-// View class by type
+// Get class by type
 classTypeRoutes.get('/:classtype', async (req, res) => {
     try {
         const searchedClassType = await ClassType.findOne({ "name": req.params.classtype})
