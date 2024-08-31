@@ -144,6 +144,7 @@ h1 {
   transform: none;
 }
 
+
 /* Modal */
 #class-form-button {
   margin-top: 30px;
@@ -156,4 +157,10 @@ h1 {
 /* Buttons */
 .buttons-class-detail-form {
   margin-right: 5px;
+}
+
+/* New user card */
+#password-alert {
+  color: red;
+
 }
