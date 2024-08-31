@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import NewClassForm from './NewClassForm'
 
-const ClassDetails = ({ currentClass, fetchClasses, addClass, classes, instructors, classTypes }) => {
+const ClassDetails = ({ currentClass, fetchClasses, instructors, classTypes }) => {
 
   // To activate and deactivate modal 
   const [isActive, setIsActive] = useState(false)
@@ -13,6 +13,39 @@ const ClassDetails = ({ currentClass, fetchClasses, addClass, classes, instructo
   const nav = useNavigate()
   const token = localStorage.getItem("site")
       
+  // current form of selected page
+  const [currentFormData, setCurrentFormData] = useState({
+    name: currentClass.name,
+    time: currentClass.time,
+    duration: currentClass.duration,
+    capacity: currentClass.capacity
+  })
+
+  const currentInstructor = currentClass.instructor
+  // // Recieves selected instructor from instructor child component
+  const [selectInstructor, setSelectedInstructor] = useState(currentInstructor)
+  
+  const currentClassType = currentClass.classType
+  // // Recieves selected class type from class type child component
+  const [selectClassType, setSelectedClassType] = useState(currentClassType)
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setCurrentFormData({
+      ...currentFormData,
+      [name]: value
+    })
+  }
+
+  const handleSelectInstructor = (instructor) => setSelectedInstructor(instructor)
+  const handleSelectClassType = (classType) => setSelectedClassType(classType)
+
+  // Delete Class
+  const handleDelete = async (class_id) => {
+    await deleteClass(class_id)
+    fetchClasses()
+  }
+
   // Delete class from class details
   const deleteClass = async (class_id) => {
     const res = await fetch(`http://localhost:3000/classes/${class_id}`, {
@@ -26,47 +59,41 @@ const ClassDetails = ({ currentClass, fetchClasses, addClass, classes, instructo
     return 
   }
 
-  // Delete Class
-  const handleDelete = async (class_id) => {
-    await deleteClass(class_id)
-    fetchClasses()
+  // Getting Id from curent class 
+  const currentClassID = currentClass._id
+
+  // Form Edit handler
+  const handleEdit = async (e) => {
+      e.preventDefault()
+      await updateClass()
+      toggleModal()
+      fetchClasses()
+      nav(`/classes/${currentClassID}`)
   }
 
-  const [formData, setFormData] = useState({
-    name: currentClass.name,
-    time: currentClass.time,
-    duration: currentClass.duration,
-    capacity: currentClass.capacity
-  })
-
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData({
-      ...formData,
-      [name]: value
+  const updateClass = async () => {
+    try {
+      const res = await fetch(`http://localhost:3000/classes/${currentClassID}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        ...currentFormData,
+        instructor: selectInstructor,
+        classTypes: selectClassType
+      })
     })
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`)
+    } 
+    const data = await res.json()
+    console.log('Class updated successfully: ', data)
+    } catch (error) {
+      console.log('Failed to update class: ', error)
+    }
   }
-
-  // // Recieves selected instructor from instructor child component
-  const [selectInstructor, setSelectedInstructor] = useState()
-  const handleSelectInstructor = (instructor) => {
-      setSelectedInstructor(instructor)
-  }
-
-  // // Recieves selected class type from class type child component
-  const [selectClassType, setSelectedClassType] = useState({})
-  const handleSelectClassType = (classType) => {
-      setSelectedClassType(classType)
-  }
-
-  const { name, time, duration, capacity } = formData
-  
-  // Form Submit handler
-  // const submitHandler = async (e) => {
-  //     e.preventDefault()
-  //     const id = await addClass(name, time, selectInstructor, selectClassType, duration, capacity)
-  //     nav(`/classes/${id}`)
-  // }
 
 
   return (
@@ -96,10 +123,10 @@ const ClassDetails = ({ currentClass, fetchClasses, addClass, classes, instructo
                   <NewClassForm 
                     formTitle={currentClass.name}
                     handleChange={handleChange}
-                    formData={formData}
+                    formData={currentFormData} //switch between two states?
                     instructors={instructors}
                     classTypes={classTypes}
-                    // submitHandler={submitHandler}
+                    submitHandler={handleEdit} 
                     handleSelectClassType={handleSelectClassType}
                     handleSelectInstructor={handleSelectInstructor}
                     currentClass={currentClass}
