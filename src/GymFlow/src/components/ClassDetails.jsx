@@ -22,11 +22,9 @@ const ClassDetails = ({ currentClass, fetchClasses, instructors, classTypes }) =
   })
 
   const currentInstructor = currentClass.instructor
-  // // Recieves selected instructor from instructor child component
   const [selectInstructor, setSelectedInstructor] = useState(currentInstructor)
   
   const currentClassType = currentClass.classType
-  // // Recieves selected class type from class type child component
   const [selectClassType, setSelectedClassType] = useState(currentClassType)
 
   const handleChange = (e) => {

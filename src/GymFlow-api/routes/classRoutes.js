@@ -43,9 +43,12 @@ classRoutes.post('/', authenticate, async (req, res) => {
 classRoutes.put('/:id', authenticate, async (req, res) => {
     try {
         const updatedClass = await Class.findByIdAndUpdate(req.params.id, req.body, {returnDocument: 'after'})
-        res.status(200).json({ message: "Class updated successfully" }, updatedClass)
+        if (!updatedClass) {
+            return res.status(404).json({ message: "Class not found" })
+        }
+        res.status(200).json(updatedClass)
     } catch (err) {
-        res.status(404).json({ message: "Class not found" })
+        res.status(500).json({ message: err.message })
     }
 })
 

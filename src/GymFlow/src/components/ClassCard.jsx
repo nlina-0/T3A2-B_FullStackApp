@@ -10,7 +10,7 @@ const ClassCard = (props) => {
             <div className="card-content">
               <div className="media-content">
                 <p className="title">{props.name}</p>
-                <p className="subtitle is-6">{props.classType}</p>
+                <h1>{props.classType}</h1>
                 <p>{props.instructor}</p>
                 <p>When: {props.time}</p>
                 <p>Duration: {props.duration} min</p>

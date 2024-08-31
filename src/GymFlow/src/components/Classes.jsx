@@ -6,7 +6,7 @@ import NewClassForm from './NewClassForm'
 
 // Provides a search bar for classes, displays list of classes and a button to create a class.
 
-const Classes = ({ addClass, classes, instructors, classTypes }) => {
+const Classes = ({ addClass, classes, instructors, classTypes, fetchClasses }) => {
   // To activate and deactivate modal 
   const [isActive, setIsActive] = useState(false)
   const toggleModal = () => {
@@ -32,15 +32,12 @@ const Classes = ({ addClass, classes, instructors, classTypes }) => {
 
   // // Recieves selected instructor from instructor child component
   const [selectInstructor, setSelectedInstructor] = useState({})
-  const handleSelectInstructor = (instructor) => {
-      setSelectedInstructor(instructor)
-  }
+  const handleSelectInstructor = (instructor) => setSelectedInstructor(instructor)
+
 
   // // Recieves selected class type from class type child component
   const [selectClassType, setSelectedClassType] = useState({})
-  const handleSelectClassType = (classType) => {
-      setSelectedClassType(classType)
-  }
+  const handleSelectClassType = (classType) => setSelectedClassType(classType)
 
   const { name, time, duration, capacity } = formData
   
@@ -48,6 +45,7 @@ const Classes = ({ addClass, classes, instructors, classTypes }) => {
   const submitHandler = async (e) => {
       e.preventDefault()
       const id = await addClass(name, time, selectInstructor, selectClassType, duration, capacity)
+      // fetchClasses()
       nav(`/classes/${id}`)
   }
 
@@ -91,7 +89,7 @@ const Classes = ({ addClass, classes, instructors, classTypes }) => {
               key={cl._id} // unique key prop
               id={cl._id}
               name={cl.name}
-              // classType={cl.classType.name}
+              classType={cl.classType.name}
               instructor={`${cl.instructor.firstName} ${cl.instructor.lastName}`}
               time={cl.time}
               duration={cl.duration} 
