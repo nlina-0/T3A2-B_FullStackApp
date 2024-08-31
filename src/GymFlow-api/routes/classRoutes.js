@@ -62,6 +62,7 @@ classRoutes.delete('/:id', authenticate, checkMaster, async (req, res) => {
         await Class.findByIdAndDelete(req.params.id)
         res.json({ message: "Class deleted successfully" })
     } catch (err) {
+        console.error("Error deleting class:", err)
         res.status(500).json({ message: err.message })
     }
 })

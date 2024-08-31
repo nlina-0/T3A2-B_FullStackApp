@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import NewClassForm from './NewClassForm'
 
-const ClassDetails = ({ currentClass, fetchClasses, instructors, classTypes }) => {
+const ClassDetails = ({ API, currentClass, fetchClasses, instructors, classTypes }) => {
 
   // To activate and deactivate modal 
   const [isActive, setIsActive] = useState(false)
@@ -46,7 +46,7 @@ const ClassDetails = ({ currentClass, fetchClasses, instructors, classTypes }) =
 
   // Delete class from class details
   const deleteClass = async (class_id) => {
-    const res = await fetch(`http://localhost:3000/classes/${class_id}`, {
+    const res = await fetch(`${API}classes/${class_id}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -71,7 +71,7 @@ const ClassDetails = ({ currentClass, fetchClasses, instructors, classTypes }) =
 
   const updateClass = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/classes/${currentClassID}`, {
+      const res = await fetch(`${API}classes/${currentClassID}`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`,

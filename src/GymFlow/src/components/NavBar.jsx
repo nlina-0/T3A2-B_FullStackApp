@@ -40,9 +40,9 @@ const NavBar = () => {
                     <div className="navbar-end">
                         <div className="navbar-item">
                             <div className="buttons">
-                                <Link className="button is-light" onClick={() => auth.logOut()}>
+                                <button className="button is-light" onClick={() => auth.logOut()}>
                                     Log Out
-                                </Link>
+                                </button>
                                 {/* <Link className="button is-light" to="/login">
                                     Log In
                                 </Link> */}
