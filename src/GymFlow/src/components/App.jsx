@@ -18,7 +18,8 @@ const App = () => {
   
   const token = localStorage.getItem("site")
   const port = 4000
-  const API = `http://localhost:${port}/`
+  // http://localhost:${port}/
+  const API = `https://gymflow-api-jx6e.onrender.com/`
 
   const [instructors, setInstructors] = useState([])
   const [classTypes, setClassTypes] = useState([])
@@ -268,8 +269,7 @@ const App = () => {
           <Route path='/customers' element={<Customers />} />
           <Route path='/users' element={<Users users={users} addUser={addUser} userExists={userExists} deleteUser={deleteUser} passwordValidated={passwordValidated} userCreated={userCreated} userUnauthorized={userUnauthorized} userDeleted={userDeleted} userNotFound={userNotFound} />} />
         </Route>
-        
-        <Route path='/public' element={<PublicAccess classes={classes}/>} />
+
         <Route path='*' element={<h3>Page not found!</h3>} />
       </Routes>
     </AuthProvider>
