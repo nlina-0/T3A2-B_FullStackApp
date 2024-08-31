@@ -11,7 +11,7 @@ import classTypeRoutes from './routes/classTypeRoutes.js'
 
 const app = express()
 
-startConnection()
+startConnection() 
 
 // Middleware 
 
