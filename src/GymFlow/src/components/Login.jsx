@@ -30,9 +30,7 @@ const Login = () => {
   return (
     <>
     <div className="container is-max-tablet">
-        <Link className="container is-max-tablet" to="/public">
-            <h1 className="label my-6 is-size-4 has-text-weight-medium has-text-centered">GymFlow</h1>
-        </Link>
+        <h1 className="label my-6 is-size-4 has-text-weight-medium has-text-centered">GymFlow</h1>
     </div>
 
     <div className="columns is-centered" >

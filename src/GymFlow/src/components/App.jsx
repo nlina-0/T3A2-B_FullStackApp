@@ -18,7 +18,8 @@ const App = () => {
   
   const token = localStorage.getItem("site")
   const port = 4000
-  const API = `http://localhost:${port}/`
+  // http://localhost:${port}/
+  const API = `https://gymflow-api-jx6e.onrender.com/`
 
   const [instructors, setInstructors] = useState([])
   const [classTypes, setClassTypes] = useState([])
