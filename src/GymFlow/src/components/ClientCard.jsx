@@ -5,7 +5,8 @@ const ClientCard = (props) => {
 
   return (
     <>
-    <Link to={`/${props.clientType}/${props.id}`}>
+    {/* to={`/${props.clientType}/${props.id}`} */}
+    <Link >
         <div className="card my-2">
             <footer className="card-footer">
             <p className="card-footer-item is-justify-content-flex-start">{props.name}</p>

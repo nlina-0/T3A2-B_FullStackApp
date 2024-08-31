@@ -36,9 +36,10 @@ const AuthProvider = ({ API, children }) => {
     }
 
     const logOut = () => {
-        setToken(localStorage.clear())
+        setToken(null)
         localStorage.removeItem("site")
-        navigate("/")
+        navigate('/')
+        console.log("Log Out successful!")
     }
 
     return (
