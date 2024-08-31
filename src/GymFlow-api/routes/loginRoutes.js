@@ -1,10 +1,6 @@
-import dotenv from 'dotenv'
 import express from 'express'
 import jwt from 'jsonwebtoken'
-// import { login } from '../controllers/authController.js'; 
-// import { createInstructor } from '../controllers/createInstructorController.js'; 
-// import { createInstructorValidationRules, validate } from '../middleware/loginValidation'; // Ensure path is correct
-import { loginLimiter, createInstructorLimiter } from '../middleware/loginRateLimiter.js';
+import { loginLimiter } from '../middleware/loginRateLimiter.js';
 import { User } from '../models/userModel.js';
 
 const loginRoutes = express.Router();
@@ -28,7 +24,7 @@ loginRoutes.post('/', loginLimiter, async (req, res) => {
         const token = jwt.sign(
             { id: user._id, email: user.email, master: user.master }, // Payload
             process.env.JWT_SECRET,
-            { expiresIn: '1h' } // Token expiration
+            { expiresIn: '24h' } // Token expiration (24hrs for developing purposes)
         );
 
         res.json({ token }); // Return the token
@@ -37,13 +33,5 @@ loginRoutes.post('/', loginLimiter, async (req, res) => {
         res.status(500).json({ message: 'Server error' }); // Handle errors
     }
 })
-
-// // Route for creating a new instructor with validation, rate limiting
-// router.post('/instructors', 
-//     createInstructorValidationRules(), // Applies validation rules
-//     validate, // Middleware to handle validation errors
-//     createInstructorLimiter, // Applies rate limiting
-//     createInstructor // Handles the request
-// );
 
 export default loginRoutes;
