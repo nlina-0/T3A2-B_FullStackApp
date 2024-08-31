@@ -35,6 +35,14 @@ h1 {
   padding-top: 2rem;
 }
 
+.title, 
+.card-header-title  {
+  color: #979797;
+  font-size: 18px;
+  font-weight: 500;
+  padding-bottom: 7px;
+}
+
 
 /* Navbar */
 .navbar {
@@ -136,7 +144,23 @@ h1 {
   transform: none;
 }
 
+
+/* Modal */
+#class-form-button {
+  margin-top: 30px;
+}
+
+.modal-background {
+  padding-top: 100px;
+}
+
+/* Buttons */
+.buttons-class-detail-form {
+  margin-right: 5px;
+}
+
 /* New user card */
 #password-alert {
   color: red;
+
 }

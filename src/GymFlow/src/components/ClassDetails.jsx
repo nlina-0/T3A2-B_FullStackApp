@@ -1,150 +1,139 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
+import NewClassForm from './NewClassForm'
 
-const ClassDetails = ({ currentClass, instructors }) => {
+const ClassDetails = ({ currentClass, fetchClasses, instructors, classTypes }) => {
 
-  const [isEditing, setIsEditing] = useState(false)
-  const [formData, setFormData] = useState({ ...currentClass })
+  // To activate and deactivate modal 
+  const [isActive, setIsActive] = useState(false)
+  const toggleModal = () => {
+    setIsActive(!isActive)
+  }
+
+  const nav = useNavigate()
+  const token = localStorage.getItem("site")
+      
+  // current form of selected page
+  const [currentFormData, setCurrentFormData] = useState({
+    name: currentClass.name,
+    time: currentClass.time,
+    duration: currentClass.duration,
+    capacity: currentClass.capacity
+  })
+
+  const currentInstructor = currentClass.instructor
+  const [selectInstructor, setSelectedInstructor] = useState(currentInstructor)
   
-  
-  // const [selectedInstructor, setSelectedInstructor] = useState({})
-  // console.log("First 1: ", selectedInstructor)
- 
+  const currentClassType = currentClass.classType
+  const [selectClassType, setSelectedClassType] = useState(currentClassType)
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    setFormData({...formData, [name]: value})
+    setCurrentFormData({
+      ...currentFormData,
+      [name]: value
+    })
   }
 
-    // Instructor handler
-    // const handleInstructorChange = (e) => {
-    //   const selectedFullName = e.target.value;
-    //   const instructor = instructors.find(
-    //     (i) => `${i.firstName} ${i.lastName}` === selectedFullName
-    //   )
-    //   setSelectedInstructor(instructor || {})
-    // }
+  const handleSelectInstructor = (instructor) => setSelectedInstructor(instructor)
+  const handleSelectClassType = (classType) => setSelectedClassType(classType)
+
+  // Delete Class
+  const handleDelete = async (class_id) => {
+    await deleteClass(class_id)
+    fetchClasses()
+  }
+
+  // Delete class from class details
+  const deleteClass = async (class_id) => {
+    const res = await fetch(`http://localhost:3000/classes/${class_id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    nav('/classes')
+    return 
+  }
+
+  // Getting Id from curent class 
+  const currentClassID = currentClass._id
+
+  // Form Edit handler
+  const handleEdit = async (e) => {
+      e.preventDefault()
+      await updateClass()
+      toggleModal()
+      fetchClasses()
+      nav(`/classes/${currentClassID}`)
+  }
+
+  const updateClass = async () => {
+    try {
+      const res = await fetch(`http://localhost:3000/classes/${currentClassID}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        ...currentFormData,
+        instructor: selectInstructor,
+        classTypes: selectClassType
+      })
+    })
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`)
+    } 
+    const data = await res.json()
+    console.log('Class updated successfully: ', data)
+    } catch (error) {
+      console.log('Failed to update class: ', error)
+    }
+  }
 
 
   return (
     <>
     <div>
-      {!isEditing ? (
+
       <section className="section is-medium" id="class-detail">
         <div className="container is-max-tablet">
           <h1>{currentClass.name}</h1>
-          {/* <p>{currentClass.instructor}</p> */}
+          <p>{`${currentClass.instructor.firstName} ${currentClass.instructor.lastName}`}</p>
+          <p>{currentClass.classType.name}</p>
           <p>When: {currentClass.time}</p>
           <p>Time: {currentClass.duration} min</p>
           <p>Class capacity: {currentClass.capacity}</p>
-          <button className="button is-link" onClick={() => setIsEditing(true)}>Edit</button>
+          
+          <div id="buttons-class-detail-form">
+          <button className="button is-link buttons-class-detail-form" onClick={toggleModal}>Edit</button>
+          <button className="button is-danger buttons-class-detail-form" onClick={() => handleDelete(currentClass._id)}>Delete</button>
+          <button className="button is-link buttons-class-detail-form">Add Customer to Booking</button>
+          </div>
         </div>
       </section>
-      ) : (
-        
-<div className="columns is-centered" >
-        <div className="container card column is-two-thirds" id="user-login">
-          <h2 className="label mt-6 mb-6 is-size-5 has-text-weight-medium">{formData.name}</h2>
-            <form onSubmit="">
-                <div className="field">
-                <label className="label mt-5">Name</label>
-                    <div className="control">
-                        <input 
-                          className="input is-rounded has-text-link" 
-                          type="" 
-                          // name="name"
-                          placeholder="hot yoga, reformer pilates... " 
-                          value={formData.name} 
-                          onChange={handleChange}
-                        />
-                    </div>
-
-                      {/* <label className="label mt-5">Class Type</label>
-                      <div className="control">
-                          <div className="select is-link is-rounded">
-                            <select value={formData.classType || ""} onChange="">
-
-                              <option value="">Select Class Type...</option>
-                              
-                              {
-                                classTypes.map((c) => {
-                                  return (
-                                    <option key={c.name} value={c.name}>
-                                      {c.name}
-                                    </option>
-                                    )
-                                })
-                              }
-                              
-                            </select>
-                          </div>
-                      </div> */}
-
-                      {/* <label className="label mt-5">Instructor</label>
-                      <div className="control">
-
-                          <div className="select is-link is-rounded">
-                            <select value={selectedInstructor ? `${selectedInstructor.firstName} ${selectedInstructor.lastName}` : ""} onChange={handleInstructorChange}>
-
-                              <option value="">{`${formData.instructor.firstName} ${formData.instructor.lastName}`}</option>
-                              
-                              {
-                                instructors.map((i) => {
-                                  return (
-                                    <option key={i.id} value={`${i.firstName} ${i.lastName}`}>
-                                      {`${i.firstName} ${i.lastName}`}
-                                    </option>
-                                    )
-                                })
-                              }
-                              
-                            </select>
-                          </div>
-                      </div> */}
-
-                      <label className="label mt-5">Date</label>
-                      <div className="control">
-                          <input 
-                            className="input is-rounded has-text-link" 
-                            type="date" 
-                            // name="Date"
-                            placeholder="" 
-                            value={formData.time}
-                            onChange={handleChange}
-                          />
-                      </div>
-                      <label className="label mt-5">Duration</label>
-                      <div className="control">
-                          <input 
-                            className="input is-rounded has-text-link" 
-                            type="" 
-                            // name="Duration"
-                            placeholder="min." 
-                            value={formData.duration}
-                            onChange={handleChange}
-                          />
-                      </div>
-                      <label className="label mt-5">Max capacity</label>
-                      <div className="control">
-                          <input 
-                            className="input is-rounded has-text-link" 
-                            type="number" 
-                            placeholder="" 
-                            value={formData.capacity}
-                            onChange={handleChange}
-                          />
-                      </div>
-                      
-                      <div className="control mt-6">
-                          <button className="button is-link is-fullwidth">Submit</button>
-                      </div>
-                  </div>
-              </form>
-          </div>
-      </div>
-      
-      )
-    }
+  
+      <div className={`modal ${isActive ? 'is-active' : ""}`}>
+            <div className="modal-background">
+              <div className="modal-content">
+                  <NewClassForm 
+                    formTitle={currentClass.name}
+                    handleChange={handleChange}
+                    formData={currentFormData} //switch between two states?
+                    instructors={instructors}
+                    classTypes={classTypes}
+                    submitHandler={handleEdit} 
+                    handleSelectClassType={handleSelectClassType}
+                    handleSelectInstructor={handleSelectInstructor}
+                    currentClass={currentClass}
+                  />
+              </div>
+              <button className="modal-close is-large" aria-label="close" onClick={toggleModal}></button>
+            </div>
+        </div>
+    
     </div>
     </>
   )

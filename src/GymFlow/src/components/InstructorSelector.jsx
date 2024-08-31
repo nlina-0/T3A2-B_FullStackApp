@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const InstructorSelector = ({ instructors, onSelectedInstructor }) => {
     // Gets list of instructors from App.jsx
@@ -15,9 +15,6 @@ const InstructorSelector = ({ instructors, onSelectedInstructor }) => {
         setSelectedInstructor(instructor || {})
         onSelectedInstructor(instructor || {})
       }
-
-
-    // TODO: Add selectedInstructor into addClass to create new class
 
   return (
     <div>
