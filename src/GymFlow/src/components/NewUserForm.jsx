@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 import MasterStatusSelector from './MasterStatusSelector'
-import { PasswordAlert, UserCreatedAlert, UserExistsAlert } from './UserAlerts'
+import { PasswordAlert, UnauthorizedAlert, UserCreatedAlert, UserExistsAlert } from './UserAlerts'
 
-const NewUserForm = ({ addUser, userExists }) => {
+const NewUserForm = ({ addUser, userExists, userCreated, userUnauthorized}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [master, setMaster] = useState(false)
     const [passwordCheck, setPasswordCheck] = useState('')
-    const [userCreated, setUserCreated] = useState('')
 
     const handleMasterStatusChange = (checked) => {
         setMaster(checked)
@@ -29,13 +28,12 @@ const NewUserForm = ({ addUser, userExists }) => {
         
         if (passwordCheck == true) {
             let res = addUser(email, password, master)
-            
+
             setEmail('')
             setPassword('')
             setConfirmPassword('')
             setMaster(false)
             setPasswordCheck('')
-            setUserCreated(true)
             console.log(userExists)
         }
         console.log('Passwords not matching')
@@ -89,6 +87,7 @@ const NewUserForm = ({ addUser, userExists }) => {
                             <PasswordAlert passwordCheck={passwordCheck} />
                             <UserCreatedAlert email={email} userCreated={userCreated} userExists={userExists} />
                             <UserExistsAlert email={email} userExists={userExists} />
+                            <UnauthorizedAlert userUnauthorized={userUnauthorized} />
                         </div>
                         <br/>
                         <div className="control">

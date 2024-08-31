@@ -5,7 +5,7 @@ import NewUserForm from './NewUserForm'
 import DeleteUserForm from './DeleteUserForm'
 
 
-const Users = ({users, addUser, userExists, deleteUser, passwordValidated}) => {
+const Users = ({users, addUser, userExists, deleteUser, passwordValidated, userCreated, userUnauthorized, userNotFound, userDeleted}) => {
     const [search, setSearch] = useState()
     const [isRegisterActive, setIsRegisterActive] = useState(false)
     const [isDeleteActive, setIsDeleteActive] = useState(false)
@@ -16,9 +16,10 @@ const Users = ({users, addUser, userExists, deleteUser, passwordValidated}) => {
         setIsRegisterActive(!isRegisterActive)
     }
 
-    const toggleDeleteModal = (selectedUserId) => {
-        setUserToDeleteId(selectedUserId);
-        setIsDeleteActive(!isDeleteActive);        
+    const toggleDeleteModal = () => {
+        // setUserToDeleteId(selectedUserId);
+        setIsDeleteActive(!isDeleteActive);
+        // console.log(userToDeleteId)        
     }
 
     return (
@@ -31,7 +32,7 @@ const Users = ({users, addUser, userExists, deleteUser, passwordValidated}) => {
                 <div className={`modal ${isRegisterActive ? 'is-active' : ""}`}>
                     <div className="modal-background"></div>
                     <div className="modal-content">
-                        <NewUserForm addUser={addUser} userExists={userExists}/>
+                        <NewUserForm addUser={addUser} userExists={userExists} userCreated={userCreated} userUnauthorized={userUnauthorized} />
                     </div>
                     <button className="modal-close is-large" aria-label="close" onClick={toggleRegisterModal}></button>
                 </div>
@@ -39,7 +40,7 @@ const Users = ({users, addUser, userExists, deleteUser, passwordValidated}) => {
                 <div className={`modal ${isDeleteActive ? 'is-active' : ""}`}>
                     <div className="modal-background"></div>
                     <div className="modal-content">
-                        <DeleteUserForm deleteUser={deleteUser} passwordValidated={passwordValidated} userToDeleteId={userToDeleteId} />
+                        <DeleteUserForm deleteUser={deleteUser} passwordValidated={passwordValidated} userToDeleteId={userToDeleteId}  userNotFound={userNotFound} userDeleted={userDeleted} userUnauthorized={userUnauthorized} />
                     </div>
                     <button className="modal-close is-large" aria-label="close" onClick={toggleDeleteModal}></button>
                 </div>
@@ -72,8 +73,6 @@ const Users = ({users, addUser, userExists, deleteUser, passwordValidated}) => {
                             email={u.email}
                             master={u.master}
                             toggleDeleteModal={toggleDeleteModal}
-                            setUserToDeleteId={setUserToDeleteId}
-                            // master={u.master.toString()}
                         />
                         
                     ))}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { PasswordAlert } from './UserAlerts'
+import { InvalidPasswordAlert, PasswordAlert, UnauthorizedAlert, UserDeletedAlert, UserNotFoundAlert } from './UserAlerts'
 
-function DeleteUserForm({deleteUser, passwordValidated}) {
+function DeleteUserForm({deleteUser, passwordValidated, userUnauthorized, userNotFound, userDeleted}) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
@@ -21,13 +21,13 @@ function DeleteUserForm({deleteUser, passwordValidated}) {
         e.preventDefault();
         
         if (passwordCheck == true) {
-            let res = deleteUser(email, password) // TODO
+            let res = deleteUser(email, password) 
 
             setEmail('')
             setPassword('')
             setConfirmPassword('')
             setPasswordCheck('')
-            console.log(passwordValidated) // TODO
+            console.log(passwordValidated) 
         } else {
             console.log('Passwords not matching')
         }
@@ -79,7 +79,10 @@ function DeleteUserForm({deleteUser, passwordValidated}) {
                     <br/>
                     <div className="control">
                         <PasswordAlert passwordCheck={passwordCheck} />
-                        {/* TODO: user feedback */}
+                        <InvalidPasswordAlert passwordValidated={passwordValidated} />
+                        <UserNotFoundAlert userNotFound={userNotFound} />
+                        <UserDeletedAlert userDeleted={userDeleted} />
+                        <UnauthorizedAlert userUnauthorized={userUnauthorized} />
                     </div>
                     <br/>
                     <div className="control mt-6">

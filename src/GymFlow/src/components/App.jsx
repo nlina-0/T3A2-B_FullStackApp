@@ -153,7 +153,9 @@ const App = () => {
   
 
   // For creating user
-  const [userExists, setUserExists] = useState(false)
+  const [userExists, setUserExists] = useState('')
+  const [userCreated, setUserCreated] = useState('')
+  const [userUnauthorized, setUserUnauthorized] = useState('')
 
   const addUser = async (email, password, master) => {
     const newUser = {
@@ -175,12 +177,23 @@ const App = () => {
 
       if (res.status == 400) {
         setUserExists(true)
+        setUserCreated('')
+        setUserUnauthorized('')
+      } else if (res.status == 201) {
+        setUserExists('')
+        setUserCreated(true)
+        setUserUnauthorized('')
+      } else if (res.status == 401 || res.status == 403) {
+        setUserExists('')
+        setUserCreated('')
+        setUserUnauthorized(true)
       } else {
-        setUserExists(false)
+        console.error("An error occurred while creating the user")
       }
+      console.log(`userUnauthorised: ${userUnauthorized}`) 
+
       const returnedUser = await res.json()
-      console.log(returnedUser)
-      
+      console.log(returnedUser) 
       setUsers([...users, returnedUser])
       console.log(users)
       
@@ -188,14 +201,25 @@ const App = () => {
   }
 
   // For deleting user
-  const [passwordValidated, setPasswordValidated] = useState(false)
+  const [passwordValidated, setPasswordValidated] = useState('')
+  const [userNotFound, setUserNotFound] = useState('')
+  const [userDeleted, setUserDeleted] = useState('')
 
   const deleteUser = async (email, password) => {
     console.log(email)
     console.log(users)
     
-    const id = users.find(user => user.email === email)._id
+
+    let id = users.find(user => user.email === email)
     console.log(id)
+    if (id) {
+      id = id._id
+      setUserNotFound(false)
+    } else {
+      setUserNotFound(true)
+      return
+    }
+
 
     const index = users.findIndex(user => user.email == email)
     const updatedUsers = users 
@@ -217,11 +241,36 @@ const App = () => {
       body: JSON.stringify(userToDelete)
     })
 
-    if (res.status == 400) {
-      setPasswordValidated(false)
+    setUserUnauthorized('')
+    setPasswordValidated('')
+    setUserNotFound('')
+    setUserDeleted('')
+
+    if (res.status == 403 || res.status == 401) {
+      setUserUnauthorized(true)
+      setPasswordValidated('')
+      setUserNotFound('')
+      setUserDeleted('')
+      console.log(userUnauthorized)
+    } else if (res.status == 400) {
+        setUserUnauthorized('')
+        setPasswordValidated(false)
+        setUserNotFound('')
+        setUserDeleted('')
+    } else if (res.status == 404) {
+        setUserUnauthorized('')
+        setPasswordValidated('')
+        setUserNotFound(true)
+        setUserDeleted('')  
+    } else if (res.status == 200) {
+        setUserUnauthorized('')
+        setPasswordValidated('')
+        setUserNotFound('')
+        setUserDeleted(true)
     } else {
-      setPasswordValidated(true)
+      console.error("An error occurred while deleting the user")
     }
+
     const deletedUser = await res.json()
     console.log(deletedUser)
 
@@ -284,7 +333,7 @@ const App = () => {
             <Route path='/instructors' element={<Instructor instructors={instructors}/>} />
           </Route>
           <Route path='/customers' element={<Customers />} />
-          <Route path='/users' element={<Users users={users} addUser={addUser} userExists={userExists} deleteUser={deleteUser} passwordValidated={passwordValidated} />} />
+          <Route path='/users' element={<Users users={users} addUser={addUser} userExists={userExists} deleteUser={deleteUser} passwordValidated={passwordValidated} userCreated={userCreated} userUnauthorized={userUnauthorized} userDeleted={userDeleted} userNotFound={userNotFound} />} />
         </Route>
         
         {/* Public routes */}
