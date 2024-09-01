@@ -2,7 +2,7 @@
 
 Repository link: https://github.com/nlina-0/T3A2-B_FullStackApp 
 
-Deployed website: https://main--gymflow101.netlify.app/ 
+Deployed website: https://gymflow101.netlify.app/
 
 Login for website:
 
