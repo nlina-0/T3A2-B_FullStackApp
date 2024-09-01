@@ -14,9 +14,9 @@ const app = express()
 startConnection() 
 
 // Middleware 
-
+const allowedOrigins = ['http://localhost:3000', 'https://gymflow101.netlify.app/:1', 'https://main--gymflow101.netlify.app', 'https://gymflow101.netlify.app']
 app.use(cors({
-    origin: 'https://gymflow101.netlify.app/:1',
+    origin: allowedOrigins,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true
 }))
