@@ -16,7 +16,7 @@ startConnection()
 // Middleware 
 
 app.use(cors({
-    origin: 'https://gymflow101.netlify.app', // replace with your frontend URL
+    origin: 'https://main--gymflow101.netlify.app/',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true
 }))
